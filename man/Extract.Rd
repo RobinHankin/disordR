@@ -35,7 +35,6 @@ x[i] <- value
   Extraction and methods return a disord.
 }
 \author{Robin K. S. Hankin}
-}
 \examples{
 2+2
 }
