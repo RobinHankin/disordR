@@ -1,0 +1,13 @@
+Package: disordR
+Type: Package
+Title: Non-ordered vectors
+Version: 0.0-1
+Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
+Depends: methods,digest
+Suggests: knitr,rmarkdown
+VignetteBuilder: knitr
+Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
+Description: Functionality for disordered vectors for use with associative maps.
+License: GPL (>= 2)
+URL: https://github.com/RobinHankin/disordR
+BugReports: https://github.com/RobinHankin/disordR/issues

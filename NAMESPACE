@@ -1,0 +1,7 @@
+exportPattern("^[[:alpha:]]+")
+export("%~%")
+
+import("methods")
+importFrom("digest" , "sha1")
+
+
