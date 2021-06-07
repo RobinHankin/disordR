@@ -149,6 +149,7 @@ setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
 
 setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes things like a[a>4] work
           function(x,i,j,drop){
+              stopifnot(consistent(x,i))
               out <- elements(x)[elements(i)]
               new("disord",v=out,h=digest::sha1(out))  # NB newly generated hash, stops things like a[a>4] + a[a<3]
           })
