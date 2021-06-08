@@ -7,7 +7,14 @@ Depends: methods,digest
 Suggests: knitr,rmarkdown
 VignetteBuilder: knitr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
-Description: Functionality for disordered vectors for use with associative maps.
+Description: Functionality for manipulating values (or keys) of
+  associative maps.  One can manipulate elements of a vector but
+  without reference to their location in the vector.  Is is as though
+  one is only allowed to access or modify a vector via a python list
+  comprehension.  The idea is to prevent "illegal" operations on
+  values (or keys) of associative maps, whose order is undefined or at
+  best implementation-specific.  The package is needed for development
+  versions of 'mvp', 'hyper2', 'spray', 'clifford', and 'freealg'.
 License: GPL (>= 2)
 URL: https://github.com/RobinHankin/disordR
 BugReports: https://github.com/RobinHankin/disordR/issues

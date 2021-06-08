@@ -1,10 +1,8 @@
 \name{disord}
-\alias{Ops.disord}
 \alias{disord}
 \alias{hash}
 \alias{as_disord}
 \alias{is.disord}
-\alias{print.disord}
 \alias{accessors}
 \alias{consistent}
 \alias{disord}
@@ -18,16 +16,14 @@
   disord objects is implementation-specific.
 }
 \usage{
-\method{Ops}{disord}(e1, e2=NULL)
 is.disord(x)
 hash(x)
-\method{print}{disord}(x, ...)
 disord(v,h)
 consistent(x,y)
 x \%~\% y
 }
 \arguments{
-  \item{x,y,e1,e2}{Objects of class \code{disord}}
+  \item{x,y}{Objects of class \code{disord}}
 \item{...}{Further arguments}
 \item{v}{Vector of coefficients}
 \item{h}{Hash code}
@@ -167,8 +163,8 @@ a + (2*a)  # fine
 
 
 a <- disord(1:9)
-## Following line should be an error but isn't:
-a[a<4] <- 1000 +  a[a>6]
+
+
 
 
 }
