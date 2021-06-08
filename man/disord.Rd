@@ -11,8 +11,8 @@
 \title{Functionality for \code{disord} objects}
 \description{
   Allows arithmetic operators to be used for disord objects; the
-  prototype is coefficients of
-  multivariate polynomials.  The issue is that the storage order of
+  canonical application is coefficients of multivariate polynomials (as
+  in the \pkg{mvp} package).  The issue is that the storage order of
   disord objects is implementation-specific.
 }
 \usage{
@@ -24,7 +24,6 @@ x \%~\% y
 }
 \arguments{
   \item{x,y}{Objects of class \code{disord}}
-\item{...}{Further arguments}
 \item{v}{Vector of coefficients}
 \item{h}{Hash code}
 }
