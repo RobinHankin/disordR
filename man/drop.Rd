@@ -1,5 +1,6 @@
 \name{drop}
 \alias{drop}
+\alias{drop,disord-method}
 \alias{allsame}
 \title{Drop redundant information}
 \description{Coerce \code{disord} objects to vector when this makes sense}
