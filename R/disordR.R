@@ -26,6 +26,8 @@ allsame <- function(x){length(table(elements(x)))==1}
 `consistent` <- function(x,y){identical(hash(x),hash(y)) | allsame(x) | allsame(y)}
 `%~%` <- function(x,y){consistent(x,y)}
 
+setGeneric("drop")
+setMethod("drop","disord",function(x){if(allsame(x)){return(elements(x))}else{return(x)}})
 
 `rdisord` <- function(n=20){disord(sample(n))}
 
@@ -174,10 +176,16 @@ setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
           )
 
 setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes things like a[a>4] work
-          function(x,i,j,drop){
+          function(x,i,j,drop=TRUE){
               stopifnot(consistent(x,i))
               out <- elements(x)[elements(i)]
-              new("disord",v=out,h=digest::sha1(out))  # NB newly generated hash, stops things like a[a>4] + a[a<3]
+              out <- new("disord",v=out,h=digest::sha1(out))  # NB newly generated hash, stops things like a[a>4] + a[a<3]
+              print(drop)
+              if(drop){
+                  return(drop(out))
+              } else {
+                  return(out)
+              }
           })
 
 setMethod("[", signature("disord",i="index",j="ANY",drop="ANY"),function(x,i,j,drop){stop("cannot have two index args")})
@@ -205,4 +213,6 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
                      disord(jj,hash(x))
                      }
                  )
+
+
 

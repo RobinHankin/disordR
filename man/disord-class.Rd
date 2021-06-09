@@ -79,7 +79,11 @@ and \code{character}, which mean that it is an arity-one matrix index.
     \item{Arith}{\code{signature(e1 = "disord", e2 = "disord")}: ... }
     \item{Arith}{\code{signature(e1 = "disord", e2 = "missing")}: ... }
   }
+
+  The extraction method takes a \code{drop} argument which if
+  \code{TRUE}, returns the \code{drop()} of its value.
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{drop}}}
 \examples{showClass("disord")}
 \keyword{classes}
