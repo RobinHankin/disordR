@@ -40,7 +40,7 @@ setGeneric("length")
 setMethod("length","disord",function(x){length(elements(x))})
 
 setGeneric("length<-")
-setReplaceMethod("length<-","disord",function(x){stop("cannot set length of a disord object")})
+setReplaceMethod("length","disord",function(x){stop("cannot set length of a disord object")})
 
 `disord_arith_disord` <- function(e1,e2){
     stopifnot(consistent(e1,e2))
