@@ -21,7 +21,9 @@ setClass("disord",
 
 `is.disord` <- function(x){inherits(x,"disord")}
 
-`consistent` <- function(x,y){identical(hash(x),hash(y))}
+allsame <- function(x){length(table(elements(x)))==1}
+
+`consistent` <- function(x,y){identical(hash(x),hash(y)) | allsame(x) | allsame(y)}
 `%~%` <- function(x,y){consistent(x,y)}
 
 
