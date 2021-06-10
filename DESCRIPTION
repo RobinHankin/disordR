@@ -7,7 +7,6 @@ Depends: methods,digest
 Suggests: knitr,rmarkdown
 VignetteBuilder: knitr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
-
 Description: Functionality for manipulating values of associative
   maps.  Ordinary R vectors are unsuitable for working with values of
   associative maps because elements of an R vector may be accessed by
