@@ -32,7 +32,5 @@ setReplaceMethod("names",signature(x="disord",value="ANY"),
                    return(disord(jj,h=hash(x)))
                  } )
                    
-setGeneric("as.character")
-setMethod("as.character",signature=c(x="disord"),function(x){disord(as.character(elements(x)),h=hash(x))})
   
                    
