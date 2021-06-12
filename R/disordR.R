@@ -23,7 +23,8 @@ setClass("disord",
 
 `allsame` <- function(x){length(table(elements(x)))==1}
 
-`consistent` <- function(x,y){identical(hash(x),hash(y)) | allsame(x) | allsame(y)}
+`consistent` <- function(x,y){allsame(x) || allsame(y) || identical(hash(x),hash(y))}
+
 `%~%` <- function(x,y){consistent(x,y)}
 
 setGeneric("drop")
