@@ -43,12 +43,7 @@ setMethod("sort",signature=c(x="disord"),function(x,decreasing=FALSE,...){
     } )
 
 setGeneric("min")  # NB not perfect, eg, min(1,disord(3)) fails
-setGeneric("minpair", function(x,y,na.rm){standardGeneric("minpair")})
-setMethod("minpair", c("disord", "disord"), function(x,y,na.rm=FALSE){min(elements(x),elements(y),na.rm=na.rm)})
-setMethod("minpair", c("disord", "ANY"   ), function(x,y,na.rm=FALSE){min(elements(x),y          ,na.rm=na.rm)})
-setMethod("minpair", c("ANY", "disord"   ), function(x,y,na.rm=FALSE){min(x,elements(y)          ,na.rm=na.rm)})
-setMethod("minpair", c("ANY", "ANY"      ), function(x,y,na.rm=FALSE){min(x,y                    ,na.rm=na.rm)})
-
+`min2` <- function(x,y,na.rm=FALSE){min(elements(x),elements(y),na.rm=na.rm)}
 setMethod("min",
     signature(x = "disord"),
     function (x, ..., na.rm = FALSE){
@@ -56,20 +51,15 @@ setMethod("min",
         if(nargs() < 3){
             return(min(elements(x),na.rm=na.rm))  #  min(a)
         } else if(nargs() ==3){ # min(a,b)
-            return(do.call("minpair",c(x, a ,na.rm=na.rm)))
+            return(do.call("min2",c(x, a ,na.rm=na.rm)))
         } else { # min(a,b,c)
-            return(do.call("min",c(disord(minpair(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
+            return(do.call("min",c(disord(min2(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
         }
     }
 )
 
 setGeneric("max")  # NB not perfect, eg, max(1,disord(3)) fails
-setGeneric("maxpair", function(x,y,na.rm){standardGeneric("maxpair")})
-setMethod("maxpair", c("disord", "disord"), function(x,y,na.rm=FALSE){max(elements(x),elements(y),na.rm=na.rm)})
-setMethod("maxpair", c("disord", "ANY"   ), function(x,y,na.rm=FALSE){max(elements(x),y          ,na.rm=na.rm)})
-setMethod("maxpair", c("ANY", "disord"   ), function(x,y,na.rm=FALSE){max(x,elements(y)          ,na.rm=na.rm)})
-setMethod("maxpair", c("ANY", "ANY"      ), function(x,y,na.rm=FALSE){max(x,y                    ,na.rm=na.rm)})
-
+`max2` <- function(x,y,na.rm=FALSE){max(elements(x),elements(y),na.rm=na.rm)}
 setMethod("max",
     signature(x = "disord"),
     function (x, ..., na.rm = FALSE){
@@ -77,9 +67,9 @@ setMethod("max",
         if(nargs() < 3){
             return(max(elements(x),na.rm=na.rm))  #  max(a)
         } else if(nargs() ==3){ # max(a,b)
-            return(do.call("maxpair",c(x, a ,na.rm=na.rm)))
+            return(do.call("max2",c(x, a ,na.rm=na.rm)))
         } else { # max(a,b,c)
-            return(do.call("max",c(disord(maxpair(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
+            return(do.call("max",c(disord(max2(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
         }
     }
 )

@@ -1,5 +1,5 @@
 `hash` <- function(x){x@h}
-`elements` <- function(x){x@v}
+`elements` <- function(x){if(is.disord(x)){return(x@v)}else{return(x)}}
 
 setClass("disord",
          slots = c(v = "vector", h = "character"),
