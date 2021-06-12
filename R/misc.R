@@ -42,7 +42,7 @@ setMethod("sort",signature=c(x="disord"),function(x,decreasing=FALSE,...){
     sort(elements(x),decreasing=decreasing,...)
     } )
 
-setGeneric("min")  # NB not perfect, eg, min(1,disord(3)) and min(disord(3),1,disord(3)) fail
+setGeneric("min")  # NB not perfect, eg, min(1,disord(3)) fails
 setGeneric("minpair", function(x,y,na.rm){standardGeneric("minpair")})
 setMethod("minpair", c("disord", "disord"), function(x,y,na.rm=FALSE){min(elements(x),elements(y),na.rm=na.rm)})
 setMethod("minpair", c("disord", "ANY"   ), function(x,y,na.rm=FALSE){min(elements(x),y          ,na.rm=na.rm)})
@@ -63,7 +63,7 @@ setMethod("min",
     }
 )
 
-setGeneric("max")  # NB not perfect, eg, max(1,disord(3)) and max(disord(3),1,disord(3)) fail
+setGeneric("max")  # NB not perfect, eg, max(1,disord(3)) fails
 setGeneric("maxpair", function(x,y,na.rm){standardGeneric("maxpair")})
 setMethod("maxpair", c("disord", "disord"), function(x,y,na.rm=FALSE){max(elements(x),elements(y),na.rm=na.rm)})
 setMethod("maxpair", c("disord", "ANY"   ), function(x,y,na.rm=FALSE){max(elements(x),y          ,na.rm=na.rm)})
