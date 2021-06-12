@@ -52,12 +52,12 @@ setMethod("minpair", c("ANY", "ANY"      ), function(x,y,na.rm=FALSE){min(x,y   
 setMethod("min",
     signature(x = "disord"),
     function (x, ..., na.rm = FALSE){
+        a <- list(...)
         if(nargs() < 3){
             return(min(elements(x),na.rm=na.rm))  #  min(a)
         } else if(nargs() ==3){ # min(a,b)
             return(do.call("minpair",c(x, a ,na.rm=na.rm)))
         } else { # min(a,b,c)
-            a <- list(...)
             return(do.call("min",c(disord(minpair(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
         }
     }
@@ -73,12 +73,12 @@ setMethod("maxpair", c("ANY", "ANY"      ), function(x,y,na.rm=FALSE){max(x,y   
 setMethod("max",
     signature(x = "disord"),
     function (x, ..., na.rm = FALSE){
+        a <- list(...)
         if(nargs() < 3){
             return(max(elements(x),na.rm=na.rm))  #  max(a)
         } else if(nargs() ==3){ # max(a,b)
             return(do.call("maxpair",c(x, a ,na.rm=na.rm)))
         } else { # max(a,b,c)
-            a <- list(...)
             return(do.call("max",c(disord(maxpair(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
         }
     }
