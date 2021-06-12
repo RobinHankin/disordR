@@ -43,7 +43,7 @@ setMethod("sort",signature=c(x="disord"),function(x,decreasing=FALSE,...){
     } )
 
 setGeneric("min")  # NB not perfect, eg, min(1,disord(3)) fails
-`min2` <- function(x,y,na.rm=FALSE){min(elements(x),elements(y),na.rm=na.rm)}
+`mindispair` <- function(x,y,na.rm=FALSE){min(elements(x),elements(y),na.rm=na.rm)}
 setMethod("min",
     signature(x = "disord"),
     function (x, ..., na.rm = FALSE){
@@ -51,15 +51,15 @@ setMethod("min",
         if(nargs() < 3){
             return(min(elements(x),na.rm=na.rm))  #  min(a)
         } else if(nargs() ==3){ # min(a,b)
-            return(do.call("min2",c(x, a ,na.rm=na.rm)))
+            return(do.call("mindispair",c(x, a ,na.rm=na.rm)))
         } else { # min(a,b,c)
-            return(do.call("min",c(disord(min2(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
+            return(do.call("min",c(disord(mindispair(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
         }
     }
 )
 
 setGeneric("max")  # NB not perfect, eg, max(1,disord(3)) fails
-`max2` <- function(x,y,na.rm=FALSE){max(elements(x),elements(y),na.rm=na.rm)}
+`maxdispair` <- function(x,y,na.rm=FALSE){max(elements(x),elements(y),na.rm=na.rm)}
 setMethod("max",
     signature(x = "disord"),
     function (x, ..., na.rm = FALSE){
@@ -67,9 +67,9 @@ setMethod("max",
         if(nargs() < 3){
             return(max(elements(x),na.rm=na.rm))  #  max(a)
         } else if(nargs() ==3){ # max(a,b)
-            return(do.call("max2",c(x, a ,na.rm=na.rm)))
+            return(do.call("maxdispair",c(x, a ,na.rm=na.rm)))
         } else { # max(a,b,c)
-            return(do.call("max",c(disord(max2(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
+            return(do.call("max",c(disord(maxdispair(x,a[[1]],na.rm=na.rm)),a[-1] ,na.rm=na.rm)))
         }
     }
 )
