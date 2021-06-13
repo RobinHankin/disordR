@@ -18,7 +18,7 @@ setValidity("disord", function(object){
  setMethod("initialize", "disord", 
          function(.Object, ...) {
            .Object <- callNextMethod()
-           if(length(.Object@hash)==0){
+           if(length(hash(.Object))==0){
                stop("initialize() problem, hash is null")
            }
            return(.Object)
