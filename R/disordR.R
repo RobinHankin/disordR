@@ -1,25 +1,35 @@
-`hash` <- function(x){x@h}
-`elements` <- function(x){if(is.disord(x)){return(x@v)}else{return(x)}}
+`hash` <- function(x){x@hash}
+`elements` <- function(x){if(is.disord(x)){return(x@.Data)}else{return(x)}}  # no occurrences of '@' below this line
 
-setClass("disord",
-         slots = c(v = "vector", h = "character"),
+setClass("disord", contains = "vector", slots=c(.Data="vector",hash="character"),
          validity = function(object){
-             if(!is.vector(elements(object))){
-                 return("'v' not a vector")
-             } else if(length(hash(object)) != 1){
-                 return("hash must be length 1")
+             if(length(hash(object)) != 1){
+                 return("hash should be a character vector of length 1")
+             } else if(nchar(object) == 0){
+                 return("must have a non-null hash")
              } else {
-                 return(TRUE)
-             }
-         }
+                 return(TRUE)}
+         } )
+
+setValidity("disord", function(object){
+             if(length(hash(object))==0){return("must have a non-null hash")}else{return(TRUE)}}
          )
 
-`disord` <- function(v,h){ # v is a vector but it needs a hash key 'h'
-    if(missing(h)){h <- digest::sha1(v)}
-    new("disord",v=v, h=h)
-}
+ setMethod("initialize", "disord", 
+         function(.Object, ...) {
+           .Object <- callNextMethod()
+           if(length(.Object@hash)==0){
+               stop("initialize() problem, hash is null")
+           }
+           return(.Object)
+         })
 
 `is.disord` <- function(x){inherits(x,"disord")}
+
+`disord` <- function(v,h){ # v is a vector but it needs a hash attribute
+    if(missing(h)){h <- digest::sha1(v)}
+    new("disord",.Data=v,hash=h)  # this is the only occurence of new() in the package
+}
 
 `allsame` <- function(x){length(table(elements(x)))==1}
 
@@ -176,8 +186,7 @@ setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes t
           function(x,i,j,drop=TRUE){
               stopifnot(consistent(x,i))
               out <- elements(x)[elements(i)]
-              out <- new("disord",v=out,h=digest::sha1(out))  # NB newly generated hash, stops things like a[a>4] + a[a<3]
-              print(drop)
+              out <- disord(out, digest::sha1(out))  # NB newly generated hash, stops things like a[a>4] + a[a<3]
               if(drop){
                   return(drop(out))
               } else {
