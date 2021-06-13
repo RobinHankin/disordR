@@ -287,4 +287,10 @@ setMethod("pmaxdis", signature(x="disord"),
                   return(do.call("pmaxdis",c(list(pmaxdispair(x,a[[1]],na.rm=na.rm)),a[-1],na.rm=na.rm)))
               }
           }
-          )
+          
+)
+
+setMethod("sapply",signature(X="disord"),
+          function(X,FUN,...,simplify=TRUE,USE.NAMES=TRUE){
+            disord(sapply(elements(X),FUN,...,simplify=simplify,USE.NAMES=USE.NAMES),h=hash(X))
+          })
