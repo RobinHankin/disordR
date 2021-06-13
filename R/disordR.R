@@ -127,7 +127,6 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
 `disord_mod_disord`   <- function(a,b){disord(elements(a) %% elements(b),hash(a))}
 `disord_mod_numeric`  <- function(a,b){disord(elements(a) %% b          ,hash(a))}
 `numeric_mod_disord`  <- function(a,b){disord(elements(a) %% b          ,hash(a))}
-`disord_power_numeric`<- function(a,b){disord(elements(a)%%b            ,hash(a))}
 `numeric_mod_disord`  <- function(a,b){disord(a^elements(b)             ,hash(b))}
 
 `disord_compare_disord` <- function(e1,e2){
