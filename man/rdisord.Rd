@@ -1,19 +1,12 @@
 \name{rdisord}
 \alias{rdisord}
 \title{Random disord object}
-\description{A random disord object, intended as a quick
-  \dQuote{get you going} example}
+\description{A random disord object}
 \usage{rdisord(n=20)}
 \arguments{\item{n}{Number of elements}}
-
-\details{
-
-Function definition is disord(sample(n=20))
-\code{a^2*b*a^3} will be simplified to \code{a^5*b}, so powers in the
-result may be larger than argument \code{pow}. 
-}
-\value{
-Returns a multivariate polynomial, an object of class \code{mvp}}
+\details{A simple \code{disord} object,  intended as a quick
+  \dQuote{get you going} example}
+\value{A \code{disord} object.}
 \author{Robin K. S. Hankin}
 \examples{
 rdisord()
