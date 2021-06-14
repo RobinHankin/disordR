@@ -36,15 +36,13 @@ x \%~\% y
 \author{Robin K. S. Hankin}
 \examples{
 
-a <- disord(runif(10))
-b <- disord(runif(10))
+a <- rdis()
+b <- rdis()
 
 a + 2*a + 2^a  # fine
 # a + b # error
 
-a <- disord(runif(9))
 a[a<0.5] <- 0       # round small entries down
-
 
 
 }

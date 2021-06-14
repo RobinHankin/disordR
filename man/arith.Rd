@@ -51,10 +51,8 @@ the disord object if appropriate.
 \value{Return a disord object or logical}
 \author{Robin K. S. Hankin}
 \examples{
-a <- disord(sample(30))
-b <- disord(sample(30))
 
+a <- disord(sample(20))
 a + 2*a
-
 a[a\%\%2==1] <- a[a\%\%2==1] + 5
 }

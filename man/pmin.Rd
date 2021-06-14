@@ -31,14 +31,14 @@ rearrange, as in \code{pmindis(disord(1:5),3)}).
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{misc}}}
 \examples{
-a <- disord(runif(17))
-b <- disord(runif(17))
+a <- rdis()
+b <- rdis()
 
 # pmindis(a,b)   # fails!
 
 pmindis(a,0.5)
 pmindis(a,1-a)
 
-pmaxdis(a+1,a*2,1.3)
+pmaxdis(a+1, a*2, 1.3)
 }
 \keyword{classes}

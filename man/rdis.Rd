@@ -1,18 +1,20 @@
-\name{rdisord}
+\name{rdis}
+\alias{rdis}
 \alias{rdisord}
-\title{Random disord object}
-\description{A random disord object}
-\usage{rdisord(n=20)}
+\alias{rdisordR}
+\title{Random disord objects}
+\description{Returns a random disord object}
+\usage{rdis(n=10)}
 \arguments{\item{n}{Number of elements}}
 \details{A simple \code{disord} object,  intended as a quick
   \dQuote{get you going} example}
 \value{A \code{disord} object.}
 \author{Robin K. S. Hankin}
 \examples{
-rdisord()
+rdis()
 
-a <- rdisord()
-b <- rdisord()
+a <- rdis()
+b <- rdis()
 
 
 ## Following are OK:

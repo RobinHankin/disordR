@@ -13,4 +13,4 @@
 \note{
 This function should not be used as it imposes an arbitrary order on the
 elements, which may differ from implementation to implementation.}
-\examples{elements(disord(sample(39)))}
+\examples{elements(rdis())}
