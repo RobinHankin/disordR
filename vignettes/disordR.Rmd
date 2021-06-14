@@ -9,7 +9,7 @@ vignette: >
 ---
 
 
-# `disord` objects as used in the `mvp` package
+# The `mvp` package as a motivation for the definition of `disord`  objects
 
 (This document discusses the `disord` class of objects in the context
 of the `mvp` package.  Vignette `disordR` presents a more abstract
@@ -75,8 +75,9 @@ an error.  However, note that
 
 ```
 coeffs(a) + coeffs(a)
-coeffs(a)+coeffs(a)^2
+coeffs(a) + coeffs(a)^2
 coeffs(a) <- coeffs(a)^2
+coeffs(a) <- coeffs(a)^2 + 7
 ```
 
 are perfectly well defined, with package idiom behaving as expected.
@@ -105,14 +106,14 @@ an assignment, as long as the right hand side is a length-one vector.
 Idiom such as
 
 ```
-disord(a)[disord(a)<5] <- 4+disord(a)[disord(a)<5]
+disord(a)[disord(a)<5] <- 4 + disord(a)[disord(a)<5]
 disord(a) <- pmax(a,3)
 ```
 
 is algebraically meaningful.  Idiomatically: "Add 4 to any element
 less than 5"; "coefficients become the parallel maximum of themselves
 and 3" respectively [but note that package idiom is `pmaxdis()` here].
-Further note that `coeffs(a)` <- rev(coeffs(a))` is disallowed
+Further note that `coeffs(a) <- rev(coeffs(a))` is disallowed
 
 So the output of `coeffs(x)` is defined only up to an unknown
 rearrangement.  The same considerations apply to the output of
@@ -131,4 +132,54 @@ issue: the variables are not stored in a well-defined order.  This
 does not matter because the algebraic value of the term does not
 depend on the order in which the variables appear and this term would
 be equivalent to `4bc^6*a^3`.
+
+# An R session with the `disordR` package
+
+We will use the `disordR` package to show how the idiom works.
+
+```{r}
+library("disordR")
+a <- rdis()
+a
+```
+
+Object `a` is a `disord` object but it behaves similarly to a regular
+numeric vector in many ways:
+
+```{r}
+a^2
+max(a)
+sort(a)
+```
+
+However, if we try to combine object `a` with another object with different hash, we get errors:
+
+```{r,error=TRUE}
+b <- rdis()
+b
+a+b
+```
+
+The error is given because objects `a` and `b` are stored in a
+non-compatible order.  Many extract and replace methods are
+implemented:
+
+```{r}
+a[a<0.5] <- 0  # round down
+a
+b[b>0.6] <- b[b>0.6] + 3  # add 3 to every element greater than 0.6
+b
+```
+
+Usual semantics follow, provided one is careful to maintain the hash
+code:
+
+```{r}
+a <- disord(1:10)
+a
+x <- a + a^2
+x
+a[a<5] <- x[a<5]
+a
+```
 
