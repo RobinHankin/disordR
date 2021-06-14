@@ -19,4 +19,10 @@ allsame(x)
 \examples{
 drop(disord(c(3,3,3,3,3,3,2,3,3,3,3,3)))
 drop(disord(c(3,3,3,3,3,3,3,3,3,3,3,3)))
+
+## In extraction, argument drop discards disorderliness when possible:
+a <- rdis()
+a[] <- 6
+b <- rdis()
+b[drop=TRUE] <- 6
 }

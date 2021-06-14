@@ -220,6 +220,26 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
                      }
                  )
 
+setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), # x[] <- numeric
+                 function(x,i,j,value,drop=TRUE){
+                   stopifnot(length(value)==1)
+                   out <- elements(x)
+                   out[] <- value   # the meat
+                   out <- disord(out)
+                   if(drop)(out <- drop(out))
+                   return(out)
+                 } )
+                   
+
+setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="disord"), # x[] <- disord
+                 function(x,i,j,value){stop("x[] <- disord not defined")
+                 } )
+
+                   
+
+
+
+
 setGeneric("sort")
 setMethod("sort",
     signature(x = "disord"),
@@ -294,3 +314,4 @@ setMethod("sapply",signature(X="disord"),
           function(X,FUN,...,simplify=TRUE,USE.NAMES=TRUE){
             disord(sapply(elements(X),FUN,...,simplify=simplify,USE.NAMES=USE.NAMES),h=hash(X))
           })
+

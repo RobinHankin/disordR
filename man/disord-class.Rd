@@ -16,6 +16,7 @@
 \alias{[,disord,missing,missing-method}
 \alias{[,disord,index,ANY,ANY-method}
 \alias{[,disord,index,missing,ANY-method}
+\alias{[,ANY,disord,ANY-method}
 \alias{[<-}
 \alias{[<-.disord}
 \alias{[<-,disord-method}
@@ -34,6 +35,7 @@
 \alias{[<-,disord,disord,missing,ANY-method}
 \alias{[<-,disord,disord,missing,disord-method}
 \alias{[<-,disord,disord,missing-method}
+\alias{[<-,disord,missing,missing,ANY-method}
 \alias{Arith,ANY,disord-method}
 \alias{Arith,disord,ANY-method}
 \alias{Arith,disord,disord-method}
