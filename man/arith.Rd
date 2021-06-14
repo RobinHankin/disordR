@@ -42,6 +42,11 @@ disord_prod_numeric(a,b)
 \details{
 Basic low-level arithmetic operations, intended to be called from
 \proglang{S4} dispatch.
+
+These functions return a \code{disord} object or a regular vector as
+appropriate.  Consistency is required.  The hash is set to be that of
+the disord object if appropriate.
+
 }
 \value{Return a disord object or logical}
 \author{Robin K. S. Hankin}
