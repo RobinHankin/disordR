@@ -40,7 +40,7 @@ setValidity("disord", function(object){
 setGeneric("drop")
 setMethod("drop","disord",function(x){if(allsame(x)){return(elements(x))}else{return(x)}})
 
-`rdisord` <- function(n=20){disord(sample(n))}
+`rdis` <- function(n=10){disord(runif(n))}
 
 setMethod("show", "disord", function(object){disord_show(object)})
 
