@@ -146,7 +146,6 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
 }
 
 `disord_compare_any` <- function(e1,e2){
-
     stopifnot(length(e2)==1)
     a1 <- elements(e1)
     switch(.Generic,
@@ -160,7 +159,19 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
            )
 }
 
-`any_compare_disord` <- function(e1,e2){ disord_compare_any(e2,e1) }
+`any_compare_disord` <- function(e1,e2){
+    stopifnot(length(e1)==1)
+    a2 <- elements(e2)
+    switch(.Generic,
+           "==" = disord(e1==a2,hash(e2)),
+           "!=" = disord(e1!=a2,hash(e2)),
+           ">"  = disord(e1> a2,hash(e2)),
+           "<"  = disord(e1< a2,hash(e2)),
+           ">=" = disord(e1>=a2,hash(e2)),
+           "<=" = disord(e1<=a2,hash(e2)),
+           stop(paste(.Generic, "not supported for disord objects"))
+           )
+}
 
 setMethod("Compare", signature(e1="disord", e2="disord"), disord_compare_disord)
 setMethod("Compare", signature(e1="disord", e2="ANY"   ), disord_compare_any   )
