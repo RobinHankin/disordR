@@ -326,3 +326,5 @@ setMethod("sapply",signature(X="disord"),
             disord(sapply(elements(X),FUN,...,simplify=simplify,USE.NAMES=USE.NAMES),h=hash(X))
           })
 
+setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})
+
