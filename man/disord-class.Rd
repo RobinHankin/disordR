@@ -52,7 +52,7 @@ are more user-friendly.
 
 Class \dfn{index} is taken from the excellent \pkg{Matrix} package and
 is a \code{setClassUnion()} of classes \code{numeric}, \code{logical},
-and \code{character}, which mean that it is an arity-one matrix index.
+and \code{character}.
 
 }
 \section{Slots}{

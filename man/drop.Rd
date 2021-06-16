@@ -10,10 +10,12 @@ allsame(x)
 }
 \arguments{\item{x}{\code{disord} object}}
 \details{
-  If its argument is disord object all of whose elements are
-  identical, one very frequently wants to drop the disord attribute and
-  coerce to a vector.   The criterion of all identical elements is given
-  by \code{allsame()}.
+  If one has a disord object all of whose elements are identical, one
+  very frequently wants to drop the disord attribute and coerce to a
+  vector.  This can be done without ambiguity.  Function \code{drop()}
+  takes a disord object, and if all elements are identical returns the
+  elements in the form of a vector.  Some extraction methods take a
+  \code{drop} argument, which does the same thing if \code{TRUE}. 
 }
 \author{Robin K. S. Hankin}
 \examples{

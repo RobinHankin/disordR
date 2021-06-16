@@ -11,6 +11,7 @@
 \value{Returns a vector}
 \author{Robin K. S. Hankin}
 \note{
-This function should not be used as it imposes an arbitrary order on the
-elements, which may differ from implementation to implementation.}
+This function imposes an arbitrary order on the elements.  The value
+returned is thus implementation-specific.
+}
 \examples{elements(rdis())}
