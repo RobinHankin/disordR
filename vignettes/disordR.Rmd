@@ -192,9 +192,11 @@ a
 # An R session with the `mvp` package
 
 The `mvp` package implements multivariate polynomials using the `STL`
-map class:
+map class.  Following commands only work as intended here with `mvp >=
+1.0-12` (which is not on CRAN, pending `disordR`).
 
-```{r}
+
+```{}
 library("mvp")
 a <- rmvp()
 b <- rmvp()
@@ -205,7 +207,7 @@ b
 We can extract the coefficients of these polynomials using the
 `coeffs()` function:
 
-```{r}
+```{}
 coeffs(a)
 coeffs(b)
 ```
@@ -214,7 +216,7 @@ observe that the coefficients are returned as a `disord` object.  We
 may manipulate the coefficients of a polynomial in many ways.  We may
 do the following things:
 
-```{r}
+```{}
 coeffs(a)[coeffs(a) < 4] <- 0   # set any coefficient < 4 to zero
 a
 coeffs(b) <- coeffs(b)%%2       # consider coefficients modulo 2
@@ -225,7 +227,7 @@ However, many operations which have reasonable idiom are in fact
 meaningless and are implicitly prohibited.  For example:
 
 
-```{r}
+```{}
 x <- rmvp()     # set up new mvp objects x and y
 y <- rmvp()
 x
@@ -238,7 +240,7 @@ coeffs(y)
 
 Then the following should all produce errors:
 
-```{r,error=TRUE}
+```{}
 coeffs(x) + coeffs(y)  # order not specified
 coeffs(x) <- coeffs(y) # order not specified
 coeffs(x) <- 1:2       # replacement value not length 1
