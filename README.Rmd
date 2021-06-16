@@ -1,0 +1,155 @@
+---
+title: "The disordR package"
+output:
+  github_document:
+    pandoc_args: --webtex
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+library("disordR")
+```
+
+
+# Overview
+
+Ordinary R vectors are unsuitable for working with values of
+associative maps because elements of an R vector may be accessed by
+reference to their location in the vector, but associative maps are
+stored in arbitrary order.  However, when associating keys with values
+one needs both parts to be in 1-1 correspondence, so one cannot
+dispense with the order entirely.  The disordR package includes a
+single `S4` class, `disord`.  This class allows one to perform only
+those operations appropriate for manipulating values (or keys) of
+associative maps.
+
+A useful heuristic is that one is only allowed to access or modify a
+disord object using a python list comprehension.  The idea is to
+prevent "illegal" operations on values (or keys) of associative maps,
+whose order is undefined or at best implementation-specific, while
+allowing sensible operations.
+
+# The `disord` package in use
+
+I will illustrate the package by a few examples of legal and illegal
+code.  First create a simple `disord` object:
+
+```{r}
+set.seed(0)
+a <- rdis()    # a random disord object
+a
+```
+
+
+We may perform various operations on this object:
+
+
+```{r}
+a+4
+a > 0.5
+a[a<0.2]
+```
+
+with no difficulty.  But if we try to find elements of `a` with a
+particular offset or offsets, the system returns an error:
+
+```{r,error=TRUE}
+a[1]
+a[c(2,3)]
+```
+
+This is because the elements of `a` are stored in an
+implementation-specific order and there is no such thing as the
+"first" element.  We may manipulate elements of `a` by reference to
+their values but not by their position in the vector:
+
+```{r}
+a[a<0.1] <- a[a<0.1] * 0  # round small elements down
+a
+```
+
+
+## Two distinct `disord` objects 
+
+If we create another `disord` object, `b`:
+
+```{r}
+b <- rdis()
+b
+```
+
+Then `a` and `b` have the same length, but adding them vectorially is
+forbidden because the order of their elements is implementation-specific:
+
+```{r,error=TRUE}
+a+b
+```
+
+Also, replacement methods that access cross-referenced locations are forbidden:
+
+```{r,error=TRUE}
+a[b < 0.4] <- 5
+```
+
+(observe carefully that `a[b<4] <- 5` is legal).  However, sometimes
+one knows that two disord objects have the _same_ ordering (perhaps
+`a` is the key, and `b` the value, of an associative array).  In this
+case one may cross-reference them provided that the hash codes of the
+two objects agree:
+
+
+```{r}
+a <- rdis()
+b <- disord(runif(10),hash(a))
+a
+b
+```
+
+See how `a` and `b` have the same hash code.  Then, although the
+elements of `a` and `b` are stored in an implementation-specific (and
+thus unknown) order, whatever order it is is the same in both objects
+and they are relatable:
+
+
+```{r}
+a+b
+a[b < 0.5]
+a[b < 0.2] <- b[b < 0.2]
+a
+```
+
+
+# Comparison with python
+
+A disord object is comparable with python arrays with the proviso that
+one is only allowed to access or manipulate elements via list
+comprehensions.  See the following python session:
+
+```
+~ % python3
+Python 3.9.5 (default, May  4 2021, 03:33:11) 
+[Clang 12.0.0 (clang-1200.0.32.29)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from numpy import *
+>>> a = random.rand(5)
+>>> b = random.rand(5)
+>>> a
+array([0.13275574, 0.07243463, 0.0543058 , 0.36633955, 0.73795801])
+>>> b
+array([0.14934221, 0.11321413, 0.6135964 , 0.53558058, 0.6396702 ])
+>>> [i**2 for i in a]
+[0.017624086607707354, 0.005246776214236293, 0.002949120389839953, 0.1342046637421116, 0.54458202262916]
+>>> [i+j for i,j in zip(a,b)]
+[0.28209795105056, 0.18564876373593042, 0.6679022004516395, 0.901920128499422, 1.377628206483919]
+>>> 
+```
+
+Note that in the last line `zip()` is used to relate `a` and `b` which
+is accomplished in the package by explicitly setting the hash code.
