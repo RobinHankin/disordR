@@ -11,9 +11,13 @@ vignette: >
 
 # The `mvp` package as a motivation for the definition of `disord`  objects
 
-(This document discusses the `disord` class of objects in the context
-of the `mvp` package.  Vignette `disordR` presents a more abstract
-discussion of the `disordR` package considered in isolation).
+(This document motivates the concept of "disordered vector" using
+coefficients of multivariate polynomials as represented by associative
+maps such as the `STL` map class as used by the `mvp` package.  It
+then presents an illustrative R session in which the `disordR` package
+is used abstractly, without reference to any particular application,
+and then shows how the `disordR` package is used in the `mvp`
+package).
 
 Accessing elements of an `mvp` object is problematic because the order
 of the terms of an `mvp` object is not well-defined.  This is because
@@ -183,3 +187,60 @@ a[a<5] <- x[a<5]
 a
 ```
 
+
+
+# An R session with the `mvp` package
+
+The `mvp` package implements multivariate polynomials using the `STL`
+map class:
+
+```{r}
+library("mvp")
+a <- rmvp()
+b <- rmvp()
+a
+b
+```
+
+We can extract the coefficients of these polynomials using the
+`coeffs()` function:
+
+```{r}
+coeffs(a)
+coeffs(b)
+```
+
+observe that the coefficients are returned as a `disord` object.  We
+may manipulate the coefficients of a polynomial in many ways.  We may
+do the following things:
+
+```{r}
+coeffs(a)[coeffs(a) < 4] <- 0   # set any coefficient < 4 to zero
+a
+coeffs(b) <- coeffs(b)%%2       # consider coefficients modulo 2
+b
+```
+
+However, many operations which have reasonable idiom are in fact
+meaningless and are implicitly prohibited.  For example:
+
+
+```{r}
+x <- rmvp()     # set up new mvp objects x and y
+y <- rmvp()
+x
+y
+coeffs(x)
+coeffs(y)
+```
+
+
+
+Then the following should all produce errors:
+
+```{r,error=TRUE}
+coeffs(x) + coeffs(y)  # order not specified
+coeffs(x) <- coeffs(y) # order not specified
+coeffs(x) <- 1:2       # replacement value not length 1
+coeffs(x)[coeffs(x) < 3] <- coeffs(x)[coeffs(y) < 3]
+```
