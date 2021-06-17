@@ -50,9 +50,9 @@ Objects can be created by calls of the form \code{new("disord", ...)},
 although functions \code{disord()} and (eventually) \code{as.disord()}
 are more user-friendly.
 
-Class \dfn{index} is taken from the excellent \pkg{Matrix} package and
-is a \code{setClassUnion()} of classes \code{numeric}, \code{logical},
-and \code{character}.
+Class \dfn{index} is taken from the excellent \CRANpkg{Matrix} package
+and is a \code{setClassUnion()} of classes \code{numeric},
+\code{logical}, and \code{character}.
 
 }
 \section{Slots}{

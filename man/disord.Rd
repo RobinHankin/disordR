@@ -12,10 +12,10 @@
 \description{
   Allows arithmetic operators to be used for disord objects; the
   canonical application is coefficients of multivariate polynomials (as
-  in the \pkg{mvp} package).  The issue is that the storage order of
+  in the \CRANpkg{mvp} package).  The issue is that the storage order of
   disord objects is implementation-specific but the order (whatever it
   is) must be consistent between the list of keys and values in an
-  associative array. 
+  associative array.
 }
 \usage{
 is.disord(x)
