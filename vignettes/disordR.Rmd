@@ -246,3 +246,48 @@ coeffs(x) <- coeffs(y) # order not specified
 coeffs(x) <- 1:2       # replacement value not length 1
 coeffs(x)[coeffs(x) < 3] <- coeffs(x)[coeffs(y) < 3]
 ```
+
+## `vars()` and `powers()` return `disord` objects
+
+
+The `disord()` function takes a list argument, and this is useful for
+working with `mvp` objects:
+
+```{}
+(a <- rmvp())
+vars(a)
+powers(a)
+coeffs(a)
+```
+
+Note that the hash is identical, generated from the polynomial itself
+(not just the relevant element of the three-element list that is an
+`mvp` object).  This allows us to do some rather interesting things:
+
+```{}
+double <- function(x){2*x}
+a <- rmvp()
+pa <- powers(a)
+va <- vars(a)
+ca <- coeffs(a)
+pa[ca<4] <- sapply(pa,double)[ca<4]
+mvp(va,pa,ca)
+```
+
+Above, `a` was a multivariate polynomial and we doubled the powers of
+all variables in terms with coefficients less than 4. Or even:
+
+```{}
+a <- rmvp()
+pa <- powers(a)
+va <- vars(a)
+ca <- coeffs(a)
+va[sapply(pa,length) > 4] <- sapply(va,toupper)[sapply(pa,length) > 4]
+mvp(va,pa,ca)
+```
+
+Above, we took `a` and replaced the variables in every term with more
+than four variables with their uppercase equivalents.  The `mvp`
+package does not include `powers<-()` or `vars<-()` functions, but
+these would have made the idiom nicer (I will get round to writing
+them when the `disordR` package is more stable).

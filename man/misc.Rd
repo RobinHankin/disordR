@@ -40,4 +40,12 @@ are a few functions that are a little more involved:
 a <- disord(c(a=1,b=2,c=7))
 names(a)
 length(a)
+
+
+# powers() and vars() in the mvp package return lists; see the vignette
+# for more discussion.
+
+l <- disord(list(3,6:9,1:10))  
+sapply(l,length)
+
 }
