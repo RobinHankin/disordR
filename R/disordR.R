@@ -101,8 +101,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
 `disord_negative` <- function(a){disord(-elements(a),hash(a))}
 `disord_inverse` <- function(a){disord(1/elements(a),hash(a))}
 
-
-`disord_unary` <- function(e1,e2){
+`disord_arith_unary` <- function(e1,e2){
     switch(.Generic,
            "+" = disord_positive(e1),
            "-" = disord_negative(e1),
@@ -110,12 +109,10 @@ setMethod("show", "disord", function(object){disord_show(object)})
            )
 }
 
-setMethod("Arith",signature(e1 = "disord" , e2="missing"), disord_unary)
+setMethod("Arith",signature(e1 = "disord" , e2="missing"), disord_arith_unary)
 setMethod("Arith",signature(e1 = "disord" , e2="disord" ), disord_arith_disord )
 setMethod("Arith",signature(e1 = "disord" , e2="numeric"), disord_arith_numeric)
 setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
-
-
 
 `disord_plus_disord`  <- function(a,b){disord(elements(a)+elements(b)   ,hash(a))}
 `disord_plus_numeric` <- function(a,b){disord(elements(a)+b             ,hash(a))}
@@ -177,14 +174,51 @@ setMethod("Compare", signature(e1="disord", e2="disord"), disord_compare_disord)
 setMethod("Compare", signature(e1="disord", e2="ANY"   ), disord_compare_any   )
 setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
 
-`disord_logic` <- function(e1,e2){
-  stop("No logic currently implemented for disord objects")
+`disord_logic_disord` <- function(e1,e2){
+    stopifnot(consistent(e1,e2))
+    a1 <- elements(e1)
+    a2 <- elements(e2)
+    switch(.Generic,
+           "&" = disord(a1 & a2,hash(e1)),
+           "|" = disord(a1 | a2,hash(e1)),
+           stop(paste(.Generic, "not supported for disord objects"))
+           )
 }
 
-setMethod("Logic",signature(e1="disord",e2="ANY"), disord_logic)
-setMethod("Logic",signature(e1="ANY",e2="disord"), disord_logic)
-setMethod("Logic",signature(e1="disord",e2="disord"), disord_logic)
+`disord_logic_any` <- function(e1,e2){
+    stopifnot(length(e2)==1)
+    a1 <- elements(e1)
+    switch(.Generic,
+           "&" = disord(a1 & e2,hash(e1)),
+           "|" = disord(a1 | e2,hash(e1)),
+           stop(paste(.Generic, "not supported for disord objects"))
+           )
+}
 
+`any_logic_disord` <- function(e1,e2){
+    stopifnot(length(e1)==1)
+    a2 <- elements(e2)
+    switch(.Generic,
+           "&" = disord(e1 & a2,hash(e2)),
+           "|" = disord(e1 | a2,hash(e2)),
+           stop(paste(.Generic, "not supported for disord objects"))
+           )
+}
+
+`disord_logical_negate` <- function(a){disord(-a,hash(a))}
+
+`disord_logic_missing` <- function(e1,e2){
+    switch(.Generic,
+           "!" = disord_logical_negate(e1),
+           stop(paste("Unary operator \"", .Generic, "\" not defined for disords"))
+           )
+}
+
+    
+setMethod("Logic",signature(e1="disord",e2="ANY"), disord_logic_any)
+setMethod("Logic",signature(e1="ANY",e2="disord"), any_logic_disord)
+setMethod("Logic",signature(e1="disord",e2="disord"), disord_logic_disord)
+setMethod("Logic",signature(e1="disord",e2="missing"), disord_logic_missing)
 
 setClassUnion("index", members =  c("numeric", "logical", "character")) # taken from the Matrix package.
 
