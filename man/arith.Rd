@@ -28,7 +28,7 @@
 \alias{disord_logic_unary}
 \alias{disord_logic_missing}
 \alias{disord_logical_negate}
-\alias{an y_logic_disord}
+\alias{an_y_logic_disord}
 \alias{disord_show}
 \alias{disord_unary}
 \alias{numeric_arith_disord}
