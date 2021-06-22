@@ -253,9 +253,6 @@ setMethod("[", signature("disord",i="missing",j="missing",drop="ANY"), # x[]
             return(out)
           } )
 
-  
-setMethod("[", signature("ANY",i="disord",j="ANY",drop="ANY"),function(x,i,j,drop){"asdfa"})
-
 setReplaceMethod("[",signature(x="disord",i="index",j="missing",value="ANY"),  # a[1:5] <- a[1:5] + 33  = fake
                  function(x,i,j,value){stop("cannot use a regular index to extract, only a disord object")}
                  )
