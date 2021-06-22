@@ -252,8 +252,7 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="disord")
                      jj <- elements(x)
                      jj[elements(i)] <- elements(value)  # the meat
                      disord(jj,hash(x))   # needs same hash as x
-                     }
-                 )
+                 } )
 
 setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), # x[x<3] <- 333
                  function(x,i,j,value){
@@ -262,8 +261,7 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
                      jj <- elements(x)
                      jj[elements(i)] <- value   # the meat; OK because x %~% i
                      disord(jj,hash(x))
-                     }
-                 )
+                 } )
 
 setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), # x[] <- numeric
                  function(x,i,j,value,drop=TRUE){
@@ -280,37 +278,35 @@ setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="disord"
                  function(x,i,j,value){stop("x[] <- disord not defined")
                  } )
 
-                   
-
-
-
-
 setGeneric("sort")
-setMethod("sort",
-    signature(x = "disord"),
-    function (x, decreasing = FALSE, ...){sort(elements(x),decreasing=decreasing, ...)}
-    )
-
-
+setMethod("sort", signature(x = "disord"),
+          function (x, decreasing = FALSE, ...){sort(elements(x),decreasing=decreasing, ...)
+          } )
 
 setGeneric("rev")
-setMethod("rev",signature=c(x="disord"),function(x){
-    disord(rev(elements(x)),h=paste(rev(strsplit(hash(x), "")[[1]]), collapse = ""))
-} )
+setMethod("rev",signature=c(x="disord"),
+          function(x){
+            disord(rev(elements(x)),h=paste(rev(strsplit(hash(x), "")[[1]]), collapse = ""))
+          } )
 
 setGeneric("pmindispair",function(x,y, na.rm=FALSE){standardGeneric("pmindispair")})
-setMethod("pmindispair",c("disord","disord"),function(x,y,na.rm=FALSE){
-    stopifnot(consistent(x,y))
-    disord(pmin(elements(x),elements(y),na.rm=na.rm),hash(x))
-})
-setMethod("pmindispair",c("disord","ANY"),function(x,y,na.rm=FALSE){
-    stopifnot(consistent(x,y))
-    disord(pmin(elements(x),elements(y),na.rm=na.rm),hash(x))
-}) 
-setMethod("pmindispair",c("ANY","disord"),function(x,y,na.rm=FALSE){
-    stopifnot(consistent(x,y))
-    disord(pmin(elements(x),elements(y),na.rm=na.rm),hash(y))
-})  
+setMethod("pmindispair",c("disord","disord"),
+          function(x,y,na.rm=FALSE){
+            stopifnot(consistent(x,y))
+            disord(pmin(elements(x),elements(y),na.rm=na.rm),hash(x))
+          } )
+
+setMethod("pmindispair",c("disord","ANY"),
+          function(x,y,na.rm=FALSE){
+            stopifnot(consistent(x,y))
+            disord(pmin(elements(x),elements(y),na.rm=na.rm),hash(x))
+          } ) 
+
+setMethod("pmindispair",c("ANY","disord"),
+          function(x,y,na.rm=FALSE){
+            stopifnot(consistent(x,y))
+            disord(pmin(elements(x),elements(y),na.rm=na.rm),hash(y))
+          } ) 
 
 setGeneric("pmindis",function(x, ..., na.rm=FALSE){standardGeneric("pmindis")})
 setMethod("pmindis", signature(x="disord"),
@@ -323,42 +319,44 @@ setMethod("pmindis", signature(x="disord"),
               } else {
                   return(do.call("pmindis",c(list(pmindispair(x,a[[1]],na.rm=na.rm)),a[-1],na.rm=na.rm)))
               }
-          }
-          )
+          } )
 
 setGeneric("pmaxdispair",function(x,y, na.rm=FALSE){standardGeneric("pmaxdispair")})
-setMethod("pmaxdispair",c("disord","disord"),function(x,y,na.rm=FALSE){
-    stopifnot(consistent(x,y))
-    disord(pmax(elements(x),elements(y),na.rm=na.rm),hash(x))
-})
-setMethod("pmaxdispair",c("disord","ANY"),function(x,y,na.rm=FALSE){
-    stopifnot(consistent(x,y))
-    disord(pmax(elements(x),elements(y),na.rm=na.rm),hash(x))
-}) 
-setMethod("pmaxdispair",c("ANY","disord"),function(x,y,na.rm=FALSE){
-    stopifnot(consistent(x,y))
-    disord(pmax(elements(x),elements(y),na.rm=na.rm),hash(y))
-})  
+setMethod("pmaxdispair",c("disord","disord"),
+          function(x,y,na.rm=FALSE){
+            stopifnot(consistent(x,y))
+            disord(pmax(elements(x),elements(y),na.rm=na.rm),hash(x))
+          } )
+
+setMethod("pmaxdispair",c("disord","ANY"),
+          function(x,y,na.rm=FALSE){
+            stopifnot(consistent(x,y))
+            disord(pmax(elements(x),elements(y),na.rm=na.rm),hash(x))
+          } ) 
+
+setMethod("pmaxdispair",c("ANY","disord"),
+          function(x,y,na.rm=FALSE){
+            stopifnot(consistent(x,y))
+            disord(pmax(elements(x),elements(y),na.rm=na.rm),hash(y))
+          } ) 
 
 setGeneric("pmaxdis",function(x, ..., na.rm=FALSE){standardGeneric("pmaxdis")})
 setMethod("pmaxdis", signature(x="disord"),
           function(x, ..., na.rm=FALSE){
-              a <- list(...)
-              if(length(a)==0){  #pmaxdis(a)
-                  return(x)
-              } else if(length(a)==1){  # pmaxdis(a,b)
-                  return(pmaxdispair(x,a[[1]],na.rm=na.rm))
-              } else {
-                  return(do.call("pmaxdis",c(list(pmaxdispair(x,a[[1]],na.rm=na.rm)),a[-1],na.rm=na.rm)))
-              }
-          }
-          
-)
+            a <- list(...)
+            if(length(a)==0){  #pmaxdis(a)
+              return(x)
+            } else if(length(a)==1){  # pmaxdis(a,b)
+              return(pmaxdispair(x,a[[1]],na.rm=na.rm))
+            } else {
+              return(do.call("pmaxdis",c(list(pmaxdispair(x,a[[1]],na.rm=na.rm)),a[-1],na.rm=na.rm)))
+            }
+          } )
 
 setMethod("sapply",signature(X="disord"),
           function(X,FUN,...,simplify=TRUE,USE.NAMES=TRUE){
             disord(sapply(elements(X),FUN,...,simplify=simplify,USE.NAMES=USE.NAMES),h=hash(X))
-          })
+          } )
 
 setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})
 
