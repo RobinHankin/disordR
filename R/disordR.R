@@ -223,8 +223,14 @@ setMethod("Logic",signature(e1="disord",e2="missing"), disord_logic_missing)
 setClassUnion("index", members =  c("numeric", "logical", "character")) # taken from the Matrix package.
 
 setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
-          function(x,i,j,drop){stop("cannot use a regular index to extract, only a disord object")}
-          )
+          function(x,i,j,drop){
+            jj <- seq_along(x)
+            if(identical(sort(jj[i]),jj)){  # that is, extract every element
+              return(disord(x,digest::sha1(c(hash(x),i))))
+            } else {
+              stop("if using a regular index to extract, must extract all elements")
+            }
+          } )
 
 setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes things like a[a>4] work
           function(x,i,j,drop=TRUE){
@@ -239,6 +245,15 @@ setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes t
           })
 
 setMethod("[", signature("disord",i="index",j="ANY",drop="ANY"),function(x,i,j,drop){stop("cannot have two index args")})
+
+setMethod("[", signature("disord",i="missing",j="missing",drop="ANY"), # x[]
+          function(x,i,j,drop){
+            out <- disord(x,digest::sha1(0L,c(elements(x))))
+            if(drop){out <- drop(out)}
+            return(out)
+          } )
+
+  
 setMethod("[", signature("ANY",i="disord",j="ANY",drop="ANY"),function(x,i,j,drop){"asdfa"})
 
 setReplaceMethod("[",signature(x="disord",i="index",j="missing",value="ANY"),  # a[1:5] <- a[1:5] + 33  = fake
