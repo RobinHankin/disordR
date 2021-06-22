@@ -33,6 +33,8 @@ x \%~\% y
   The package provides a single \proglang{S4} class, \code{disord}.  A
   detailed vignette is provided that motivates the package.
 }
+\value{Boolean, hash code, or object of class \code{disord} as
+  appropriate.}
 \author{Robin K. S. Hankin}
 \examples{
 

@@ -28,6 +28,7 @@ as dispatch is determined by the first argument (to make this work,
 either coerce, as in \code{pmindis(disord(3),disord(1:5))}, or
 rearrange, as in \code{pmindis(disord(1:5),3)}).
 }
+\value{Object of class \code{disord}.}
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{misc}}}
 \examples{
