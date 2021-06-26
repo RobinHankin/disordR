@@ -40,6 +40,20 @@ setValidity("disord", function(object){
 setGeneric("drop")
 setMethod("drop","disord",function(x){if(allsame(x)){return(elements(x))}else{return(x)}})
 
+setGeneric("is.na")
+setMethod("is.na","disord",
+          function(x){
+              disord(is.na(elements(x)),hash(x))
+          } )
+
+setGeneric("is.na<-")
+setMethod("is.na<-","disord",
+          function(x,value){
+              jj <- elements(x)
+              is.na(jj) <- value
+              disord(jj,hash(x))
+          } )
+
 `rdis` <- function(n=9){disord(runif(n))}
 
 setMethod("show", "disord", function(object){disord_show(object)})
