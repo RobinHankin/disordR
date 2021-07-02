@@ -15,6 +15,9 @@
 \alias{sapply}
 \alias{sapply,disord-method}
 \alias{sapply.disord}
+\alias{lapply}
+\alias{lapply,disord-method}
+\alias{lapply.disord}
 \alias{is.na}
 \alias{is.na.disord}
 \alias{is.na<-}
