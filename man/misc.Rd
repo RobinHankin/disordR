@@ -21,6 +21,18 @@
 \alias{is.na<-.disord}
 \alias{is.na,disord-method}
 \alias{is.na<-,disord-method}
+\alias{match}
+\alias{match,disord-method}
+\alias{match,disord,ANY-method}
+\alias{match,ANY,disord-method}
+\alias{match,ANY,disord-method}
+\alias{match,disord,disord-method}
+\alias{\%in\%}
+\alias{\%in\%,disord-method}
+\alias{\%in\%,disord,ANY-method}
+\alias{\%in\%,ANY,disord-method}
+\alias{\%in\%,ANY,disord-method}
+\alias{\%in\%,disord,disord-method}
 \title{Miscellaneous functions}
 \description{
 
@@ -40,7 +52,12 @@ involved:
   object.
   \item{sapply(X,f)} returns a disord object which is the result of
   applying \code{f()} to each element of \code{X}.
-}
+  \item\code{match(x,table)} should behave as expected but note that if
+  \code{table} is a \code{disord}, the result is not defined (because it
+  is not known where the elements of \code{x} occur in \code{table}).
+  Nevertheless \code{x \%in\% table} is defined and returns a
+  \code{disord} object.
+  }
 }
 \arguments{\item{x}{Object of class \code{disord}}}
 \value{Returns a disord}

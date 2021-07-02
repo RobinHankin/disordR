@@ -37,6 +37,26 @@ setValidity("disord", function(object){
 
 `%~%` <- function(x,y){consistent(x,y)}
 
+setGeneric("match")
+setMethod("match",signature(x="disord",table="ANY"),
+          function(x,table, nomatch,incomparables){
+            disord(match(elements(x),elements(table),nomatch,incomparables),hash(x))
+          } )
+
+setMethod("match",signature(x="ANY",table="disord"),
+          function(x,table, nomatch,incomparables){
+            stop("match() not defined if second argument a disord")
+          } )
+setMethod("match",signature(x="disord",table="disord"),
+          function(x,table, nomatch,incomparables){
+            stop("match() not defined if second argument a disord")
+          } )
+
+setGeneric("%in%")
+setMethod("%in%",signature("disord","ANY"),function(x,table){disord(match(elements(x),table,nomatch=0L)>0L,hash(x))})
+setMethod("%in%",signature("ANY","disord"),function(x,table){match(x,elements(table),nomatch=0L)>0L})
+setMethod("%in%",signature("disord","disord"),function(x,table){disord(match(elements(x),elements(table),nomatch=0L)>0L,hash(x))})
+
 setGeneric("drop")
 setMethod("drop","disord",function(x){if(allsame(x)){return(elements(x))}else{return(x)}})
 
