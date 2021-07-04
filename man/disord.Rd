@@ -1,6 +1,7 @@
 \name{disord}
 \alias{disord}
 \alias{hash}
+\alias{hashcal}
 \alias{as_disord}
 \alias{is.disord}
 \alias{accessors}
@@ -20,6 +21,7 @@
 \usage{
 is.disord(x)
 hash(x)
+hashcal(x)
 disord(v,h)
 consistent(x,y)
 x \%~\% y
@@ -32,6 +34,16 @@ x \%~\% y
 \details{
   The package provides a single \proglang{S4} class, \code{disord}.  A
   detailed vignette is provided that motivates the package.
+
+  Function \code{hash()} is the extractor function:
+
+  \code{`hash` <- function(x){x@hash}}
+
+  Compare \code{hashcal()} which is used to actually calculate the hash
+  code for an object.  Currently
+
+  \code{`hashcal` <- function(x){digest::sha1(x)}}
+  
 }
 \value{Boolean, hash code, or object of class \code{disord} as
   appropriate.}

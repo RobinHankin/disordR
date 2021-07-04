@@ -1,4 +1,5 @@
-`hash` <- function(x){x@hash}
+`hash` <- function(x){x@hash}  # extractor method
+`hashcal` <- function(x){digest::sha1(x)}
 `elements` <- function(x){if(is.disord(x)){return(x@.Data)}else{return(x)}}  # no occurrences of '@' below this line
 
 setClass("disord", contains = "vector", slots=c(.Data="vector",hash="character"),
@@ -27,7 +28,7 @@ setValidity("disord", function(object){
 `is.disord` <- function(x){inherits(x,"disord")}
 
 `disord` <- function(v,h){ # v is a vector but it needs a hash attribute
-    if(missing(h)){h <- digest::sha1(v)}
+    if(missing(h)){h <- hashcal(v)}
     new("disord",.Data=v,hash=h)  # this is the only occurence of new() in the package
 }
 
@@ -260,7 +261,7 @@ setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
           function(x,i,j,drop){
             jj <- seq_along(x)
             if(identical(sort(jj[i]),jj)){  # that is, extract every element
-              return(disord(x,digest::sha1(c(hash(x),i))))
+              return(disord(x,hashcal(c(hash(x),i))))
             } else {
               stop("if using a regular index to extract, must extract all elements")
             }
@@ -270,7 +271,7 @@ setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes t
           function(x,i,j,drop=TRUE){
               stopifnot(consistent(x,i))
               out <- elements(x)[elements(i)]
-              out <- disord(out, digest::sha1(c(hash(x),hash(i))))  # NB newly generated hash, stops things like a[a>4] + a[a<3] but allows a[x<3] <- x[x<3]
+              out <- disord(out, hashcal(c(hash(x),hash(i))))  # NB newly generated hash, stops things like a[a>4] + a[a<3] but allows a[x<3] <- x[x<3]
               if(drop){
                   return(drop(out))
               } else {
@@ -282,7 +283,7 @@ setMethod("[", signature("disord",i="index",j="ANY",drop="ANY"),function(x,i,j,d
 
 setMethod("[", signature("disord",i="missing",j="missing",drop="ANY"), # x[]
           function(x,i,j,drop){
-            out <- disord(x,digest::sha1(0L,c(elements(x))))
+            out <- disord(x,hashcal(c(hash(x),0)))
             if(drop){out <- drop(out)}
             return(out)
           } )
