@@ -34,7 +34,14 @@ setValidity("disord", function(object){
 
 `allsame` <- function(x){length(unique(elements(x)))==1}
 
-`consistent` <- function(x,y){allsame(x) || allsame(y) || identical(hash(x),hash(y))}
+`consistent` <- function(x,y){
+  if(allsame(x) || allsame(y)){return(TRUE)}
+  if(is.disord(x) && is.disord(y)){
+    return(identical(hash(x),hash(y)))
+  } else {
+    return(FALSE)
+  }
+}
 
 `%~%` <- function(x,y){consistent(x,y)}
 
