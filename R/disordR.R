@@ -270,7 +270,7 @@ setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
             if(identical(sort(jj[i]),jj)){  # that is, extract every element
               return(disord(x,hashcal(c(hash(x),i))))
             } else {
-              stop("if using a regular index to extract, must extract all elements")
+              stop("if using a regular index to extract, must extract each element once and once only")
             }
           } )
 
@@ -417,4 +417,6 @@ setMethod("lapply",signature(X="disord"),
           } )
 
 setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})
+
+setMethod("sha1","disord",function(x, digits = 14, zapsmall = 7, ..., algo = "sha1"){sha1(unclass(x), digits = digits, zapsmall = zapsmall, ..., algo = algo)})
 
