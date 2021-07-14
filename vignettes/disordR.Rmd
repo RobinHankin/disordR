@@ -196,7 +196,7 @@ map class.  Following commands only work as intended here with `mvp >=
 1.0-12` (which is not on CRAN, pending `disordR`).
 
 
-```{}
+```{r}
 library("mvp")
 a <- rmvp()
 b <- rmvp()
@@ -207,7 +207,7 @@ b
 We can extract the coefficients of these polynomials using the
 `coeffs()` function:
 
-```{}
+```{r}
 coeffs(a)
 coeffs(b)
 ```
@@ -216,7 +216,7 @@ observe that the coefficients are returned as a `disord` object.  We
 may manipulate the coefficients of a polynomial in many ways.  We may
 do the following things:
 
-```{}
+```{r}
 coeffs(a)[coeffs(a) < 4] <- 0   # set any coefficient < 4 to zero
 a
 coeffs(b) <- coeffs(b)%%2       # consider coefficients modulo 2
@@ -227,7 +227,7 @@ However, many operations which have reasonable idiom are in fact
 meaningless and are implicitly prohibited.  For example:
 
 
-```{}
+```{r}
 x <- rmvp()     # set up new mvp objects x and y
 y <- rmvp()
 x
@@ -240,7 +240,7 @@ coeffs(y)
 
 Then the following should all produce errors:
 
-```{}
+```{r,error=TRUE}
 coeffs(x) + coeffs(y)  # order not specified
 coeffs(x) <- coeffs(y) # order not specified
 coeffs(x) <- 1:2       # replacement value not length 1
@@ -253,7 +253,7 @@ coeffs(x)[coeffs(x) < 3] <- coeffs(x)[coeffs(y) < 3]
 The `disord()` function takes a list argument, and this is useful for
 working with `mvp` objects:
 
-```{}
+```{r}
 (a <- rmvp())
 vars(a)
 powers(a)
@@ -264,7 +264,7 @@ Note that the hash is identical, generated from the polynomial itself
 (not just the relevant element of the three-element list that is an
 `mvp` object).  This allows us to do some rather interesting things:
 
-```{}
+```{r}
 double <- function(x){2*x}
 a <- rmvp()
 pa <- powers(a)
@@ -277,7 +277,7 @@ mvp(va,pa,ca)
 Above, `a` was a multivariate polynomial and we doubled the powers of
 all variables in terms with coefficients less than 4. Or even:
 
-```{}
+```{r}
 a <- rmvp()
 pa <- powers(a)
 va <- vars(a)
