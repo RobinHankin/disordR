@@ -18,7 +18,7 @@ allsame(x)
   \code{drop} argument, which does the same thing if \code{TRUE}. 
 }
 \value{Function \code{drop()} returns either a vector or object of class
-  \code{disord} as appropriate; \code{allsam()} returns a Boolean.}
+  \code{disord} as appropriate; \code{allsame()} returns a Boolean.}
 \author{Robin K. S. Hankin}
 \examples{
 drop(disord(c(3,3,3,3,3,3,2,3,3,3,3,3)))
