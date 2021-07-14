@@ -44,7 +44,7 @@ xy^3 -> 4, x -> 1, y -> 3
 ```  
 
 are the same map and correspond to the same multinomial (symbolically,
-$x+3y+4xy^3=4xy^3+x+3y$.  Thus the coefficients of the multinomial
+$x+3y+4xy^3=4xy^3+x+3y$).  Thus the coefficients of the multinomial
 might be `c(1,3,4)` or `c(4,1,3)`, or indeed any ordering.  But note
 that any particular ordering imposes an ordering on the terms.  If we
 choose `c(1,3,4)` then the terms are `x`, `y`, `xy^3`, and if we
@@ -58,7 +58,7 @@ the numeric vector.
    
 For example, a multinomial `x+2y+3z` might have coefficients
 `c(1,2,3)` or `c(3,1,2)`.  Package idiom to extract the coefficients
-of a multivariate polynomial `a` is `coeffs()`; but this cannot return
+of a multivariate polynomial `a` is `coeffs(a)`; but this cannot return
 a standard numeric vector because a numeric vector has elements in a
 particular order, and the coefficients of a multivariate polynomial
 are stored in an implementation-specific (and thus unknown) order.
@@ -74,7 +74,7 @@ with neither being more "correct" than the other.  In the package,
 this ambiguity is rendered nonproblematic: `coeffs(a) + coeffs(b)`
 will return an error.  In the same way `coeffs(a) + 1:3` is not
 defined and will return an error.  Further, idiom such as `coeffs(a)
-<- 1:3}`and `coeffs(a) <- coeffs(b)` are not defined and will return
+<- 1:3`and `coeffs(a) <- coeffs(b)` are not defined and will return
 an error.  However, note that
 
 ```
@@ -92,7 +92,7 @@ order is the same on both sides.  The idiomatic English equivalent
 would be: "the coefficient of each term of `a` becomes its square";
 note that this operation is insensitive to the order of coefficients.
 The whole shebang is intended to make idiom such as `coeffs(a) <-
-coeffs(a)%%2` possible (so we can manipulate polynomials over finite
+coeffs(a)%%2` possible, so we can manipulate polynomials over finite
 rings, here $Z/2Z$.
 
 The replacement methods are defined so that an expression like
@@ -131,7 +131,7 @@ first element of `powers(x)`.  The identity of this element is not
 defined---but whatever it is, the first element of all three accessor
 methods refers to it.
 
-Note also that a single term (something like `4a3*b*c^6` has the same
+Note also that a single term (something like `4a3*b*c^6`) has the same
 issue: the variables are not stored in a well-defined order.  This
 does not matter because the algebraic value of the term does not
 depend on the order in which the variables appear and this term would
