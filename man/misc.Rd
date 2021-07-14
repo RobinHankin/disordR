@@ -53,7 +53,7 @@ involved:
   \item\code{sort()} returns a vector of sorted elements.
   \item{length()} returns the length of the data component of the
   object.
-  \item{sapply(X,f)} returns a disord object which is the result of
+  \item\code{sapply(X,f)} returns a disord object which is the result of
   applying \code{f()} to each element of \code{X}.
   \item\code{match(x,table)} should behave as expected but note that if
   \code{table} is a \code{disord}, the result is not defined (because it
