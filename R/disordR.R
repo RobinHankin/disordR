@@ -418,5 +418,5 @@ setMethod("lapply",signature(X="disord"),
 
 setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})
 
-setMethod("sha1","disord",function(x, digits = 14, zapsmall = 7, ..., algo = "sha1"){sha1(unclass(x), digits = digits, zapsmall = zapsmall, ..., algo = algo)})
+
 
