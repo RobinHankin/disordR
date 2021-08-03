@@ -247,20 +247,14 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
            )
 }
 
-`disord_logical_negate` <- function(a){disord(-a,hash(a))}
-
-`disord_logic_missing` <- function(e1,e2){
-    switch(.Generic,
-           "!" = disord_logical_negate(e1),
-           stop(paste("Unary operator \"", .Generic, "\" not defined for disords"))
-           )
+`disord_logical_negate` <- function(x){
+  disord(!elements(x),hash(x))
 }
+setMethod("!","disord",disord_logical_negate)
 
-    
 setMethod("Logic",signature(e1="disord",e2="ANY"), disord_logic_any)
 setMethod("Logic",signature(e1="ANY",e2="disord"), any_logic_disord)
 setMethod("Logic",signature(e1="disord",e2="disord"), disord_logic_disord)
-setMethod("Logic",signature(e1="disord",e2="missing"), disord_logic_missing)
 
 setClassUnion("index", members =  c("numeric", "logical", "character")) # taken from the Matrix package.
 
@@ -411,9 +405,21 @@ setMethod("sapply",signature(X="disord"),
             disord(sapply(elements(X),FUN,...,simplify=simplify,USE.NAMES=USE.NAMES),h=hash(X))
           } )
 
+setGeneric("lapply")
 setMethod("lapply",signature(X="disord"),
           function(X,FUN,...){
             disord(lapply(elements(X),FUN,...),h=hash(X))
+          } )
+
+setGeneric("unlist")
+setMethod("unlist","disord",
+          function(x,recursive=TRUE){
+            out <- unlist(x,recursive=recursive)
+            if(length(out) == length(x)){
+              return(disord(unlist(elements(x)),h=hash(x)))
+              } else {
+                return(unlist(elements(x)))
+              }
           } )
 
 setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})

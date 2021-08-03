@@ -36,6 +36,7 @@
 \alias{\%in\%,ANY,disord-method}
 \alias{\%in\%,ANY,disord-method}
 \alias{\%in\%,disord,disord-method}
+\alias{!,disord-method}
 \title{Miscellaneous functions}
 \description{
 

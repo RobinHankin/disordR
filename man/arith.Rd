@@ -46,9 +46,9 @@ disord_power_numeric(a,b)
 numeric_power_disord(a,b)
 disord_prod_disord(a,b)
 disord_prod_numeric(a,b)
-disord_logical_negate(a)
+disord_logical_negate(x)
 }
-\arguments{\item{a,b}{at least one is a disord object}}
+\arguments{\item{a,b,x}{at least one is a disord object}}
 \details{
 Basic low-level arithmetic operations, intended to be called from
 \proglang{S4} dispatch.
