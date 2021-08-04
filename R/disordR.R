@@ -350,12 +350,9 @@ setMethod("lapply",signature(X="disord"),
 setGeneric("unlist")
 setMethod("unlist","disord",
           function(x,recursive=TRUE){
-            out <- unlist(x,recursive=recursive)
-            if(length(out) == length(x)){
-              return(disord(unlist(elements(x)),h=hash(x)))
-              } else {
-                return(unlist(elements(x)))
-              }
+            out <- unlist(elements(x),recursive=recursive)
+            stopifnot(length(out) == length(x))
+            return(disord(out,h=hash(x)))
           } )
 
 setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})
