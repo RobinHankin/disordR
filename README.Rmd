@@ -18,6 +18,16 @@ library("disordR")
 ```
 
 
+# disordR <img src="man/figures/disordR.png" width = "150" align="right" />
+
+<!-- badges: start -->
+[![Build Status](https://travis-ci.com/RobinHankin/disordR.svg?branch=master)](https://travis-ci.com/RobinHankin/disordR)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/disordR)](https://cran.r-project.org/package=disordR)
+[![Rdoc](https://www.rdocumentation.org/badges/version/disordR)](https://www.rdocumentation.org/packages/disordR)
+[![Codecov test coverage](https://codecov.io/gh/RobinHankin/disordR/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/disordR/branch/master)
+<!-- badges: end -->
+
+
 # Overview
 
 Ordinary R vectors are unsuitable for working with values of
