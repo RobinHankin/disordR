@@ -10,7 +10,7 @@ The disordR package
 [![Build
 Status](https://travis-ci.com/RobinHankin/disordR.svg?branch=master)](https://travis-ci.com/RobinHankin/disordR)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/disordR)](https://cran.r-project.org/package=disordR)
-[![Rdoc](https://www.rdocumentation.org/badges/version/disordR)](https://www.rdocumentation.org/packages/disordR)
+[![Rdoc](https://rdocumentation.org/packages/disordR/versions/0.0-7)](https://rdocumentation.org/packages/disordR/versions/0.0-7)
 [![Codecov test
 coverage](https://codecov.io/gh/RobinHankin/disordR/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/disordR/branch/master)
 <!-- badges: end -->
