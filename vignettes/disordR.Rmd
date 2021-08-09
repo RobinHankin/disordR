@@ -8,6 +8,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<p style="text-align: right;">
+![](`r system.file("help/figures/disordR.png", package = "disordR")`){width=10%}
+</p>
+
 
 # The `mvp` package as a motivation for the definition of `disord`  objects
 
