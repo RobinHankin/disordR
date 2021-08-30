@@ -305,6 +305,7 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="disord")
 setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), # x[x<3] <- 333
                  function(x,i,j,value){
                      stopifnot(consistent(x,i))
+                     stopifnot(consistent(x[i],value))
                      jj <- elements(x)
                      jj[elements(i)] <- value   # the meat; OK because x %~% i
                      disord(jj,hash(x))
