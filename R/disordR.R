@@ -358,5 +358,16 @@ setMethod("unlist","disord",
 
 setMethod("c","disord",function(x, ..., recursive){stop("c() does not make sense for disord")})
 
+setAs("disord","logical"  ,function(from){disord(as.logical  (elements(from)),hash(from))})
+setAs("disord","numeric"  ,function(from){disord(as.numeric  (elements(from)),hash(from))})
+setAs("disord","double"   ,function(from){disord(as.double   (elements(from)),hash(from))})
+setAs("disord","list"     ,function(from){disord(as.list     (elements(from)),hash(from))})
+setAs("disord","character",function(from){disord(as.character(elements(from)),hash(from))})
+setAs("disord","complex"  ,function(from){disord(as.complex  (elements(from)),hash(from))})
 
-
+setMethod("as.logical"  ,"disord",function(x){as(x,"logical"  )})
+setMethod("as.numeric"  ,"disord",function(x){as(x,"numeric"  )})
+setMethod("as.double"   ,"disord",function(x){as(x,"double"   )})
+setMethod("as.list"     ,"disord",function(x){as(x,"list"     )})
+setMethod("as.character","disord",function(x){as(x,"character")})
+setMethod("as.complex"  ,"disord",function(x){as(x,"complex"  )})

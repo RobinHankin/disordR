@@ -37,6 +37,12 @@
 \alias{\%in\%,ANY,disord-method}
 \alias{\%in\%,disord,disord-method}
 \alias{!,disord-method}
+\alias{as.logical,disord-method}
+\alias{as.numeric,disord-method}
+\alias{as.double,disord-method}
+\alias{as.list,disord-method}
+\alias{as.character,disord-method}
+\alias{as.complex,disord-method}
 \title{Miscellaneous functions}
 \description{
 
