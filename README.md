@@ -3,13 +3,11 @@ The disordR package
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# disordR <img src="man/figures/disordR.png" width = "150" align="right" />
+<img src="man/figures/disordR.png" width = "150" align="right" />
 
 <!-- badges: start -->
 
-[![Build Status](https://app.travis-ci.com/RobinHankin/disordR.svg?branch=master)](https://app.travis-ci.com/RobinHankin/disordR)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/disordR)](https://cran.r-project.org/package=disordR)
-[![Rdoc](https://rdocumentation.org/packages/disordR/versions/0.0-7)](https://rdocumentation.org/packages/disordR/versions/0.0-7)
 [![Codecov test
 coverage](https://codecov.io/gh/RobinHankin/disordR/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/disordR/branch/master)
 <!-- badges: end -->
