@@ -134,5 +134,15 @@ test_that("disordR", {
 
   expect_error(c(rdis(),rdis()))
   expect_true(is.disord(sapply(disord(1:10),seq_len)))
+
+  expect_true(is.logical(as.logical(a>0.5)))
+  expect_true(is.double(as.double(a)))
+  expect_true(is.numeric(as.numeric(a)))
+  expect_true(is.list(as.list(a)))
+  expect_true(is.character(as.character(a)))
+  expect_true(is.complex(as.complex(a)))
+  expect_warning(as.numeric(1i+a))
+
+  
 })
 
