@@ -371,3 +371,26 @@ setMethod("as.double"   ,"disord",function(x){as(x,"double"   )})
 setMethod("as.list"     ,"disord",function(x){as(x,"list"     )})
 setMethod("as.character","disord",function(x){as(x,"character")})
 setMethod("as.complex"  ,"disord",function(x){as(x,"complex"  )})
+
+
+setGeneric("paste")
+setMethod("match",signature(x="disord",table="ANY"),
+          function(x,table, nomatch,incomparables){
+            disord(match(elements(x),elements(table),nomatch,incomparables),hash(x))
+          } )
+
+`summary.disord` <- function(object, ...){
+  out <- list(
+      hash    = hash(object),
+      summary = summary(elements(object))
+  )
+  class(out) <- "summary.disord"
+  return(out)
+}
+
+"print.summary.disord" <- function(x, ...){
+  cat("a disord object with hash ")  
+  cat(x[[1]],"\n\n")
+  print(x[[2]])
+}
+
