@@ -7,7 +7,7 @@ The disordR package
 
 <!-- badges: start -->
 
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/disordR)](https://cran.r-project.org/package=disordR)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/disordR)](https://cran.r-project.org/package=disordR)
 [![Codecov test
 coverage](https://codecov.io/gh/RobinHankin/disordR/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/disordR/branch/master)
 <!-- badges: end -->
@@ -124,7 +124,7 @@ agree:
 
 ``` r
 a <- rdis()
-b <- disord(runif(10),hash(a))
+b <- disord(runif(9),hash(a))
 a
 #> A disord object with hash e6cd849ae088b5cd33fec9ef3aadae14003e3ab9 and elements
 #> [1] 0.9919061 0.3800352 0.7774452 0.9347052 0.2121425 0.6516738 0.1255551
@@ -132,8 +132,8 @@ a
 #> (in some order)
 b
 #> A disord object with hash e6cd849ae088b5cd33fec9ef3aadae14003e3ab9 and elements
-#>  [1] 0.01339033 0.38238796 0.86969085 0.34034900 0.48208012 0.59956583
-#>  [7] 0.49354131 0.18621760 0.82737332 0.66846674
+#> [1] 0.01339033 0.38238796 0.86969085 0.34034900 0.48208012 0.59956583 0.49354131
+#> [8] 0.18621760 0.82737332
 #> (in some order)
 ```
 
@@ -144,11 +144,9 @@ they are relatable:
 
 ``` r
 a+b
-#> Warning in elements(a) + elements(b): longer object length is not a multiple of
-#> shorter object length
 #> A disord object with hash e6cd849ae088b5cd33fec9ef3aadae14003e3ab9 and elements
-#>  [1] 1.0052964 0.7624231 1.6471361 1.2750542 0.6942226 1.2512396 0.6190964
-#>  [8] 0.4534383 1.2134874 1.6603728
+#> [1] 1.0052964 0.7624231 1.6471361 1.2750542 0.6942226 1.2512396 0.6190964
+#> [8] 0.4534383 1.2134874
 #> (in some order)
 a[b < 0.5]
 #> A disord object with hash c953b2ab2cf81ee8b581dec44ee805f54da7888b and elements
@@ -157,8 +155,8 @@ a[b < 0.5]
 a[b < 0.2] <- b[b < 0.2]
 a
 #> A disord object with hash e6cd849ae088b5cd33fec9ef3aadae14003e3ab9 and elements
-#>  [1] 0.01339033 0.38003518 0.77744522 0.93470523 0.21214252 0.65167377
-#>  [7] 0.12555510 0.18621760 0.38611409         NA
+#> [1] 0.01339033 0.38003518 0.77744522 0.93470523 0.21214252 0.65167377 0.12555510
+#> [8] 0.18621760 0.38611409
 #> (in some order)
 ```
 

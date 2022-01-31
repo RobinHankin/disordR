@@ -116,7 +116,7 @@ two objects agree:
 
 ```{r}
 a <- rdis()
-b <- disord(runif(10),hash(a))
+b <- disord(runif(9),hash(a))
 a
 b
 ```
