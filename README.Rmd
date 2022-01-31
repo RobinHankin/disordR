@@ -80,8 +80,17 @@ implementation-specific order and there is no such thing as the
 their values but not by their position in the vector:
 
 ```{r}
-a[a<0.1] <- a[a<0.1] * 0  # round small elements down
+a[a<0.1] <- 0  # round small elements down
 a
+```
+
+Replacement methods can access subsets where this makes sense:
+
+```{r}
+x <- disord(1:10)
+x
+x[x<3] <- x[x<3] + 100
+x
 ```
 
 

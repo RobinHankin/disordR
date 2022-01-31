@@ -78,11 +78,26 @@ element. We may manipulate elements of `a` by reference to their values
 but not by their position in the vector:
 
 ``` r
-a[a<0.1] <- a[a<0.1] * 0  # round small elements down
+a[a<0.1] <- 0  # round small elements down
 a
 #> A disord object with hash 5ebacdc1b1f8f614c40e83e0e70ded255e386bea and elements
 #> [1] 0.8966972 0.2655087 0.3721239 0.5728534 0.9082078 0.2016819 0.8983897
 #> [8] 0.9446753 0.6607978
+#> (in some order)
+```
+
+Replacement methods can access subsets where this makes sense:
+
+``` r
+x <- disord(1:10)
+x
+#> A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
+#>  [1]  1  2  3  4  5  6  7  8  9 10
+#> (in some order)
+x[x<3] <- x[x<3] + 100
+x
+#> A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
+#>  [1] 101 102   3   4   5   6   7   8   9  10
 #> (in some order)
 ```
 
