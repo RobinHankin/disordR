@@ -1,5 +1,5 @@
 ---
-title: "The DisordR package: a use-case"
+title: "The `disordR` package: design philosophy and a use-case in multivariate polynomials" 
 author: "Robin K. S. Hankin"
 date: "`r Sys.Date()`"
 vignette: >
@@ -13,15 +13,25 @@ vignette: >
 </p>
 
 
-# The `mvp` package as a motivation for the definition of `disord`  objects
 
-(This document motivates the concept of "disordered vector" using
+
+### Abstract
+
+This document motivates the concept of "disordered vector" using
 coefficients of multivariate polynomials as represented by associative
-maps such as the `STL` map class as used by the `mvp` package.  It
-then presents an illustrative R session in which the `disordR` package
-is used abstractly, without reference to any particular application,
-and then shows how the `disordR` package is used in the `mvp`
-package).
+maps such as the `STL` map class as used by the `mvp` package.  Values
+and keys of a map are stored in an implementation-specific way so
+certain extraction and replacement operations should be forbidden: for
+example, the "first" value is implementation specific...but the
+maximum value has a well-defined result.  The `disordR` package makes
+forbidden operations impossible while allowing transparent R idiom for
+permitted operations.  An illustrative R session is given in which the
+`disordR` package is used abstractly, without reference to any
+particular application, and then shows how the `disordR` package is
+used in the `mvp` package.  `disordR` is used in the `clifford`,
+`freealg`, `hyper2`, `mvp`, `spray`, `stokes`, and `weyl` packages.
+
+### Introduction
 
 Accessing elements of an `mvp` object is problematic because the order
 of the terms of an `mvp` object is not well-defined.  This is because
@@ -195,7 +205,7 @@ does not matter because the algebraic value of the term does not
 depend on the order in which the variables appear and this term would
 be equivalent to `4bc^6*a^3`.
 
-# An R session with the `disordR` package
+### An R session with the `disordR` package
 
 We will use the `disordR` package to show how the idiom works.
 
