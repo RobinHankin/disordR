@@ -58,13 +58,12 @@ xy^3 -> 4, xy -> 3, x -> 1, y -> 3
 ```  
 
 are the same map and correspond to the same multinomial (symbolically,
-$x+3y+3xy+4xy^3=4xy^3+3xy+x=3y$).  Thus the coefficients of the
+$x+3y+3xy+4xy^3=4xy^3+3xy+x+3y$).  Thus the coefficients of the
 multinomial might be `c(1,3,3,4)` or `c(4,3,1,3)`, or indeed any
 ordering.  Internally, the elements are stored in some order but the
-order used is implementation-specific.
-
-Quite often, I am interested in the coefficients themselves.  I might
-ask:
+order used is implementation-specific.  Quite often, I am interested
+in the coefficients _per se_, without consideration of their meaning
+in the context of a multivariate polynomial.  I might ask:
 
 * "How many coefficients are there?"
 * "What is the largest coefficient?"
@@ -105,7 +104,7 @@ terms with zero", or "double the last term" would be inadmissible).
 ***What we need is a system that forbids stupid questions and stupid
 operations, while permitting sensible questions and operations***
 
-The `disord` class of the `disordR` package is specficially designed
+The `disord` class of the `disordR` package is specificially designed
 for this situation.  This class of object has a slot for the
 coefficients in the form of a numeric R vector, but also another slot
 which uses hash codes to prevent users from misusing the ordering of
@@ -124,19 +123,20 @@ admissible questions and perform admissible operations.
 
 Suppose we have two multivariate polynomials, `a` as defined as above
 with `a=x+2y+3z` and `b=x+3y+4z`.  Even though the sum `a+b` is
-well-defined algebraically, and `coeffs(a+b)` will return a
-well-defined `disord` object, idiom such as `coeffs(a) + coeffs(b)` is
-not defined because there is no guarantee that the coefficents of the
+well-defined algebraically, idiom such as `coeffs(a) + coeffs(b)` is
+not defined because there is no guarantee that the coefficients of the
 two multivariate polynomials are stored in the same order.  We might
 have `c(1,2,3)+c(1,3,4)=c(2,5,7)` or `c(1,2,3)+c(1,4,3)=c(2,6,6)`,
 with neither being more "correct" than the other.  In the package,
-this ambiguity is rendered nonproblematic: `coeffs(a) + coeffs(b)`
-will return an error.  In the same way `coeffs(a) + 1:3` is not
-defined and will return an error.  Further, idiom such as `coeffs(a)
-<- 1:3`and `coeffs(a) <- coeffs(b)` are not defined and will return an
-error.  However, note that
+this ambiguity is rendered void: `coeffs(a) + coeffs(b)` will return
+an error.  Note carefully that `coeffs(a+b)` is perfectly well
+defined, although the result is subject to the same ambiguity as
+`coeffs(a)`.
 
-
+In the same way, `coeffs(a) + 1:3` is not defined and will return an
+error.  Further, idiom such as `coeffs(a) <- 1:3`and `coeffs(a) <-
+coeffs(b)` are not defined and will also return an error.  However,
+note that
 
 ```
 coeffs(a) + coeffs(a)
@@ -158,7 +158,7 @@ rings, here $Z/2Z$.
 
 The replacement methods are defined so that an expression like
 `coeffs(a)[coeffs(a) < 5] <- 0` works as expected; the English idiom
-would be "Replace any coefficient less than 5 with 0".
+would be "replace any coefficient less than 5 with 0".
 
 To fix ideas, consider a fixed small mvp object:
 
@@ -168,24 +168,23 @@ a <- as.mvp("5 a c^3 + a^2 d^2 f^2 + 4 a^3 b e^3 + 3 b c f + 2 b^2 e^3")
 a
 ```
 
-Extraction presents issues; consider `coeffs(a)<3`.  This
-object has Boolean elements but has the same ordering ambiguity as
-`coeffs(a)`.  One might expect that we could use this to extract
-elements of `coeffs(a)` specifically elements less than 5.  However,
-`coeffs(a)[coeffs(a)<5]` in isolation is meaningless: what can be done
-with such an object?  However, it makes sense on the left hand side of
-an assignment, as long as the right hand side is a length-one vector.
-Idiom such as
+Extraction presents issues; consider `coeffs(a)<3`.  This object has
+Boolean elements but has the same ordering ambiguity as `coeffs(a)`.
+One might expect that we could use this to extract elements of
+`coeffs(a)`: specifically, those elements less than 5.  We may use
+replace methods for coefficients if this makes sense.  Idiom such as
 
 ```
 coeffs(a)[coeffs(a)<5] <- 4 + coeffs(a)[coeffs(a)<5]
 coeffs(a) <- pmax(a,3)
 ```
 
-is algebraically meaningful.  Idiomatically: "Add 4 to any element
-less than 5"; "coefficients become the parallel maximum of themselves
-and 3" respectively [but note that package idiom is `pmaxdis()` here].
-Further note that `coeffs(a) <- rev(coeffs(a))` is disallowed.
+is algebraically meaningful and allowed in the package.
+Idiomatically: "Add 4 to any element less than 5"; "coefficients
+become the parallel maximum of themselves and 3" respectively.
+Further note that `coeffs(a) <- rev(coeffs(a))` is disallowed
+(although `coeffs(a) <- rev(rev(coeffs(a)))` is meaningful and
+admissible).
 
 So the output of `coeffs(x)` is defined only up to an unknown
 rearrangement.  The same considerations apply to the output of
@@ -295,7 +294,7 @@ Above, the replacement command works because `d` and `e` _and_ `e<4`
 The `mvp` package implements multivariate polynomials using the `STL`
 map class.  Following commands only work as intended here with `mvp >=
 1.0-12`.  Below we see how `disordR` idiom allows mathematically
-meaningful opertion while suppressing inadmissible ones:
+meaningful operation while suppressing inadmissible ones:
 
 ```{r}
 library("mvp")
