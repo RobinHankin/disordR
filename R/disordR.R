@@ -104,7 +104,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
          "/"  = disord_prod_disord(e1, disord_inverse(e2)),
          "^"  = disord_power_disord(e1, e2),
          "%%" = disord_mod_disord(e1, e2),
-         stop(paste("binary operator \"", .Generic, "\" not defined for disord objects"))
+         stop(gettextf("binary operator %s not defined for disord objects", dQuote(.Generic)))
          )
 }
 
@@ -117,7 +117,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
            "/"  = disord_prod_numeric (e1,1/e2),
            "^"  = disord_power_numeric(e1,  e2),
            "%%" = disord_mod_numeric(e1,  e2),
-           stop(paste("binary operator \"", .Generic, "\" not defined for disord objects"))
+           stop(gettextf("binary operator %s not defined for disord objects", dQuote(.Generic))))
            )
 }
 
@@ -180,7 +180,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
            "<"  = disord(a1< a2,hash(e1)),
            ">=" = disord(a1>=a2,hash(e1)),
            "<=" = disord(a1<=a2,hash(e1)),
-           stop(paste(.Generic, "not supported for disord objects"))
+           stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
 
@@ -194,7 +194,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
            "<"  = disord(a1< e2,hash(e1)),
            ">=" = disord(a1>=e2,hash(e1)),
            "<=" = disord(a1<=e2,hash(e1)),
-           stop(paste(.Generic, "not supported for disord objects"))
+           stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
 
@@ -208,7 +208,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
            "<"  = disord(e1< a2,hash(e2)),
            ">=" = disord(e1>=a2,hash(e2)),
            "<=" = disord(e1<=a2,hash(e2)),
-           stop(paste(.Generic, "not supported for disord objects"))
+           stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
 
@@ -223,7 +223,7 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
     switch(.Generic,
            "&" = disord(a1 & a2,hash(e1)),
            "|" = disord(a1 | a2,hash(e1)),
-           stop(paste(.Generic, "not supported for disord objects"))
+           stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
 
@@ -233,7 +233,7 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
     switch(.Generic,
            "&" = disord(a1 & e2,hash(e1)),
            "|" = disord(a1 | e2,hash(e1)),
-           stop(paste(.Generic, "not supported for disord objects"))
+           stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
 
@@ -243,7 +243,7 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
     switch(.Generic,
            "&" = disord(e1 & a2,hash(e2)),
            "|" = disord(e1 | a2,hash(e2)),
-           stop(paste(.Generic, "not supported for disord objects"))
+           stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
 
