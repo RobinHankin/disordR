@@ -130,7 +130,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
            "/" = disord_prod_numeric(disord_inverse(e2),e1),  
            "^" = numeric_power_disord(e1,e2),
            "%%" = numeric_mod_disord(e1,e2),
-           stop(paste("binary operator \"", .Generic, "\" not defined for disords"))
+           stop(gettextf("binary operator %s not defined for disord objects", dQuote(.Generic)))
            )
 }
 
@@ -147,7 +147,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
     switch(.Generic,
            "+" = disord_positive(e1),
            "-" = disord_negative(e1),
-           stop(paste("Unary operator \"", .Generic, "\" not defined for disords"))
+           stop(gettextf("unary operator %s not defined for disord objects", dQuote(.Generic)))
            )
 }
 
