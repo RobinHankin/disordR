@@ -10,3 +10,5 @@ importFrom("digest" , "sha1")
 
 S3method("summary",disord)
 S3method("print",summary.disord)
+
+importClassesFrom(Matrix,index)

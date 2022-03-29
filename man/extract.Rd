@@ -15,6 +15,7 @@
 \alias{[,disord,index,ANY,ANY-method}
 \alias{[,disord,index,missing,ANY-method}
 \alias{[,ANY,disord,ANY-method}
+\alias{[,disord,missing,missing,ANY-method}
 \alias{[<-}
 \alias{[<-.disord}
 \alias{[<-,disord-method}

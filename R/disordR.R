@@ -256,7 +256,7 @@ setMethod("Logic",signature(e1="disord",e2="ANY"), disord_logic_any)
 setMethod("Logic",signature(e1="ANY",e2="disord"), any_logic_disord)
 setMethod("Logic",signature(e1="disord",e2="disord"), disord_logic_disord)
 
-setClassUnion("index", members =  c("numeric", "logical", "character")) # taken from the Matrix package.
+
 
 setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
           function(x,i,j,drop){
