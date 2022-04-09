@@ -291,9 +291,16 @@ setMethod("[", signature("disord",i="missing",j="missing",drop="ANY"), # x[]
             return(out)
           } )
 
-setReplaceMethod("[",signature(x="disord",i="index",j="missing",value="ANY"),  # a[1:5] <- a[1:5] + 33  = fake
-                 function(x,i,j,value){stop("cannot use a regular index to extract, only a disord object")}
-                 )
+setReplaceMethod("[",signature(x="disord",i="index",j="missing",value="ANY"),  
+                 function(x,i,j,value){
+                     if(allsame(i) & is.logical(i)){
+                         jj <- elements(x)
+                         jj[i] <- elements(value)
+                         return(disord(jj,hash(x)))
+                     } else {
+                         stop("if using a regular index to replace, must specify each element once and once only")
+                     }
+                 } )
 
 setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="disord"),  # x[x<3] <- x[x<3] + 100
                  function(x,i,j,value){
