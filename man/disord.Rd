@@ -22,7 +22,7 @@
 is.disord(x)
 hash(x)
 hashcal(x)
-disord(v,h)
+disord(v,h,drop=FALSE)
 consistent(x,y)
 x \%~\% y
 }
@@ -30,6 +30,9 @@ x \%~\% y
   \item{x,y}{Objects of class \code{disord}}
 \item{v}{Vector of coefficients}
 \item{h}{Hash code}
+\item{drop}{Boolean, with default \code{FALSE} meaning to return a
+  disord object and \code{TRUE} meaning to call \code{drop()} before
+  returning}
 }
 \details{
   The package provides a single \proglang{S4} class, \code{disord}.  A
@@ -43,11 +46,13 @@ x \%~\% y
   code for an object.  Currently
 
   \code{`hashcal` <- function(x){digest::sha1(x)}}
-  
 }
 \value{Boolean, hash code, or object of class \code{disord} as
   appropriate.}
 \author{Robin K. S. Hankin}
+\note{At some point I will change the default value of \code{drop} to
+  \code{TRUE}
+}
 \examples{
 
 a <- rdis()

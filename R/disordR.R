@@ -27,9 +27,11 @@ setValidity("disord", function(object){
 
 `is.disord` <- function(x){inherits(x,"disord")}
 
-`disord` <- function(v,h){ # v is a vector but it needs a hash attribute
+`disord` <- function(v,h,drop=FALSE){ # v is a vector but it needs a hash attribute
     if(missing(h)){h <- hashcal(v)}
-    new("disord",.Data=v,hash=h)  # this is the only occurence of new() in the package
+    out <- new("disord",.Data=v,hash=h)  # this is the only occurence of new() in the package
+    if(drop){out <- drop(out)}
+    return(out)
 }
 
 `allsame` <- function(x){length(unique(elements(x)))==1}
