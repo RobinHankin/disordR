@@ -74,10 +74,11 @@ involved:
 \author{Robin K. S. Hankin}
 \examples{
 a <- disord(c(a=1,b=2,c=7))
+a
 names(a)
 length(a)
 sqrt(a)
-is.na(a) <- c(FALSE,FALSE,TRUE)
+
 
 # powers() and vars() in the mvp package return lists; see the vignette
 # for more discussion.

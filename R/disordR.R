@@ -79,6 +79,7 @@ setMethod("is.na","disord",
 setGeneric("is.na<-")
 setMethod("is.na<-","disord",
           function(x,value){
+              stopifnot(consistent(x,value))
               jj <- elements(x)
               is.na(jj) <- value
               disord(jj,hash(x))
