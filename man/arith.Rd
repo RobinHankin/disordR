@@ -62,7 +62,10 @@ the disord object if appropriate.
 \author{Robin K. S. Hankin}
 \examples{
 
-a <- disord(sample(20))
+a <- rdis()
+a
 a + 2*a
-a[a\%\%2==1] <- a[a\%\%2==1] + 5
+a > 0.5
+a[a > 0.5] <- a[a > 0.5] + 100
+a
 }

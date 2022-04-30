@@ -7,6 +7,7 @@
 \alias{accessors}
 \alias{consistent}
 \alias{disord}
+\alias{elements}
 \alias{disord<-}
 \alias{\%~\%}
 \title{Functionality for \code{disord} objects}
@@ -23,21 +24,22 @@ is.disord(x)
 hash(x)
 hashcal(x)
 disord(v,h,drop=FALSE)
+elements(x)
 consistent(x,y)
 x \%~\% y
 }
 \arguments{
   \item{x,y}{Objects of class \code{disord}}
-\item{v}{Vector of coefficients}
-\item{h}{Hash code}
-\item{drop}{Boolean, with default \code{FALSE} meaning to return a
-  disord object and \code{TRUE} meaning to call \code{drop()} before
-  returning}
+  \item{v}{Vector of coefficients}
+  \item{h}{Hash code}
+  \item{drop}{Boolean, with default \code{FALSE} meaning to return a
+    disord object and \code{TRUE} meaning to call \code{drop()} before
+    returning}
 }
 \details{
   The package provides a single \proglang{S4} class, \code{disord}.  A
   detailed vignette is provided that motivates the package.
-
+  
   Function \code{hash()} is the extractor function:
 
   \code{`hash` <- function(x){x@hash}}
@@ -46,6 +48,15 @@ x \%~\% y
   code for an object.  Currently
 
   \code{`hashcal` <- function(x){digest::sha1(x)}}
+
+  Function \code{disord()} takes a vector and returns a \code{disord}
+  object; function \code{elements()} takes a \code{disord} and returns a
+  vector.  These are the central function of the package.
+  
+  Function \code{consistent()} checks that its arguments have the same
+  hash code, and thus their elements can be paired up (e.g. added).
+  Idiom \code{a \%~\% b} is equivalent to \code{consistent(a,b)}.
+   
 }
 \value{Boolean, hash code, or object of class \code{disord} as
   appropriate.}
@@ -55,14 +66,15 @@ x \%~\% y
 }
 \examples{
 
-a <- rdis()
-b <- rdis()
+(a <- rdis())
+(b <- rdis())
 
 a + 2*a + 2^a  # fine
-# a + b # error
+# a + b # this would give an error if executed
 
-a[a<0.5] <- 0       # round small entries down
+a[a<0.5] <- 0       # round down; replacement works as expected
 
+elements(a)
 
 }
 \keyword{symbolmath}

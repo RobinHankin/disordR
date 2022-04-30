@@ -72,3 +72,28 @@ and is a \code{setClassUnion()} of classes \code{numeric},
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{drop}}}
+\examples{
+a <- disord(sample(9))
+a
+a[a>5]  # "give me all elements of a that exceed 5"
+
+a[a<5] <- a[a<5] + 100  # "replace all elements of a that exceed 5 with their value plus 100"
+a
+
+## Following expressions would return an error if executed:
+if(FALSE){
+  a[1]
+  a[1] <- 44
+  a[1:2] <- a[3:4]
+}
+
+b <- disord(sample(9))
+## Following expressions would also return an error if executed:
+if(FALSE){
+  a+b  # (not really an example of extraction)
+  a[b>5]
+  a[b>5] <- 100
+  a[b>5] <- a[b>5] + 44
+}
+
+}

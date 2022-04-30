@@ -26,7 +26,8 @@ drop(disord(c(3,3,3,3,3,3,3,3,3,3,3,3)))
 
 ## In extraction, argument drop discards disorderliness when possible:
 a <- rdis()
+a
 a[] <- 6             # a becomes a vector
 b <- rdis()
-b[drop=FALSE] <- 6   # b stays a disord
+b[drop=FALSE] <- 6   # b stays a disord [NB this behaviour might change in the future]
 }

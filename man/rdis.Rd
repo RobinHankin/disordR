@@ -12,25 +12,4 @@
 \author{Robin K. S. Hankin}
 \examples{
 rdis()
-
-a <- rdis()
-b <- rdis()
-
-
-## Following are OK:
-a
-a + 2*a - a^2
-a>8
-a[a<8]
-a[a<6] <-  a[a<6] + 100
-
-
-## Following forbidden:
-
-# a+b
-# a[1:4]
-# a[b<4]
-# a[a<4] <- 1:4
-# a[a<4] <- a[b<4] + 100
-
 }
