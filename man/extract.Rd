@@ -68,7 +68,13 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   }
 
   The extraction method takes a \code{drop} argument which if
-  \code{TRUE}, returns the \code{drop()} of its value.
+  \code{TRUE}, returns the \code{drop()} of its value.  Extraction, as
+  in \code{x[i]}, is rarely useful.  It is only defined if one extracts
+  either all, or none, of the elements: anything else is undefined.
+  Note that the hash code is unchanged if all elements are extracted
+  (because the order might have changed) but unchanged if none are
+  (because there is only one way to extract no elements).
+  
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{drop}}}

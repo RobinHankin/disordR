@@ -264,10 +264,13 @@ setMethod("Logic",signature(e1="disord",e2="disord"), disord_logic_disord)
 setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
           function(x,i,j,drop){
             jj <- seq_along(x)
-            if(identical(sort(jj[i]),jj)){  # that is, extract every element
-              return(disord(x,hashcal(c(hash(x),i))))
+            jji <- jj[i]
+            if(identical(sort(jji),jj)){  # that is, extract every element
+              return(disord(x,hashcal(c(hash(x),i)))) # NB new hash code
+            } else if(length(jji)==0){
+                return(disord(jji,hash(x)))         # NB same hash code as x
             } else {
-              stop("if using a regular index to extract, must extract each element once and once only")
+              stop("if using a regular index to extract, must extract each element once and once only (or none of them)")
             }
           } )
 

@@ -124,6 +124,9 @@ test_that("disordR", {
 
   a <- rdis(100)
   b <- a^2 + 0.15
+
+  expect_silent(a[F])
+  
   expect_true(all(a <= pmax(a,b)))
   expect_true(all(b <= pmax(a,b)))
   expect_true(all(a >= pmin(a,b)))
