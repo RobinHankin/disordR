@@ -23,7 +23,7 @@
 is.disord(x)
 hash(x)
 hashcal(x)
-disord(v,h,drop=FALSE)
+disord(v,h,drop=TRUE)
 elements(x)
 consistent(x,y)
 x \%~\% y
@@ -61,9 +61,6 @@ x \%~\% y
 \value{Boolean, hash code, or object of class \code{disord} as
   appropriate.}
 \author{Robin K. S. Hankin}
-\note{At some point I will change the default value of \code{drop} to
-  \code{TRUE}
-}
 \examples{
 
 (a <- rdis())
