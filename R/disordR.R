@@ -85,7 +85,7 @@ setMethod("is.na<-","disord",
               disord(jj,hash(x))
           } )
 
-`rdis` <- function(n=9){disord(runif(n))}
+`rdis` <- function(n=9){disord(sample(n))}
 
 setMethod("show", "disord", function(object){disord_show(object)})
 
