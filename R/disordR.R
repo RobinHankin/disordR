@@ -34,7 +34,7 @@ setValidity("disord", function(object){
     return(out)
 }
 
-`allsame` <- function(x){length(unique(elements(x)))==1}
+`allsame` <- function(x){length(unique(elements(x)))<=1}
 
 `consistent` <- function(x,y){
   if(allsame(x) || allsame(y)){return(TRUE)}
