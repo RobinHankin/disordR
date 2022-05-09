@@ -326,7 +326,7 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
 
 setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), # x[] <- numeric
                  function(x,i,j,value,drop=TRUE){
-                   stopifnot(length(value)==1)
+                   stopifnot(consistent(x,value))
                    out <- elements(x)
                    out[] <- value   # the meat
                    out <- disord(out)
