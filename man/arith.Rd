@@ -65,7 +65,7 @@ the disord object if appropriate.
 a <- rdis()
 a
 a + 2*a
-a > 0.5
-a[a > 0.5] <- a[a > 0.5] + 100
+a > 5
+a[a > 5] <- a[a > 5] + 100
 a
 }
