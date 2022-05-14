@@ -146,6 +146,12 @@ test_that("disordR", {
   expect_true(is.complex(as.complex(a)))
   expect_warning(as.numeric(1i+a))
 
-  
+  expect_error(new("disord",1:59)) # null hash problem
+  expect_error(disord(1:5)[1,2])  # cannot have two index args
+  expect_silent(as.logical(disord(c(0,0,1,1,0,1))))
+  expect_silent(as(disord(c(0,1)),"numeric"))
+  expect_silent(as.numeric(disord(c(T,F))))
+  expect_silent(ignore <- summary(rdis()))
+  expect_output(print(summary(rdis())))
 })
 
