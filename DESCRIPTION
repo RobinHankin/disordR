@@ -3,7 +3,8 @@ Type: Package
 Title: Non-Ordered Vectors
 Version: 0.0-9
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
-Depends: methods,digest,Matrix
+Depends: methods,Matrix
+Imports: digest
 Suggests: mvp,knitr,rmarkdown,testthat
 VignetteBuilder: knitr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
