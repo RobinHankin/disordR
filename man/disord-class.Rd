@@ -14,7 +14,7 @@ are more user-friendly.
 }
 \section{Slots}{
   \describe{
-    \item{\code{.Data}:}{Object of class \code{vector} that specifes the
+    \item{\code{.Data}:}{Object of class \code{vector} that specifies the
       elements}
     \item{\code{hash}:}{Object of class \code{character} that
       specifies the hash code}
