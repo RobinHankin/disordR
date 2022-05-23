@@ -1,7 +1,7 @@
 Package: disordR
 Type: Package
 Title: Non-Ordered Vectors
-Version: 0.0-9
+Version: 0.0-9-1
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
 Depends: methods,Matrix
 Imports: digest
@@ -23,9 +23,7 @@ Description: Functionality for manipulating values of associative
   python list comprehension.  The idea is to prevent ill-defined
   operations on values (or keys) of associative maps, whose order is
   undefined or at best implementation-specific, while allowing and
-  facilitating sensible operations.  The package is needed for
-  development versions of 'mvp', 'hyper2', 'spray', 'clifford', and
-  'freealg'.
+  facilitating sensible operations.
 License: GPL (>= 2)
 URL: https://github.com/RobinHankin/disordR
 BugReports: https://github.com/RobinHankin/disordR/issues
