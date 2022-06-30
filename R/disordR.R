@@ -96,8 +96,6 @@ setMethod("show", "disord", function(object){disord_show(object)})
     return(invisible(x))
 }
 
-
-
 `disord_arith_disord` <- function(e1,e2){
     stopifnot(consistent(e1,e2))
   switch(.Generic,
@@ -137,7 +135,6 @@ setMethod("show", "disord", function(object){disord_show(object)})
            )
 }
 
-
 #setMethod("+", signature(e1 = "disord", e2 = "missing"), function(e1,e2){disord_positive(e1)})
 #setMethod("-", signature(e1 = "disord", e2 = "missing"), function(e1,e2){disord_negative(e1)})
 
@@ -160,16 +157,16 @@ setMethod("Arith",signature(e1 = "disord" , e2="numeric"), disord_arith_numeric)
 setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
 
 `disord_plus_disord`  <- function(a,b){disord(elements(a)+elements(b)   ,hash(a))}
-`disord_plus_numeric` <- function(a,b){disord(elements(a)+b             ,hash(a))}
+`disord_plus_numeric` <- function(a,b){disord(elements(a)+b            ,hash(a))}
 `disord_prod_disord`  <- function(a,b){disord(elements(a)*elements(b)   ,hash(a))}
-`disord_prod_numeric` <- function(a,b){disord(elements(a)*b             ,hash(a))}
+`disord_prod_numeric` <- function(a,b){disord(elements(a)*b            ,hash(a))}
 `disord_power_disord` <- function(a,b){disord(elements(a)^elements(b)   ,hash(a))}
-`disord_power_numeric`<- function(a,b){disord(elements(a)^b             ,hash(a))}
-`numeric_power_disord`<- function(a,b){disord(a^elements(b)             ,hash(b))}
+`disord_power_numeric`<- function(a,b){disord(elements(a)^b            ,hash(a))}
+`numeric_power_disord`<- function(a,b){disord(a^elements(b)            ,hash(b))}
 `disord_mod_disord`   <- function(a,b){disord(elements(a) %% elements(b),hash(a))}
-`disord_mod_numeric`  <- function(a,b){disord(elements(a) %% b          ,hash(a))}
-`numeric_mod_disord`  <- function(a,b){disord(elements(a) %% b          ,hash(a))}
-`numeric_mod_disord`  <- function(a,b){disord(a %% elements(b)          ,hash(b))}
+`disord_mod_numeric`  <- function(a,b){disord(elements(a) %% b         ,hash(a))}
+`numeric_mod_disord`  <- function(a,b){disord(elements(a) %% b         ,hash(a))}
+`numeric_mod_disord`  <- function(a,b){disord(a %% elements(b)         ,hash(b))}
 
 `disord_compare_disord` <- function(e1,e2){
     
@@ -259,8 +256,6 @@ setMethod("Logic",signature(e1="disord",e2="ANY"), disord_logic_any)
 setMethod("Logic",signature(e1="ANY",e2="disord"), any_logic_disord)
 setMethod("Logic",signature(e1="disord",e2="disord"), disord_logic_disord)
 
-
-
 setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
           function(x,i,j,drop){
             jj <- seq_along(x)
@@ -333,8 +328,7 @@ setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), 
                    if(drop)(out <- drop(out))
                    return(out)
                  } )
-                   
-
+ 
 setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="disord"), # x[] <- disord
                  function(x,i,j,value){stop("x[] <- disord not defined")
                  } )
@@ -385,7 +379,6 @@ setMethod("as.list"     ,"disord",function(x){as(x,"list"     )})
 setMethod("as.character","disord",function(x){as(x,"character")})
 setMethod("as.complex"  ,"disord",function(x){as(x,"complex"  )})
 
-
 setGeneric("paste")
 setMethod("match",signature(x="disord",table="ANY"),
           function(x,table, nomatch,incomparables){
@@ -406,4 +399,3 @@ setMethod("match",signature(x="disord",table="ANY"),
   cat(x[[1]],"\n\n")
   print(x[[2]])
 }
-
