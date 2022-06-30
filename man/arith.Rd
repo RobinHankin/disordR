@@ -46,8 +46,15 @@ numeric_power_disord(a,b)
 disord_prod_disord(a,b)
 disord_prod_numeric(a,b)
 disord_logical_negate(x)
+disord_arith_unary(e1,e2)
+disord_arith_disord(e1,e2)
+disord_arith_numeric(e1,e2)
+numeric_arith_disord(e1,e2)
 }
-\arguments{\item{a,b,x}{at least one is a disord object}}
+\arguments{
+  \item{a,b,x}{at least one is a disord object}
+  \item{e1,e2}{Formal arguments for \proglang{S4} dispatch}
+}
 \details{
 Basic low-level arithmetic operations, intended to be called from
 \proglang{S4} dispatch.
