@@ -79,7 +79,7 @@ setMethod("is.na","disord",
 setGeneric("is.na<-")
 setMethod("is.na<-","disord",
           function(x,value){
-              stopifnot(consistent(x,value))
+              ignore <- check_matching_hash(x,value,match.call())
               jj <- elements(x)
               is.na(jj) <- value
               disord(jj,hash(x))
@@ -97,7 +97,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
 }
 
 `disord_arith_disord` <- function(e1,e2){
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
   switch(.Generic,
          "+"  = disord_plus_disord(e1, e2),
          "-"  = disord_plus_disord(e1,disord_negative(e2)),
@@ -110,7 +110,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
 }
 
 `disord_arith_numeric` <- function(e1,e2){  # e1 disord, e2 numeric
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     switch(.Generic,
            "+"  = disord_plus_numeric (e1,  e2),
            "-"  = disord_plus_numeric (e1, -e2),
@@ -123,7 +123,7 @@ setMethod("show", "disord", function(object){disord_show(object)})
 }
 
 `numeric_arith_disord` <- function(e1,e2){ # e1 numeric, e2 onion
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     switch(.Generic,
            "+" = disord_plus_numeric(e2,  e1),
            "-" = disord_plus_numeric(-e2, e1),
@@ -169,8 +169,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
 `numeric_mod_disord`  <- function(a,b){disord(a %% elements(b)         ,hash(b))}
 
 `disord_compare_disord` <- function(e1,e2){
-    
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     a1 <- elements(e1)
     a2 <- elements(e2)
     switch(.Generic,
@@ -185,7 +184,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
 }
 
 `disord_compare_any` <- function(e1,e2){
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     a1 <- elements(e1)
     switch(.Generic,
            "==" = disord(a1==e2,hash(e1)),
@@ -199,7 +198,7 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
 }
 
 `any_compare_disord` <- function(e1,e2){
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     a2 <- elements(e2)
     switch(.Generic,
            "==" = disord(e1==a2,hash(e2)),
@@ -217,7 +216,7 @@ setMethod("Compare", signature(e1="disord", e2="ANY"   ), disord_compare_any   )
 setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
 
 `disord_logic_disord` <- function(e1,e2){
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     a1 <- elements(e1)
     a2 <- elements(e2)
     switch(.Generic,
@@ -228,7 +227,7 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
 }
 
 `disord_logic_any` <- function(e1,e2){
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     a1 <- elements(e1)
     switch(.Generic,
            "&" = disord(a1 & e2,hash(e1)),
@@ -238,7 +237,7 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
 }
 
 `any_logic_disord` <- function(e1,e2){
-    stopifnot(consistent(e1,e2))
+    ignore <- check_matching_hash(e1,e2,match.call())
     a2 <- elements(e2)
     switch(.Generic,
            "&" = disord(e1 & a2,hash(e2)),
@@ -271,7 +270,7 @@ setMethod("[", signature("disord",i="index",j="missing",drop="ANY"),
 
 setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes things like a[a>4] work
           function(x,i,j,drop=TRUE){
-              stopifnot(consistent(x,i))
+              ignore <- check_matching_hash(x,i,match.call())
               out <- elements(x)[elements(i)]
               out <- disord(out, hashcal(c(hash(x),hash(i))))  # NB newly generated hash, stops things like a[a>4] + a[a<3] but allows a[x<3] <- x[x<3]
               if(drop){
@@ -303,8 +302,8 @@ setReplaceMethod("[",signature(x="disord",i="index",j="missing",value="ANY"),
 
 setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="disord"),  # x[x<3] <- x[x<3] + 100
                  function(x,i,j,value){
-                     stopifnot(consistent(x,i))
-                     stopifnot(consistent(x[i],value))
+                     ignore <- check_matching_hash(x,i,match.call())
+                     ignore <- check_matching_hash(x[i],value,match.call())
                      jj <- elements(x)
                      jj[elements(i)] <- elements(value)  # the meat
                      disord(jj,hash(x))   # needs same hash as x
@@ -312,8 +311,8 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="disord")
 
 setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), # x[x<3] <- 333
                  function(x,i,j,value){
-                     stopifnot(consistent(x,i))
-                     stopifnot(consistent(x[i],value))
+                     ignore <- check_matching_hash(x,i,match.call())
+                     ignore <- check_matching_hash(x[i],value,match.call())
                      jj <- elements(x)
                      jj[elements(i)] <- value   # the meat; OK because x %~% i
                      disord(jj,hash(x))
@@ -321,7 +320,7 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
 
 setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), # x[] <- numeric
                  function(x,i,j,value,drop=TRUE){
-                   stopifnot(consistent(x,value))
+                   ignore <- check_matching_hash(x,value,match.call())
                    out <- elements(x)
                    out[] <- value   # the meat
                    out <- disord(out)
@@ -399,3 +398,17 @@ setMethod("match",signature(x="disord",table="ANY"),
   cat(x[[1]],"\n\n")
   print(x[[2]])
 }
+  
+`check_matching_hash` <- function(e1,e2,use=NULL){
+  if(consistent(e1,e2)){
+    return(TRUE)
+  } else {
+   message("disordR discipline error in:\n")
+   print(use)
+   message(gettextf("\nhash codes %s and %s do not match",hash(e1),hash(e2)))
+   stop("stopping")
+  }
+}
+
+
+

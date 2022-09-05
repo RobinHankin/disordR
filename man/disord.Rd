@@ -5,11 +5,9 @@
 \alias{as_disord}
 \alias{is.disord}
 \alias{accessors}
-\alias{consistent}
 \alias{disord}
 \alias{elements}
 \alias{disord<-}
-\alias{\%~\%}
 \title{Functionality for \code{disord} objects}
 \description{
   Allows arithmetic operators to be used for disord objects; the
@@ -25,11 +23,9 @@ hash(x)
 hashcal(x)
 disord(v,h,drop=TRUE)
 elements(x)
-consistent(x,y)
-x \%~\% y
 }
 \arguments{
-  \item{x,y}{Objects of class \code{disord}}
+  \item{x}{Object of class \code{disord}}
   \item{v}{Vector of coefficients}
   \item{h}{Hash code}
   \item{drop}{Boolean, with default \code{FALSE} meaning to return a
@@ -52,8 +48,9 @@ x \%~\% y
   Function \code{disord()} takes a vector and returns a \code{disord}
   object; function \code{elements()} takes a \code{disord} and returns a
   vector.  These are the central function of the package.
-  
-  Function \code{consistent()} checks that its arguments have the same
+
+  Checking for matching hash codes is done by function
+  \code{consistent()}.  This checks that its arguments have the same
   hash code, and thus their elements can be paired up (e.g. added).
   Idiom \code{a \%~\% b} is equivalent to \code{consistent(a,b)}.
    
