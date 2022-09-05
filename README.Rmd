@@ -62,8 +62,8 @@ We may perform various operations on this object:
 
 ```{r}
 a+4
-a > 0.5
-a[a<0.2]
+a > 5
+a[a<6]
 ```
 
 with no difficulty.  But if we try to find elements of `a` with a
@@ -80,7 +80,7 @@ implementation-specific order and there is no such thing as the
 their values but not by their position in the vector:
 
 ```{r}
-a[a<0.1] <- 0  # round small elements down
+a[a<3] <- 0  # round small elements down
 a
 ```
 
@@ -113,10 +113,10 @@ a+b
 Also, replacement methods that access cross-referenced locations are forbidden:
 
 ```{r,error=TRUE}
-a[b < 0.4] <- 5
+a[b < 4] <- 5
 ```
 
-(observe carefully that `a[b<4] <- 5` is legal).  However, sometimes
+(observe carefully that `a[b<14] <- 5` is legal).  However, sometimes
 one knows that two disord objects have the _same_ ordering (perhaps
 `a` is the key, and `b` the value, of an associative array).  In this
 case one may cross-reference them provided that the hash codes of the
@@ -125,7 +125,7 @@ two objects agree:
 
 ```{r}
 a <- rdis()
-b <- disord(runif(9),hash(a))
+b <- disord(sample(9),hash(a))
 a
 b
 ```

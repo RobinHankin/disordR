@@ -50,10 +50,14 @@ a+4
 #> A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
 #> [1] 13  8 11  5  6 10  7 12  9
 #> (in some order)
-a > 0.5
-#> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-a[a<0.2]
-#> integer(0)
+a > 5
+#> A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+#> [1]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE
+#> (in some order)
+a[a<6]
+#> A disord object with hash 1cb2c1cb8b5cb3c58e69ffcc5f88340cbdc6abbd and elements
+#> [1] 4 1 2 3 5
+#> (in some order)
 ```
 
 with no difficulty. But if we try to find elements of `a` with a
@@ -72,10 +76,10 @@ element. We may manipulate elements of `a` by reference to their values
 but not by their position in the vector:
 
 ``` r
-a[a<0.1] <- 0  # round small elements down
+a[a<3] <- 0  # round small elements down
 a
 #> A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
-#> [1] 9 4 7 1 2 6 3 8 5
+#> [1] 9 4 7 0 0 6 3 8 5
 #> (in some order)
 ```
 
@@ -123,10 +127,15 @@ Also, replacement methods that access cross-referenced locations are
 forbidden:
 
 ``` r
-a[b < 0.4] <- 5
+a[b < 4] <- 5
+#> disordR discipline error in:
+#> .local(x = x, i = i, j = j, value = value)
+#> 
+#> hash codes 5b7279f3c05d00cf1e8f999a755151e0451c56ec and 488e1c6f4e2c062379d47b5511730a9785661318 do not match
+#> Error in check_matching_hash(x, i, match.call()): stopping
 ```
 
-(observe carefully that `a[b<4] <- 5` is legal). However, sometimes one
+(observe carefully that `a[b<14] <- 5` is legal). However, sometimes one
 knows that two disord objects have the *same* ordering (perhaps `a` is
 the key, and `b` the value, of an associative array). In this case one
 may cross-reference them provided that the hash codes of the two objects
@@ -134,15 +143,14 @@ agree:
 
 ``` r
 a <- rdis()
-b <- disord(runif(9),hash(a))
+b <- disord(sample(9),hash(a))
 a
 #> A disord object with hash 909ab9cb9afebb8a5109f17b277b37d7e6b1aaa1 and elements
 #> [1] 7 1 9 5 6 8 4 2 3
 #> (in some order)
 b
 #> A disord object with hash 909ab9cb9afebb8a5109f17b277b37d7e6b1aaa1 and elements
-#> [1] 0.8696908 0.3403490 0.4820801 0.5995658 0.4935413 0.1862176 0.8273733
-#> [8] 0.6684667 0.7942399
+#> [1] 5 2 8 6 1 4 3 9 7
 #> (in some order)
 ```
 
@@ -154,18 +162,14 @@ they are relatable:
 ``` r
 a+b
 #> A disord object with hash 909ab9cb9afebb8a5109f17b277b37d7e6b1aaa1 and elements
-#> [1] 7.869691 1.340349 9.482080 5.599566 6.493541 8.186218 4.827373 2.668467
-#> [9] 3.794240
+#> [1] 12  3 17 11  7 12  7 11 10
 #> (in some order)
 a[b < 0.5]
-#> A disord object with hash c1e90c16b1ffc00e8c6c9661b54c1daf138496b7 and elements
-#> [1] 1 9 6 8
-#> (in some order)
+#> integer(0)
 a[b < 0.2] <- b[b < 0.2]
 a
 #> A disord object with hash 909ab9cb9afebb8a5109f17b277b37d7e6b1aaa1 and elements
-#> [1] 7.0000000 1.0000000 9.0000000 5.0000000 6.0000000 0.1862176 4.0000000
-#> [8] 2.0000000 3.0000000
+#> [1] 7 1 9 5 6 8 4 2 3
 #> (in some order)
 ```
 
