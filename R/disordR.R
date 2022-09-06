@@ -403,12 +403,17 @@ setMethod("match",signature(x="disord",table="ANY"),
   if(consistent(e1,e2)){
     return(TRUE)
   } else {
-   message("disordR discipline error in:\n")
-   print(use)
-   message(gettextf("\nhash codes %s and %s do not match",hash(e1),hash(e2)))
-   stop("stopping")
+    message("\ndisordR discipline error in:\n")
+    print(use)
+    if(is.disord(e1) & is.disord(e2)){
+      m <- gettextf("\nhash codes %s and %s do not match",hash(e1),hash(e2))
+    } else if( is.disord(e1) & !is.disord(e2)){
+      m <- gettextf("\ncannot combine disord object with hash code %s with a vector",hash(e1))
+    } else if(!is.disord(e1) &  is.disord(e2)){
+      m <- gettextf("\ncannot combine disord object with hash code %s with a vector",hash(e2))
+    } else {
+      m <- gettextf("\nfunction check_matching_hash() called with two non-disords?")
+    }
+    stop(m)
   }
 }
-
-
-
