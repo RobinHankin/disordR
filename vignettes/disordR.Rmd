@@ -392,7 +392,4 @@ mvp(va,pa,ca)
 
 Above, we took multivariate polynomial `a` and replaced the variable
 names in every term with more than four variables with their uppercase
-equivalents.  The `mvp` package does not include `powers<-()` or
-`vars<-()` functions, but these would have made the idiom nicer (I
-will get round to writing them when the `disordR` package is more
-stable).
+equivalents.
