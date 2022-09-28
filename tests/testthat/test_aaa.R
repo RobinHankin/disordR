@@ -153,5 +153,17 @@ test_that("disordR", {
   expect_silent(as.numeric(disord(c(T,F))))
   expect_silent(ignore <- summary(rdis()))
   expect_output(print(summary(rdis())))
+
+
+  ## some tests pursuant to issue #39
+
+  x <- disord(c(1,1,-1,-1))
+  expect_true(identical(x[x>0           ],c(1,1)))
+  expect_true(identical(x[x>0,drop=TRUE ],c(1,1)))
+  expect_true(is.disord(x[x>0,drop=FALSE]))
+
+  expect_error(x[x>0] <- 6:7)
+  expect_silent(x[x>0] <- 6)
+  
 })
 
