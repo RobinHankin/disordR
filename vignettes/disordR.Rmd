@@ -2,6 +2,7 @@
 title: "The `disordR` package: design philosophy and a use-case in multivariate polynomials" 
 author: "Robin K. S. Hankin"
 date: "`r Sys.Date()`"
+bibliography: disordR_arxiv.bib
 vignette: >
   %\VignetteIndexEntry{disordR_mvp}
   %\VignetteEngine{knitr::rmarkdown}
@@ -33,19 +34,15 @@ used in the `mvp` package.  `disordR` is used in the `clifford`,
 
 ### Introduction
 
-Accessing elements of an `mvp` object is problematic because the order
-of the terms of an `mvp` object is not well-defined.  This is because
-the `map` class of the `STL` does not specify an order for the
-key-value pairs (and indeed the actual order in which they are stored
-may be implementation dependent).  The situation is applicable to the
-`hyper2`, `spray`, `clifford` and `freealg` packages which use the
-`STL` in a similar way.
-  
-A `disord` object is a vector of coefficients of a `mvp` object.  But
-it is not a conventional vector; in a conventional vector, we can
-identify the first element unambiguously, and the second, and so on.
-An `mvp` is a map from terms to coefficients, and a map has no
+In `C++` [@ISO14882], the `stl map` class [@josuttis1999] is an object
+that associates a value to each of a set of keys.  Accessing values or
+keys of a `map` object is problematic because the value-key pairs are
+not stored in a well-defined order.  The situation is applicable to
+any package which uses the `map` objects.  Consider, for example, the
+`mvp` package which deals with multinomials using `stl` maps.  An
+`mvp` object is a map from terms to coefficients, and a map has no
 intrinsic ordering: the maps
+
 
 ```
 x -> 1, y -> 3, xy -> 3, xy^3 -> 4
@@ -393,3 +390,5 @@ mvp(va,pa,ca)
 Above, we took multivariate polynomial `a` and replaced the variable
 names in every term with more than four variables with their uppercase
 equivalents.
+
+# References
