@@ -32,7 +32,7 @@ check_matching_hash(e1,e2,use=NULL)
 
   The package generally checks for consistency with function
   \code{check_matching_hash()} which provides some helpful diagnostics
-  if it finds a hash mismatch.
+  if \code{consistent()} finds a hash mismatch.
    
 }
 \value{Boolean or an error as appropriate}
