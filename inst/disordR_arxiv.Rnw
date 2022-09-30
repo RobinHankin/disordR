@@ -73,7 +73,8 @@ and then shows how it is used in the {\tt mvp} package.  The {\tt
   disordR} package is a dependency of {\tt clifford}, {\tt freealg},
 {\tt hyper2}, {\tt mvp}, {\tt spray}, {\tt stokes}, and {\tt weyl}.
 The {\tt disordR} package is available on CRAN at
-\url{https://CRAN.R-project.org/package=spray}.  \end{abstract}
+\url{https://CRAN.R-project.org/package=disordR}.
+\end{abstract}
 \keywords{Disordered vectors}
 
 <<setup,echo=FALSE,print=FALSE>>=
