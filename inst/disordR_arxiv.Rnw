@@ -96,9 +96,9 @@ of a set of keys.  Accessing values or keys of a {\tt map} object is
 problematic because the value-key pairs are not stored in a
 well-defined order.  The situation is applicable to any package which
 uses the {\tt map} objects.  Consider, for example, the {\tt mvp}
-package which deals with multinomials using {\tt stl} maps.  An {\tt
-  mvp} object is a map from terms to coefficients, and a map has no
-intrinsic ordering: the maps
+package~\citep{hankin2022_mvp} which deals with multinomials using
+{\tt stl} maps.  An {\tt mvp} object is a map from terms to
+coefficients, and a map has no intrinsic ordering: the maps
 
 \begin{verbatim}
 x -> 1, y -> 3, xy -> 3, xy^3 -> 4
