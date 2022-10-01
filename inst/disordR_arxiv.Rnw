@@ -58,22 +58,25 @@ pdfkeywords={disord vectors}
 %% an abstract and keywords
 \begin{abstract}
 
-This document motivates and discusses the concept of ``disordered
-vector" as implemented by the {\tt disordR} package.  The standard
-use-case is coefficients of multivariate polynomials as used by the
-{\tt mvp} package.  Values and keys of a map are stored in an
+Objects in the {\tt stl map} class of {\tt C++} associate a value to
+each of a set of keys.  Accessing values or keys of such an object is
+problematic in the R programming language because the value-key pairs
+are not stored in a well-defined order.  This document motivates and
+discusses the concept of ``disordered vector" as implemented by the
+{\tt disordR} package which facilitates the handling of {\tt map}
+objects.  Values and keys of a map are stored in an
 implementation-specific way so certain extraction and replacement
-operations should be forbidden: for example, the ``first" value is
-implementation specific\ldots but the maximum value has a well-defined
-result.  The {\tt disordR} package makes forbidden operations
-impossible while allowing transparent R idiom for permitted
-operations.  An illustrative R session is given in which the package
-is used abstractly, without reference to any particular application,
-and then shows how it is used in the {\tt mvp} package.  The {\tt
-  disordR} package is a dependency of {\tt clifford}, {\tt freealg},
-{\tt hyper2}, {\tt mvp}, {\tt spray}, {\tt stokes}, and {\tt weyl}.
-The {\tt disordR} package is available on CRAN at
-\url{https://CRAN.R-project.org/package=disordR}.
+operations should be forbidden.  For example, if values are real, then
+the ``first" value is implementation specific\ldots but the maximum
+value has a well-defined result.  The {\tt disordR} package makes
+forbidden operations impossible while allowing transparent R idiom for
+permitted operations.  An illustrative R session is given in which the
+package is used abstractly, without reference to any particular
+application, and then shows how it can be used to manipulate
+multivariate polynomials.  The {\tt disordR} package is a dependency
+of {\tt clifford}, {\tt freealg}, {\tt hyper2}, {\tt mvp}, {\tt
+  spray}, {\tt stokes}, and {\tt weyl}.  The {\tt disordR} package is
+available on CRAN at \url{https://CRAN.R-project.org/package=disordR}.
 \end{abstract}
 \keywords{Disordered vectors}
 
