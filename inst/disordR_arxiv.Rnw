@@ -127,15 +127,15 @@ meaningless because of the order ambiguity discussed above: the answer
 is at best implementation-specific, but fundamentally it is a question
 that one should not be allowed to ask.
 
-To deal with the coefficients in isolation in R, one might be tempted
-to use a multiset.  However, this approach does not allow one to link
-the coefficients with the terms.  Suppose I coerce the coefficients to
-a multiset object (as per the {\tt sets} package, for example): then
-it is impossible to extract the terms with coefficient greater than 2
-(which would be the polynomial $3y+3xy+4xy^3$) because the link
-between the coefficients and the terms is not included in the multiset
-object.  Sensible questions involving this aspect of {\tt mvp} objects
-might be:
+To deal with the coefficients in isolation in R~\cite{rcore2022}, one
+might be tempted to use a multiset.  However, this approach does not
+allow one to link the coefficients with the terms.  Suppose I coerce
+the coefficients to a multiset object (as per the {\tt sets} package,
+for example): then it is impossible to extract the terms with
+coefficient greater than 2 (which would be the polynomial
+$3y+3xy+4xy^3$) because the link between the coefficients and the
+terms is not included in the multiset object.  Sensible questions
+involving this aspect of {\tt mvp} objects might be:
 
 
 \begin{itemize}
