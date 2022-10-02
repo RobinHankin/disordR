@@ -472,6 +472,11 @@ Above, we took multivariate polynomial {\tt a} and replaced the variable
 names in every term with more than four variables with their uppercase
 equivalents.
 
+\section{Conclusions}
+
+In the context of {\tt stl} map class, the {\tt disordR} package
+allows permissible idiom transparently and without being noticed; but
+traps inadmissible constructions with an error.
 
 \bibliographystyle{plain}
 \bibliography{disord}
