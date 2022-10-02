@@ -127,7 +127,7 @@ ask:
 \end{itemize}
 
 These are reasonable and mathematically meaningful questions.  Compare
-a meaningless question: ``what is the second coefficient?".  This is
+a meaningless question: ``what is the first coefficient?".  This is
 meaningless because of the order ambiguity discussed above: the answer
 is at best implementation-specific, but fundamentally it is a question
 that one should not be allowed to ask.
@@ -221,7 +221,7 @@ of {\tt a} becomes its square"; note that this operation is
 insensitive to the order of coefficients.  The whole shebang is
 intended to make idiom such as {\tt coeffs(a) <- coeffs(a)\%\%2}
 possible, so we can manipulate polynomials over finite rings, here
-$Z/2Z$.
+$\mathbb{Z}/2\mathbb{Z}$.
 
 The replacement methods are defined so that an expression like {\tt
 coeffs(a)[coeffs(a) < 5] <- 0} works as expected; the English idiom
