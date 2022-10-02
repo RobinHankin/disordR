@@ -299,17 +299,33 @@ sort(a)
 @
 
 Above, see how the result is a standard numeric vector.  However,
-inadmissible operations give an error:
+inadmissible operations give an error.  For example, we cannot extract
+the ``first'' element of {\tt a}:
 
 \begin{Schunk}
 \begin{Sinput}
-a[1]  # asking for the first element is inadmissible
-a[1] <- 1000 # also cannot replace the first element
+a[1] 
 \end{Sinput}
+\begin{Soutput}
+  Error in .local(x, i, j = j, ..., drop) : 
+  if using a regular index to extract, must extract each element once and once only (or none of them)
+\end{Soutput}
 \end{Schunk}
 
+nor can we replace it:
 
-Standard R semantics generally work as expected:
+\begin{Schunk}
+\begin{Sinput}
+a[1] <- 1000
+\end{Sinput}
+\begin{Soutput}
+  Error in .local(x, i, j = j, ..., value) : 
+  if using a regular index to replace, must specify each element once and once only
+\end{Soutput}
+\end{Schunk}
+
+However, the package is designed so that standard R operations
+generally work as expected for permissible operations:
 
 <<>>=
 x <- a + 1/a
