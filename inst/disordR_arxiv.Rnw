@@ -83,6 +83,7 @@ available on CRAN at \url{https://CRAN.R-project.org/package=disordR}.
 <<setup,echo=FALSE,print=FALSE>>=
 ignore <- require("disordR")
 options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
+options(try.outFile = stdout()) 
 @ 
 
 
@@ -302,27 +303,17 @@ Above, see how the result is a standard numeric vector.  However,
 inadmissible operations give an error.  For example, we cannot extract
 the ``first'' element of {\tt a}:
 
-\begin{Schunk}
-\begin{Sinput}
-a[1] 
-\end{Sinput}
-\begin{Soutput}
-  Error in .local(x, i, j = j, ..., drop) : 
-  if using a regular index to extract, must extract each element once and once only (or none of them)
-\end{Soutput}
-\end{Schunk}
+
+
+<<>>=
+try(a[1])
+@ 
 
 nor can we replace it:
 
-\begin{Schunk}
-\begin{Sinput}
-a[1] <- 1000
-\end{Sinput}
-\begin{Soutput}
-  Error in .local(x, i, j = j, ..., value) : 
-  if using a regular index to replace, must specify each element once and once only
-\end{Soutput}
-\end{Schunk}
+<<>>=
+try(a[1] <- 1000)
+@ 
 
 However, the package is designed so that standard R operations
 generally work as expected for permissible operations:
@@ -341,28 +332,9 @@ However, if we try to combine object {\tt a} with another object with
 different hash, we get errors:
 
 <<>>=
-b <- rdis()
-@
-
-
-\begin{Schunk}
-\begin{Sinput}
-b
-a
-a+b
-\end{Sinput}
-\begin{Soutput}
-
-disordR discipline error in:
-
-a + b
-Error in check_matching_hash(e1, e2, match.call()) : 
-hash codes 2d177a73a46711360f5ce7c077a7b74c9fed0bfc and
-   c69a5f8000ccc99e18dd8d1c8f7ea89550b98a13 do not match
-> 
-\end{Soutput}
-\end{Schunk}
-
+(b <- rdis())
+try(a+b)
+@ 
 
 The error is given because objects {\tt a} and {\tt b} are stored in
 an implementation-specific order (we say that {\tt a} and {\tt b} are
@@ -453,12 +425,7 @@ coeffs(x) <- coeffs(y) # ditto
 coeffs(x) <- 1:2       # replacement value not length 1
 coeffs(x)[coeffs(x) < 3] <- coeffs(x)[coeffs(y) < 3]
 \end{Sinput}
-\begin{Soutput}
-[1] 5 6 7   # red indicates fictional, cautionary output
-\end{Soutput}
 \end{Schunk}
-
-
 
 \section{Functions {\tt vars()} and {\tt powers()} return {\tt disord} objects}
 
@@ -504,6 +471,7 @@ mvp(va,pa,ca)
 Above, we took multivariate polynomial {\tt a} and replaced the variable
 names in every term with more than four variables with their uppercase
 equivalents.
+
 
 \bibliographystyle{plain}
 \bibliography{disord}
