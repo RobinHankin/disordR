@@ -1,6 +1,3 @@
-% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
-
-
 \documentclass{article}
 
 \usepackage{arxiv}
@@ -17,14 +14,14 @@
 \usepackage{microtype}      % microtypography
 \usepackage{lipsum}		% Can be removed after putting your text content
 \usepackage{graphicx}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{doi}
 \usepackage{xcolor}
 \usepackage{wrapfig}
 
 
 
-\title{Disordered vectors in R}
+\title{Disordered vectors in R: introducing the {\tt disordR} package}
 
 %\date{September 9, 1985}	% Here you can change the date presented in the paper title
 %\date{} 					% Or removing it
@@ -53,6 +50,7 @@ pdfauthor={Robin K. S.~Hankin},
 pdfkeywords={disord vectors}
 }
 
+\usepackage{Sweave}
 \begin{document}
 \maketitle
 
@@ -81,11 +79,6 @@ available on CRAN at \url{https://CRAN.R-project.org/package=disordR}.
 \end{abstract}
 \keywords{Disordered vectors}
 
-<<setup,echo=FALSE,print=FALSE>>=
-ignore <- require("disordR")
-options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
-options(try.outFile = stdout()) 
-@ 
 
 \section{Introduction}
 
@@ -132,12 +125,13 @@ that one should not be allowed to ask.
 To deal with the coefficients in isolation in R~\cite{rcore2022}, one
 might be tempted to use a multiset.  However, this approach does not
 allow one to link the coefficients with the terms.  Suppose I coerce
-the coefficients to a multiset object (as per the {\tt sets} package,
-for example): then it is impossible to extract the terms with
-coefficient greater than 2 (which would be the polynomial
-$3xy+4xy^3$) because the link between the coefficients and the
-terms is not included in the multiset object.  Sensible questions
-involving this aspect of {\tt mvp} objects might be:
+the coefficients to a multiset object (as per the {\tt sets}
+package~\cite{meyer2009,meyer2022}, for example): then it is
+impossible to extract the terms with coefficient greater than 2 (which
+would be the polynomial $3xy+4xy^3$) because the link between the
+coefficients and the terms is not included in the multiset object.
+Sensible questions involving this aspect of {\tt mvp} objects might
+be:
 
 
 \begin{itemize}
@@ -225,11 +219,17 @@ coeffs(a)[coeffs(a) < 5] <- 0} works as expected; the English idiom
 would be ``replace any coefficient less than 5 with 0".  To fix ideas,
 consider a fixed small mvp object:
 
-<<>>=
-library("mvp")
-a <- as.mvp("5 a c^3 + a^2 d^2 f^2 + 4 a^3 b e^3 + 3 b c f + 2 b^2 e^3")
-a
-@
+\begin{Schunk}
+\begin{Sinput}
+R> library("mvp")
+R> a <- as.mvp("5 a c^3 + a^2 d^2 f^2 + 4 a^3 b e^3 + 3 b c f + 2 b^2 e^3")
+R> a
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+5 a c^3  +  a^2 d^2 f^2  +  4 a^3 b e^3  +  3 b c f  +  2 b^2 e^3
+\end{Soutput}
+\end{Schunk}
 
 Extraction presents issues; consider {\tt coeffs(a) < 3}.  This object
 has Boolean elements but has the same ordering ambiguity as {\tt
@@ -238,10 +238,12 @@ elements of {\tt coeffs(a)}: specifically, those elements less than 5.
 We may use replace methods for coefficients if this makes sense.
 Idiom such as
 
-<<>>=
-coeffs(a)[coeffs(a)<5] <- 4 + coeffs(a)[coeffs(a)<5]
-coeffs(a) <- pmax(coeffs(a),3)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> coeffs(a)[coeffs(a)<5] <- 4 + coeffs(a)[coeffs(a)<5]
+R> coeffs(a) <- pmax(coeffs(a),3)
+\end{Sinput}
+\end{Schunk}
 
 is algebraically meaningful and allowed in the package.
 Idiomatically: ``Add 4 to any element less than 5"; ``coefficients
@@ -262,9 +264,9 @@ first element of {\tt powers(x)}.  The identity of this element is not
 defined---but whatever it is, the first element of all three accessor
 methods refers to it.
 
-Note also that a single term (something like \verb+4a3*b*c^6+) has the same
-issue: the variables are not stored in a well-defined order.  This
-does not matter because the algebraic value of the term does not
+Note also that a single term (something like \verb+4a^3*b*c^6+) has
+the same issue: the variables are not stored in a well-defined order.
+This does not matter because the algebraic value of the term does not
 depend on the order in which the variables appear and this term would
 be equivalent to \verb+4bc^6*a^3+.
 
@@ -272,28 +274,60 @@ be equivalent to \verb+4bc^6*a^3+.
 
 We will use the {\tt disordR} package to show how the idiom works.
 
-<<>>=
-library("disordR")
-set.seed(0)
-a <- rdis()
-a
-@
+\begin{Schunk}
+\begin{Sinput}
+R> library("disordR")
+R> set.seed(0)
+R> a <- rdis()
+R> a
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1] 9 4 7 1 2 6 3 8 5
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 Object {\tt a} is a {\tt disord} object but it behaves similarly to a
 regular numeric vector in many ways:
 
-<<>>=
-a^2
-a+1/a
-@
+\begin{Schunk}
+\begin{Sinput}
+R> a^2
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1] 81 16 49  1  4 36  9 64 25
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> a+1/a
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1] 9.111111 4.250000 7.142857 2.000000 2.500000 6.166667 3.333333
+[8] 8.125000 5.200000
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 Above, note how the result has the same hash code as {\tt a}.  Other
 operations that make sense are {\tt max()} and {\tt sort()}:
 
-<<>>=
-max(a)
-sort(a)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> max(a)
+\end{Sinput}
+\begin{Soutput}
+[1] 9
+\end{Soutput}
+\begin{Sinput}
+R> sort(a)
+\end{Sinput}
+\begin{Soutput}
+[1] 1 2 3 4 5 6 7 8 9
+\end{Soutput}
+\end{Schunk}
 
 Above, see how the result is a standard numeric vector.  However,
 inadmissible operations give an error.  For example, we cannot extract
@@ -301,61 +335,152 @@ the ``first'' element of {\tt a}:
 
 
 
-<<>>=
-try(a[1])
-@ 
+\begin{Schunk}
+\begin{Sinput}
+R> try(a[1])
+\end{Sinput}
+\begin{Soutput}
+Error in .local(x, i, j = j, ..., drop) : 
+  if using a regular index to extract, must extract each element once and once only (or none of them)
+\end{Soutput}
+\end{Schunk}
 
 nor can we replace it:
 
-<<>>=
-try(a[1] <- 1000)
-@ 
+\begin{Schunk}
+\begin{Sinput}
+R> try(a[1] <- 1000)
+\end{Sinput}
+\begin{Soutput}
+Error in .local(x, i, j = j, ..., value) : 
+  if using a regular index to replace, must specify each element once and once only
+\end{Soutput}
+\end{Schunk}
 
 However, the package is designed so that standard R operations
 generally work as expected for permissible operations:
 
-<<>>=
-x <- a + 1/a
-x
-y <- a*2-9
-y
-x+y
-@
+\begin{Schunk}
+\begin{Sinput}
+R> x <- a + 1/a
+R> x
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1] 9.111111 4.250000 7.142857 2.000000 2.500000 6.166667 3.333333
+[8] 8.125000 5.200000
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> y <- a*2-9
+R> y
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1]  9 -1  5 -7 -5  3 -3  7  1
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> x+y
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1] 18.1111111  3.2500000 12.1428571 -5.0000000 -2.5000000  9.1666667
+[7]  0.3333333 15.1250000  6.2000000
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 Above, observe that objects {\tt a}, {\tt x} and {\tt y} have the
 same hash code: they are ``compatible", in {\tt disordR} idiom.
 However, if we try to combine object {\tt a} with another object with
 different hash, we get errors:
 
-<<>>=
-(b <- rdis())
-try(a+b)
-@ 
+\begin{Schunk}
+\begin{Sinput}
+R> (b <- rdis())
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 488e1c6f4e2c062379d47b5511730a9785661318 and elements
+[1] 2 3 8 1 5 6 9 7 4
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> try(a+b)
+\end{Sinput}
+\begin{Soutput}
+a + b
+Error in check_matching_hash(e1, e2, match.call()) : 
+hash codes 5b7279f3c05d... and 488e1c6f4e2c... do not match
+\end{Soutput}
+\end{Schunk}
 
 The error is given because objects {\tt a} and {\tt b} are stored in
 an implementation-specific order (we say that {\tt a} and {\tt b} are
 {\em incompatible}).  In the package, many extract and replace methods
 are implemented whenever this is admissible:
 
-<<>>=
-a[a<0.5] <- 0  # round down
-a
-b[b>0.6] <- b[b>0.6] + 3  # add 3 to every element greater than 0.6
-b
-@
+\begin{Schunk}
+\begin{Sinput}
+R> a[a<0.5] <- 0  # round down
+R> a
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
+[1] 9 4 7 1 2 6 3 8 5
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> b[b>0.6] <- b[b>0.6] + 3  # add 3 to every element greater than 0.6
+R> b
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 488e1c6f4e2c062379d47b5511730a9785661318 and elements
+[1]  5  6 11  4  8  9 12 10  7
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 Usual semantics follow, provided one is careful to maintain the hash
 code:
 
-<<>>=
-d <- disord(1:10)
-d
-e <- 10 + 3*d - d^2
-e
-e<4
-d[e<4] <- e[e<4]
-d
-@
+\begin{Schunk}
+\begin{Sinput}
+R> d <- disord(1:10)
+R> d
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
+ [1]  1  2  3  4  5  6  7  8  9 10
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> e <- 10 + 3*d - d^2
+R> e
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
+ [1]  12  12  10   6   0  -8 -18 -30 -44 -60
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> e<4
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
+ [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> d[e<4] <- e[e<4]
+R> d
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
+ [1]   1   2   3   4   0  -8 -18 -30 -44 -60
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 Above, the replacement command works because {\tt d} and {\tt e}, {\em
 and} {\tt e<4} [which is a Boolean {\tt disord} object] all have the
@@ -369,48 +494,106 @@ with {\tt mvp >= 1.0-12}.  Below we see how {\tt disordR} idiom allows
 mathematically meaningful operation while suppressing inadmissible
 ones:
 
-<<>>=
-set.seed(0)
-a <- rmvp()
-b <- rmvp()
-a
-b
-@
+\begin{Schunk}
+\begin{Sinput}
+R> set.seed(0)
+R> a <- rmvp()
+R> b <- rmvp()
+R> a
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+3 a b^9 e^4 f  +  7 a^2 b^4 d^6 e f^4  +  4 a^4 b^6 c^5 d^11 f^4  +
+6 a^6 b^3 c^14 f^2  +  5 a^11 e^6 f^6  +  b^8 e^7 f^12  +  2 b^10 d^10 f^4
+\end{Soutput}
+\begin{Sinput}
+R> b
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+5 a c^2 e^8 f^7  +  4 a^2 b^5 c^6 e^3  +  7 a^2 b^7 c^4 d e^2  +
+a^4 d^6 e^5 f  +  6 a^6 d^6 f^6  +  3 b^7 c^7 e^5  +  2 b^10 c^3 f^7
+\end{Soutput}
+\end{Schunk}
 
 Observe that standard multivariate polynomial algebra works:
 
-<<>>=
-a + 2*b
-(a+b)*(a-b) == a^2-b^2   # should be TRUE (expression is quite long)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> a + 2*b
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+3 a b^9 e^4 f  +  10 a c^2 e^8 f^7  +  7 a^2 b^4 d^6 e f^4  +
+8 a^2 b^5 c^6 e^3  +  14 a^2 b^7 c^4 d e^2  +  4 a^4 b^6 c^5 d^11 f^4  +
+2 a^4 d^6 e^5 f  +  6 a^6 b^3 c^14 f^2  +  12 a^6 d^6 f^6  +
+5 a^11 e^6 f^6  +  6 b^7 c^7 e^5  +  b^8 e^7 f^12  +  4 b^10 c^3 f^7  +
+2 b^10 d^10 f^4
+\end{Soutput}
+\begin{Sinput}
+R> (a+b)*(a-b) == a^2-b^2   # should be TRUE (expression is quite long)
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\end{Schunk}
 
 We can extract the coefficients of these polynomials using the
 {\tt coeffs()} function:
 
-<<>>=
-coeffs(a)
-coeffs(b)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> coeffs(a)
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 76b070e3d27bf2e3a548b56a02678d79881de0ce and elements
+[1] 3 7 4 6 5 1 2
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> coeffs(b)
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 40b9beff42bebe889cb596f78d096c90ef279834 and elements
+[1] 5 4 7 1 6 3 2
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 observe that the coefficients are returned as a {\tt disord}  object.
 We may manipulate the coefficients of a polynomial in many ways.  We
 may do the following things:
 
-<<>>=
-coeffs(a)[coeffs(a) < 4] <- 0   # set any coefficient of a that is <4 to zero
-a
-coeffs(b) <- coeffs(b)%%2       # consider coefficients of b modulo 2
-b
-@
+\begin{Schunk}
+\begin{Sinput}
+R> coeffs(a)[coeffs(a) < 4] <- 0   # set any coefficient of a that is <4 to zero
+R> a
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+7 a^2 b^4 d^6 e f^4  +  4 a^4 b^6 c^5 d^11 f^4  +  6 a^6 b^3 c^14 f^2  +
+5 a^11 e^6 f^6
+\end{Soutput}
+\begin{Sinput}
+R> coeffs(b) <- coeffs(b)%%2       # consider coefficients of b modulo 2
+R> b
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+a c^2 e^8 f^7  +  a^2 b^7 c^4 d e^2  +  a^4 d^6 e^5 f  +  b^7 c^7 e^5
+\end{Soutput}
+\end{Schunk}
 
 However, many operations which have reasonable idiom are in fact
 meaningless and are implicitly prohibited.  For example:
 
 
-<<>>=
-x <- rmvp()     # set up new mvp objects x and y
-y <- rmvp()
-@
+\begin{Schunk}
+\begin{Sinput}
+R> x <- rmvp()     # set up new mvp objects x and y
+R> y <- rmvp()
+\end{Sinput}
+\end{Schunk}
 
 Then the following should all produce errors:
 
@@ -429,40 +612,111 @@ coeffs(x)[coeffs(x) < 3] <- coeffs(x)[coeffs(y) < 3]
 The {\tt disord()} function takes a list argument, and this is useful
 for working with {\tt mvp} objects:
 
-<<>>=
-(a <- as.mvp("x^2 + 4 - 3*x*y*z"))
-vars(a)
-powers(a)
-coeffs(a)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> (a <- as.mvp("x^2 + 4 - 3*x*y*z"))
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+4  -  3 x y z  +  x^2
+\end{Soutput}
+\begin{Sinput}
+R> vars(a)
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 9395842c6e67dfb0be871e04b3a8964a1c9b9bd5 and elements
+[[1]]
+character(0)
+
+[[2]]
+[1] "x" "y" "z"
+
+[[3]]
+[1] "x"
+
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> powers(a)
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 9395842c6e67dfb0be871e04b3a8964a1c9b9bd5 and elements
+[[1]]
+integer(0)
+
+[[2]]
+[1] 1 1 1
+
+[[3]]
+[1] 2
+
+(in some order)
+\end{Soutput}
+\begin{Sinput}
+R> coeffs(a)
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 9395842c6e67dfb0be871e04b3a8964a1c9b9bd5 and elements
+[1]  4 -3  1
+(in some order)
+\end{Soutput}
+\end{Schunk}
 
 Note that the hash of all three objects is identical, generated from
 the polynomial itself (not just the relevant element of the
 three-element list that is an {\tt mvp} object).  This allows us to do
 some rather interesting things:
 
-<<>>=
-double <- function(x){2*x}
-(a <- rmvp())
-pa <- powers(a)
-va <- vars(a)
-ca <- coeffs(a)
-pa[ca<4] <- sapply(pa,double)[ca<4]
-mvp(va,pa,ca)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> double <- function(x){2*x}
+R> (a <- rmvp())
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+a^2 c^10 d^2 f^2  +  7 a^3 d^5 e^14  +  6 a^5 c^7 d^4 e^2  +  4 a^8 c d^5 e^6  +
+2 b^2 c^4 d^10 e^5 f  +  5 b^2 c^6 d^2 e^7 f^6  +  3 c^6 d^4 e^2 f^6
+
+\end{Soutput}
+\begin{Sinput}
+R> pa <- powers(a)
+R> va <- vars(a)
+R> ca <- coeffs(a)
+R> pa[ca<4] <- sapply(pa,double)[ca<4]
+R> mvp(va,pa,ca)
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+7 a^3 d^5 e^14  +  a^4 c^20 d^4 f^4  +  6 a^5 c^7 d^4 e^2  +
+4 a^8 c d^5 e^6  +  5 b^2 c^6 d^2 e^7 f^6  +  2 b^4 c^8 d^20 e^10 f^2  +
+3 c^12 d^8 e^4 f^12
+\end{Soutput}
+\end{Schunk}
 
 Above, {\tt a} was a multivariate polynomial and we doubled the powers
 of all variables in terms with coefficients less than 4. Or even:
 
-<<>>=
-a <- as.mvp("3 + 5*a*b - 7*a*b*x^2 + 2*a*b^2*c*d*x*y -6*x*y + 8*a*b*c*d*x")
-a
-pa <- powers(a)
-va <- vars(a)
-ca <- coeffs(a)
-va[sapply(pa,length) > 4] <- sapply(va,toupper)[sapply(pa,length) > 4]
-mvp(va,pa,ca)
-@
+\begin{Schunk}
+\begin{Sinput}
+R> a <- as.mvp("3 + 5*a*b - 7*a*b*x^2 + 2*a*b^2*c*d*x*y -6*x*y + 8*a*b*c*d*x")
+R> a
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+3  +  5 a b  +  8 a b c d x  -  7 a b x^2  +  2 a b^2 c d x y  -  6 x y
+\end{Soutput}
+\begin{Sinput}
+R> pa <- powers(a)
+R> va <- vars(a)
+R> ca <- coeffs(a)
+R> va[sapply(pa,length) > 4] <- sapply(va,toupper)[sapply(pa,length) > 4]
+R> mvp(va,pa,ca)
+\end{Sinput}
+\begin{Soutput}
+mvp object algebraically equal to
+3  +  8 A B C D X  +  2 A B^2 C D X Y  +  5 a b  -  7 a b x^2  -  6 x y
+\end{Soutput}
+\end{Schunk}
 
 Above, we took multivariate polynomial {\tt a} and replaced the variable
 names in every term with more than four variables with their uppercase
