@@ -2,6 +2,7 @@ exportPattern("^[[:alpha:]]+")
 export("%~%")
 export("%in%")
 export("match")
+export("lapply")
 
 import("methods")
 importFrom("stats" , "runif")  # used in rdis()
