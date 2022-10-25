@@ -418,4 +418,3 @@ setMethod("match",signature(x="disord",table="ANY"),
     stop(m)
   }
 }
-setGeneric("lapply")
