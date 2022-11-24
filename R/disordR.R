@@ -28,6 +28,7 @@ setValidity("disord", function(object){
 `is.disord` <- function(x){inherits(x,"disord")}
 
 `disord` <- function(v,h,drop=TRUE){ # v is a vector but it needs a hash attribute
+    if(is.disord(v)){v <- elements(v)}
     if(missing(h)){h <- hashcal(v)}
     out <- new("disord",.Data=v,hash=h)  # this is the only occurence of new() in the package
     if(drop){out <- drop(out)}
@@ -418,3 +419,5 @@ setMethod("match",signature(x="disord",table="ANY"),
     stop(m)
   }
 }
+
+
