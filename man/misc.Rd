@@ -72,8 +72,10 @@ involved:
 }
 
 Some functionality is not yet implemented.  Factors, lists, and named
-vectors do not behave entirely consistently in the package, and
-\code{paste()} gives inconsistent results when called with disords.
+vectors do not behave entirely consistently in the package.  Also, a
+\code{for()} loop imposes an ordering (it accesses the \code{.Data} slot
+of its argument); \code{paste()} gives inconsistent results when called
+with disords.
 
 }
 \arguments{\item{x}{Object of class \code{disord}}}
