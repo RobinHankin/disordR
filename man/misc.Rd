@@ -69,7 +69,12 @@ involved:
   is not known where the elements of \code{x} occur in \code{table}).
   Nevertheless \code{x \%in\% table} is defined and returns a
   \code{disord} object.
-  }
+}
+
+Some functionality is not yet implemented.  Factors, lists, and named
+vectors do not behave entirely consistently in the package, and
+\code{paste()} gives inconsistent results when called with disords.
+
 }
 \arguments{\item{x}{Object of class \code{disord}}}
 \value{Returns a disord}
