@@ -23,7 +23,9 @@ Description: Functionality for manipulating values of associative
   python list comprehension.  The idea is to prevent ill-defined
   operations on values (or keys) of associative maps, whose order is
   undefined or at best implementation-specific, while allowing and
-  facilitating sensible operations.
+  facilitating sensible operations.  To cite
+  the package in publications please use Hankin (2022)
+  <doi:10.48550/ARXIV.2210.03856>.
 License: GPL (>= 2)
 URL: https://github.com/RobinHankin/disordR
 BugReports: https://github.com/RobinHankin/disordR/issues

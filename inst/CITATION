@@ -1,0 +1,11 @@
+## NLME book
+bibentry(bibtype = "misc",
+         title = "Disordered vectors in R: introducing the disordR package",
+         author = personList(
+          person(given = c("Robin","K","S"),
+		family = "Hankin",
+		email="hankin.robin@gmail.com")),
+         year = "2022", publisher = "arXiv",
+         doi = "10.48550/ARXIV.2210.03856",
+         url = "https://arxiv.org/abs/2210.03856"
+         )
