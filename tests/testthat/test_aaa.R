@@ -165,5 +165,11 @@ test_that("disordR", {
   expect_error(x[x>0] <- 6:7)
   expect_silent(x[x>0] <- 6)
   
+  expect_error(new("disord",.Data=1)) # tests NULL hash
+  expect_error(disord(1:9) + 1:9)
+  expect_error(check_matching_hash(1:3,1:3))
+  expect_error(check_matching_hash(disord(1:3),1:3))
+  expect_error(check_matching_hash(1:3,disord(1:3)))
+  
 })
 
