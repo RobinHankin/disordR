@@ -72,10 +72,28 @@ involved:
 }
 
 Some functionality is not yet implemented.  Factors, lists, and named
-vectors do not behave entirely consistently in the package.  Also, a
-\code{for()} loop imposes an ordering (it accesses the \code{.Data} slot
-of its argument); \code{paste()} gives inconsistent results when called
-with disords.
+vectors do not behave entirely consistently in the package;
+\code{paste()} gives inconsistent results when called with disords.
+
+Also, \code{for()} loops are incompatible with disord discipline, as
+they impose an ordering (\code{for()} accesses the \code{.Data} slot of
+its argument, which is a regular \R vector).  Thus:
+
+\preformatted{
+> (a <- disord(1:3))
+A disord object with hash 555f6bea49e58a2c2541060a21c2d4f9078c3086 and elements
+[1] 1 2 3
+(in some order)
+> for(i in a){print(i)}
+[1] 1
+[1] 2
+[1] 3
+> 
+}
+
+Above, we see that \code{for()} uses the ordering of the \code{.Data}
+slot of \proglang{S4} object \code{a}, even though \code{elements()} has
+not been explicitly called.
 
 }
 \arguments{\item{x}{Object of class \code{disord}}}
