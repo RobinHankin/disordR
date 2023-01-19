@@ -14,27 +14,32 @@ vignette: >
 </p>
 
 
-
-
 ### Abstract
 
 This document motivates the concept of "disordered vector" using
 coefficients of multivariate polynomials as represented by associative
 maps such as the `STL` map class as used by the `mvp` package.  Values
 and keys of a map are stored in an implementation-specific way so
-certain extraction and replacement operations should be forbidden: for
-example, the "first" value is implementation specific...but the
-maximum value has a well-defined result.  The `disordR` package makes
-forbidden operations impossible while allowing transparent R idiom for
-permitted operations.  An illustrative R session is given in which the
-`disordR` package is used abstractly, without reference to any
-particular application, and then shows how the `disordR` package is
-used in the `mvp` package.  `disordR` is used in the `clifford`,
-`freealg`, `hyper2`, `mvp`, `spray`, `stokes`, and `weyl` packages.
+certain extraction and replacement operations should be forbidden.
+For example, consider a set `S` of real numbers; the "first" value of
+`S` is implementation specific (because a set does not specify the
+order of its elements)...but the maximum value of `S` has a
+well-defined result.  The `disordR` package makes forbidden operations
+of this type impossible while allowing transparent R idiom for
+permitted operations.  Note that one cannot dispense with order
+entirely, as we wish to consider keys and values of `STL` objects
+separately, but we need to retain the ability to match individual keys
+with their corresponding values.
+
+An illustrative R session is given in which the `disordR` package is
+used abstractly, without reference to any particular application, and
+then shows how the `disordR` package is used in the `mvp` package.
+`disordR` is used in the `clifford`, `freealg`, `hyper2`, `mvp`,
+`spray`, `stokes`, and `weyl` packages.
 
 ### Introduction
 
-In `C++` [@ISO14882], the `stl map` class [@josuttis1999] is an object
+In `C++` [@ISO14882], the `STL map` class [@josuttis1999] is an object
 that associates a value to each of a set of keys.  Accessing values or
 keys of a `map` object is problematic because the value-key pairs are
 not stored in a well-defined order.  The situation is applicable to
