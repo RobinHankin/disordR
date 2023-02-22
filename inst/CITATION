@@ -3,7 +3,8 @@ citHeader("To cite the disordR package in publications use:")
 bibentry(bibtype = "misc",
          title = "Disordered vectors in R: introducing the disordR package",
          author   = person("Robin K. S. Hankin"),
-         year = "2022", publisher = "arXiv",
+         year = "2022",
+         publisher = "arXiv",
          doi = "10.48550/ARXIV.2210.03856",
          url = "https://arxiv.org/abs/2210.03856"
          )
