@@ -33,26 +33,33 @@ elements(x)
     returning}
 }
 \details{
-  The package provides a single \proglang{S4} class, \code{disord}.  A
-  detailed vignette is provided that motivates the package.
-  
-  Function \code{hash()} is the extractor function:
 
-  \code{`hash` <- function(x){x@hash}}
+  A detailed vignette is provided that motivates the package.  In
+  applications such as the \CRANpkg{mvp} or \CRANpkg{clifford} packages,
+  the user will not need to even think about the \CRANpkg{disordR}
+  package: it works in the background.  The purpose of the package is to
+  trap plausible idiom that is ill-defined (implementation-specific) and
+  return an informative error, rather than returning a possibly
+  incorrect result.
 
-  Compare \code{hashcal()} which is used to actually calculate the hash
-  code for an object.  Currently
+  The package provides a single \proglang{S4} class, \code{disord},
+  which has two slots, \code{.Data} and \code{hash}.
 
-  \code{`hashcal` <- function(x){digest::sha1(x)}}
+  Function \code{disord()} takes an R object such as a vector or list
+  and returns a \code{disord} object, which is useful in the context of
+  the \code{STL} map class.
 
-  Function \code{disord()} takes a vector and returns a \code{disord}
-  object; function \code{elements()} takes a \code{disord} and returns a
-  vector.  These are the central function of the package.
+  Function \code{hash()} returns the hash of an object (compare
+  \code{hashcal()} which is used to actually calculate the hash code).
 
-  Checking for matching hash codes is done by function
-  \code{consistent()}.  This checks that its arguments have the same
-  hash code, and thus their elements can be paired up (e.g. added).
-  Idiom \code{a \%~\% b} is equivalent to \code{consistent(a,b)}.
+  The package detects acceptable and forbidden operations using hash
+  codes: function \code{consistent()} checks for its arguments having
+  the same hash code, and thus their elements can be paired up
+  (e.g. added).  Idiomatically, \code{a \%~\% b} is equivalent to
+  \code{consistent(a,b)}.
+
+  Function \code{elements()} takes a \code{disord} and returns a regular
+  \R object, typically a vector or a list.
    
 }
 \value{Boolean, hash code, or object of class \code{disord} as
