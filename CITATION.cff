@@ -6,10 +6,4 @@ authors:
   orcid: "https://orcid.org/0000-0001-5982-0415"
 title: "Disordered vectors in R: introducing the disordR package"
 url: "https://github.com/RobinHankin/disordR"
-preferred-citation:
-  type: article
-  authors:
-  - family-names: "Hankin"
-    given-names: "Robin K. S."
-    orcid: "https://orcid.org/0000-0001-5982-0415"
-  doi: "10.48550/ARXIV.2210.03856"
+doi: "10.48550/ARXIV.2210.03856"
