@@ -77,6 +77,20 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   
 }
 \author{Robin K. S. Hankin}
+\note{
+
+  Package versions prior to \code{disordR_0.0-9-6} allowed idiom such as
+
+  \preformatted{
+    a <- disord(1:9)
+    a[a<3] + a[a>7]
+  }
+
+  but this is now disallowed.  The issue is discussed in
+  \code{inst/note_on_extraction.Rmd}.
+}
+
+  
 \seealso{\code{\link{drop}}}
 \examples{
 a <- disord(sample(9))

@@ -273,7 +273,7 @@ setMethod("[", signature("disord",i="disord",j="missing",drop="ANY"),  # makes t
           function(x,i,j,drop=TRUE){
               ignore <- check_matching_hash(x,i,match.call())
               out <- elements(x)[elements(i)]
-              out <- disord(out, hashcal(c(hash(x),hash(i))),drop=FALSE)  # NB newly generated hash, stops things like a[a>4] + a[a<3] but allows a[x<3] <- x[x<3]
+              out <- disord(out, hashcal(c(hash(x),i)),drop=FALSE)  # NB newly generated hash, stops things like a[a>4]+ a[a<3] but allows a[x<3] <- x[x<3]
               if(drop){
                   return(drop(out))
               } else {

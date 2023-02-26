@@ -8,4 +8,5 @@ README.html
 ^inst/disordR_arxiv.Rnw$
 ^inst/disord.bib$
 ^inst/read.me$
+^inst/note_on_extraction.Rmd$
 CITATION.cff

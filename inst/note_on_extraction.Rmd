@@ -1,0 +1,52 @@
+---
+title: "A note on extraction in the `disordR` package"
+author: "Robin Hankin"
+date: "2023-02-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## A curious observation
+
+In `disordR_0.0-9-6` and below, the following would be possible:
+
+```
+> a <- disord(1:9)
+> a[a<3] + a[a>7]
+A disord object with hash 141d1b04a56b313bb4a90429ac5b91f69fbd3748 and elements
+[1]  9 11
+(in some order)
+> 
+```
+
+It is not immediately clear whether this idiom should return an error or not.  My first thought was that it should return an error, as `a[a<3]` has elements 1 and 2 (in some order) and `a[a>7]` has elements 8 and 9 (in some order) and although it returns 1+8 and 2+9 = 9,11 it could have returned 1+9 and 2+8 = 10,10.  This did not return an error in versions `<=0.0-9-6`because the hash codes of `a[a<3]` and `a[a>7]` match.  And it silently returned a result which is, at least in principle, implementation-specific. At least, I think so. In any event, the package behaviour is not documented.
+
+But reflection it is not clear to me that `a[a<3] + a[a>7]`  should return an error.  It depends on whether you want to think of "`a[a<3]`" as having an independent existence; specifically, an existence that is independent of `a[a>7]`. Arguably, both have an order inherited from `a`. If you consider the order ambiguity of `a[a<3]` to be inherited purely from `a` then `a[a<3] + a[a>7]` should not return an error: whatever implementation-specific order a has, the sum is well-defined up to its own order. If, on the other hand, you regard the extraction as introducing a new ordering ambiguity, then `a[a<3] + a[a>7]` is poorly defined [above it was either 9,11 or 10,10] and should return an error.
+
+In
+versions `>=disordR_0.0-9-6`,  a[a<3] + a[a>7] does return an error.  This on the grounds that `disordR` is intended to be used by packages such as `mvp`, not to be attached.  How does this change manifest itself in `mvp` idiom?
+
+Under OLD code:
+
+```
+> (a <- rmvp(9))
+mvp object algebraically equal to
+3 a b^2 c^3 d^7 f^6 + a^5 b^5 e^9 f^5 + 8 a^6 b^3 c^11 f^3 + 9 a^6 d^8 f^2 + 7
+a^11 b^6 d^2 e^6 f^2 + 4 a^15 e^9 f^6 + 6 b^4 c^5 f^11 + 2 b^5 d^12 f^3 + 5 b^5
+e^4 f^6
+> coeffs(a)[coeffs(a)<3] + coeffs(a)[coeffs(a)>7]
+A disord object with hash d81690c2d9824972ceaa64f5774de95290073820 and elements
+[1]  9 11
+(in some order)
+>
+```
+
+It is pretty clear to me that the sum above is not defined. The result (9 11) is meaningless, or at least as meaningful as 10 10. The operation corresponding to the idiom does not seem to make sense in the context of coefficients as managed by the STL map class: "take every coefficient less than three and add it to every coefficient greater than 7".  Well yes, but two questions arise:
+
+Firstly, which element of `a[a<3]` is to be matched with which element of `a[a>7]`?  There are two equally plausible ways of doing it.  The way that is actually done in the package is to say that both have an ambiguous but consistent order inherited from `a`.  I don't see any reason to impose consistency here.
+
+The second question would be to ask what the algebraic meaning of the sum is.  Something like `coeffs(a)[coeffs(a)<3] <- coeffs(a)[coeffs(a)<3] + 5` is fine: "take every coefficient less than 3 and add 5 to it".  But although "`a[a<3] + a[a>7]`" might arguably have a meaning if `a` is an abstract `disord` object, we must ask what  "`coeffs(a)[coeffs(a)<3] + coeffs(a)[coeffs(a)>7]`" means if `a` is an `mvp` object.  I don't have a good answer to this, at least I cannot think of an algebraic interpretation in which `9 11` is somehow "right" and `10 10` is somehow "wrong".
+

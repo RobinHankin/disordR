@@ -170,6 +170,13 @@ test_that("disordR", {
   expect_error(check_matching_hash(1:3,1:3))
   expect_error(check_matching_hash(disord(1:3),1:3))
   expect_error(check_matching_hash(1:3,disord(1:3)))
+
+  ## Some tests pursuant to issue #42
+
+  a <- disord(1:9)
+  expect_error(a[a<3] + a[a>7])
+  expect_error(a[a<3] <- a[a>7] + 1000)
+  
   
 })
 
