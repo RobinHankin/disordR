@@ -22,12 +22,31 @@ A disord object with hash 141d1b04a56b313bb4a90429ac5b91f69fbd3748 and elements
 > 
 ```
 
-It is not immediately clear whether this idiom should return an error or not.  My first thought was that it should return an error, as `a[a<3]` has elements 1 and 2 (in some order) and `a[a>7]` has elements 8 and 9 (in some order) and although it returns 1+8 and 2+9 = 9,11 it could have returned 1+9 and 2+8 = 10,10.  This did not return an error in versions `<=0.0-9-6`because the hash codes of `a[a<3]` and `a[a>7]` match.  And it silently returned a result which is, at least in principle, implementation-specific. At least, I think so. In any event, the package behaviour is not documented.
+It is not immediately clear whether this idiom should return an error
+or not.  My first thought was that it should return an error, as
+`a[a<3]` has elements 1 and 2 (in some order) and `a[a>7]` has
+elements 8 and 9 (in some order) and although it returns 1+8 and 2+9 =
+9,11 it could have returned 1+9 and 2+8 = 10,10.  This did not return
+an error in versions `<=0.0-9-6`because the hash codes of `a[a<3]` and
+`a[a>7]` match.  And it silently returned a result which is, at least
+in principle, implementation-specific. At least, I think so.
 
-But reflection it is not clear to me that `a[a<3] + a[a>7]`  should return an error.  It depends on whether you want to think of "`a[a<3]`" as having an independent existence; specifically, an existence that is independent of `a[a>7]`. Arguably, both have an order inherited from `a`. If you consider the order ambiguity of `a[a<3]` to be inherited purely from `a` then `a[a<3] + a[a>7]` should not return an error: whatever implementation-specific order a has, the sum is well-defined up to its own order. If, on the other hand, you regard the extraction as introducing a new ordering ambiguity, then `a[a<3] + a[a>7]` is poorly defined [above it was either 9,11 or 10,10] and should return an error.
+But reflection it is not clear to me that `a[a<3] + a[a>7]` should
+return an error.  It depends on whether you want to think of
+"`a[a<3]`" as having an independent existence; specifically, an
+existence that is independent of `a[a>7]`. Arguably, both have an
+order inherited from `a`. If you consider the order ambiguity of
+`a[a<3]` to be inherited purely from `a` then `a[a<3] + a[a>7]` should
+not return an error: whatever implementation-specific order a has, the
+sum is well-defined up to its own order. If, on the other hand, you
+regard the extraction as introducing a new ordering ambiguity, then
+`a[a<3] + a[a>7]` is poorly defined [above it was either 9,11 or
+10,10] and should return an error.
 
-In
-versions `>=disordR_0.0-9-6`,  a[a<3] + a[a>7] does return an error.  This on the grounds that `disordR` is intended to be used by packages such as `mvp`, not to be attached.  How does this change manifest itself in `mvp` idiom?
+In versions `>=disordR_0.0-9-6`, idiom `a[a<3] + a[a>7]` does return
+an error.  This on the grounds that `disordR` is intended to be used
+by packages such as `mvp`, not to be attached.  How does this change
+manifest itself in `mvp` idiom?
 
 Under OLD code:
 
@@ -44,9 +63,26 @@ A disord object with hash d81690c2d9824972ceaa64f5774de95290073820 and elements
 >
 ```
 
-It is pretty clear to me that the sum above is not defined. The result (9 11) is meaningless, or at least as meaningful as 10 10. The operation corresponding to the idiom does not seem to make sense in the context of coefficients as managed by the STL map class: "take every coefficient less than three and add it to every coefficient greater than 7".  Well yes, but two questions arise:
+It is pretty clear to me that the sum above is not defined. The result
+(9 11) is meaningless, or at least as meaningful as 10 10. The
+operation corresponding to the idiom does not seem to make sense in
+the context of coefficients as managed by the STL map class: "take
+every coefficient less than three and add it to every coefficient
+greater than 7".  Well yes, but two questions arise:
 
-Firstly, which element of `a[a<3]` is to be matched with which element of `a[a>7]`?  There are two equally plausible ways of doing it.  The way that is actually done in the package is to say that both have an ambiguous but consistent order inherited from `a`.  I don't see any reason to impose consistency here.
+Firstly, which element of `a[a<3]` is to be matched with which element
+of `a[a>7]`?  There are two equally plausible ways of doing it.  The
+way that is actually done in the package is to say that both have an
+ambiguous but consistent order inherited from `a`.  I don't see any
+reason to impose consistency here.
 
-The second question would be to ask what the algebraic meaning of the sum is.  Something like `coeffs(a)[coeffs(a)<3] <- coeffs(a)[coeffs(a)<3] + 5` is fine: "take every coefficient less than 3 and add 5 to it".  But although "`a[a<3] + a[a>7]`" might arguably have a meaning if `a` is an abstract `disord` object, we must ask what  "`coeffs(a)[coeffs(a)<3] + coeffs(a)[coeffs(a)>7]`" means if `a` is an `mvp` object.  I don't have a good answer to this, at least I cannot think of an algebraic interpretation in which `9 11` is somehow "right" and `10 10` is somehow "wrong".
+The second question would be to ask what the algebraic meaning of the
+sum is.  Something like `coeffs(a)[coeffs(a)<3] <-
+coeffs(a)[coeffs(a)<3] + 5` is fine: "take every coefficient less than
+3 and add 5 to it".  But although "`a[a<3] + a[a>7]`" might arguably
+have a meaning if `a` is an abstract `disord` object, we must ask what
+"`coeffs(a)[coeffs(a)<3] + coeffs(a)[coeffs(a)>7]`" means if `a` is an
+`mvp` object.  I don't have a good answer to this, at least I cannot
+think of an algebraic interpretation in which `9 11` is somehow
+"right" and `10 10` is somehow "wrong".
 

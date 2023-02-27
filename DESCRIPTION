@@ -9,9 +9,9 @@ Suggests: mvp,knitr,rmarkdown,testthat
 VignetteBuilder: knitr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: Functionality for manipulating values of associative
-  maps.  The disordR package is designed to be used with the mvp class
-  of packages that use the STL map class; the purpose of the package
-  is to trap plausible idiom that is ill-defined
+  maps.  The 'disordR' package is designed to be used with the mvp
+  class of packages that use the STL map class; the purpose of the
+  package is to trap plausible idiom that is ill-defined
   (implementation-specific) and return an informative error, rather
   than returning a possibly incorrect result.  Ordinary R vectors are
   unsuitable for working with values of associative maps because
