@@ -8,8 +8,6 @@ The disordR package
 <!-- badges: start -->
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/disordR)](https://cran.r-project.org/package=disordR)
-[![Codecov test
-coverage](https://codecov.io/gh/RobinHankin/disordR/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/disordR/branch/master)
 <!-- badges: end -->
 
 # Overview
