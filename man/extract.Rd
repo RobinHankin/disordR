@@ -74,6 +74,12 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   Note that the hash code is unchanged if all elements are extracted
   (because the order might have changed) but unchanged if none are
   (because there is only one way to extract no elements).
+
+  Idiom such as \code{x[]} returns an object identical to \code{x}
+  except for the hash code, which is changed.  I can't quite see a
+  sensible use-case for this, but the method allows one to define an
+  object \code{y <- x[]} for which \code{x} and \code{y} are
+  incompatible.
   
 }
 \author{Robin K. S. Hankin}
@@ -89,8 +95,7 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   but this is now disallowed.  The issue is discussed in
   \code{inst/note_on_extraction.Rmd}.
 }
-
-  
+ 
 \seealso{\code{\link{drop}}}
 \examples{
 a <- disord(sample(9))
