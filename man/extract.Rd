@@ -2,6 +2,7 @@
 \alias{extract}
 \alias{index-class}
 \alias{[}
+\alias{[[}
 \alias{[.disord}
 \alias{[,disord-method}
 \alias{[,disord,index,ANY-method}
@@ -80,6 +81,10 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   sensible use-case for this, but the method allows one to define an
   object \code{y <- x[]} for which \code{x} and \code{y} are
   incompatible.
+
+  Double square extraction, as in \code{x[[i]]} and \code{x[[i]] <-
+  value}, is disallowed (but note that \proglang{S4} methods for
+  \code{lapply()} are supplied).
   
 }
 \author{Robin K. S. Hankin}
@@ -96,7 +101,7 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   \code{inst/note_on_extraction.Rmd}.
 }
  
-\seealso{\code{\link{drop}}}
+\seealso{\code{\link{drop}},\code{\link{misc}}}
 \examples{
 a <- disord(sample(9))
 a

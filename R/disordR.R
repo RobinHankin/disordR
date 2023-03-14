@@ -334,6 +334,13 @@ setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="disord"
                  function(x,i,j,value){stop("x[] <- disord not defined")
                  } )
 
+setMethod("[[", signature("disord",i="index"),  # x[[index]]
+          function(x,i){
+            stop("double square extraction x[[index]] not implemented")
+          } )
+
+setReplaceMethod("[[",signature(x="disord",i="index",value="ANY"), function(x,i,j,drop){stop("list replacement not currently implemented")})
+
 setGeneric("sort")
 setMethod("sort", signature(x = "disord"),
           function (x, decreasing = FALSE, ...){sort(elements(x),decreasing=decreasing, ...)
@@ -420,4 +427,4 @@ setMethod("match",signature(x="disord",table="ANY"),
   }
 }
 
-
+setMethod("length<-","disord",function(x,value){stop("cannot change the length of a disord object")})

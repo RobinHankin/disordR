@@ -69,6 +69,10 @@ involved:
   is not known where the elements of \code{x} occur in \code{table}).
   Nevertheless \code{x \%in\% table} is defined and returns a
   \code{disord} object.
+  \item\code{lapply(x,f)} returns
+  \code{disord(lapply(elements(x),f,...),h=hash(x))}.  Note that double
+  square bracket extraction, as in \code{x[[i]]}, is disallowed (see
+  \code{extract.Rd}).
 }
 
 Some functionality is not yet implemented.  Factors, lists, and named
@@ -99,6 +103,7 @@ not been explicitly called.
 \arguments{\item{x}{Object of class \code{disord}}}
 \value{Returns a disord}
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{extract}}}
 \examples{
 a <- disord(c(a=1,b=2,c=7))
 a
