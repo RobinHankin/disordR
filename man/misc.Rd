@@ -43,6 +43,7 @@
 \alias{as.list,disord-method}
 \alias{as.character,disord-method}
 \alias{as.complex,disord-method}
+\alias{which,disord-method}
 \title{Miscellaneous functions}
 \description{
 
@@ -73,6 +74,8 @@ involved:
   \code{disord(lapply(elements(x),f,...),h=hash(x))}.  Note that double
   square bracket extraction, as in \code{x[[i]]}, is disallowed (see
   \code{extract.Rd}).
+  \item\code{which()} returns an error when given a \code{disord}
+  object.
 }
 
 Some functionality is not yet implemented.  Factors, lists, and named
