@@ -35,6 +35,8 @@
 \alias{[<-,disord,disord,missing,disord-method}
 \alias{[<-,disord,disord,missing-method}
 \alias{[<-,disord,missing,missing,ANY-method}
+\alias{[[,disord,index-method}
+\alias{[[<-,disord,index-method}
 \alias{Arith,ANY,disord-method}
 \alias{Arith,disord,ANY-method}
 \alias{Arith,disord,disord-method}
@@ -62,6 +64,8 @@ and is a \code{setClassUnion()} of classes \code{numeric},
     \item{[<-}{\code{signature(x = "disord", i = "missing", j = "index")}: ... }
     \item{[<-}{\code{signature(x = "disord", i = "matrix", j = "missing")}: ... }
     \item{[<-}{\code{signature(x = "disord", i = "missing", j = "missing")}: ... }
+    \item{[[}{\code{signature(x = "disord", i = "index")}: ... }
+    \item{[[<-}{\code{signature(x = "disord", i = "index",value="ANY")}: ... }
     \item{Arith}{\code{signature(e1 = "ANY", e2 = "disord")}: ... }
     \item{Arith}{\code{signature(e1 = "disord", e2 = "ANY")}: ... }
     \item{Arith}{\code{signature(e1 = "disord", e2 = "disord")}: ... }
