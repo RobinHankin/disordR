@@ -176,7 +176,8 @@ test_that("disordR", {
   a <- disord(1:9)
   expect_error(a[a<3] + a[a>7])
   expect_error(a[a<3] <- a[a>7] + 1000)
-  
+  expect_error(length(a) <- 3)
+
   
 })
 
