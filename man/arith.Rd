@@ -29,6 +29,7 @@
 \alias{disord_logic_missing}
 \alias{disord_logical_negate}
 \alias{disord_show}
+\alias{disindex_show}
 \alias{disord_unary}
 \alias{numeric_arith_disord}
 \title{Arithmetic and logical operations}

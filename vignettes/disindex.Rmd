@@ -1,0 +1,75 @@
+---
+title: "Disordered indices with the `disordR` package: an introduction to class `disindex`"
+author: "Robin Hankin"
+date: "2023-03-22"
+output: html_document
+vignette: >
+  %\VignetteIndexEntry{disindex}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/disordR.png", package = "disordR")`){width=10%}
+</p>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Experimental class `disindex` is a means by which extraction methods
+operate with the output of `which()`.  Consider the following R
+session:
+
+```{r}
+library("disordR")
+d <- disord(c(4,6,1,2,3,4,5,1))
+ind <- which(d>4)
+```
+
+Above, object `ind` points to those elements of `d` which exceed 4.  Thus:
+
+```{r}
+d
+d[ind]
+d[ind] <- 99
+d
+```
+
+However, we cannot assert that `ind` is elements 2 and 7 of `d`, for
+the elements of `d` are stored in an implementation-specific order.
+If we examine `ind` directly, we see:
+
+```{r}
+ind
+```
+
+which correctly says that the elements of `ind` are
+implementation-specific.  However, the main application of `disindex`
+objects is for list extraction.
+
+```{r}
+d <- disord(c(4,1,6,2))
+dl <- sapply(d,function(x){seq(from=5,to=x)})
+dl
+```
+
+Suppose I wish to extract from object `dl` just the element with the
+longest length.  Noting that this would be a `disord`-compliant
+question, we would use:
+
+```{r}
+howlong <- unlist(lapply(dl,length))
+longest <- which(howlong == max(howlong))
+dl[[longest]]
+```
+
+Observe that there is no sense in which the `wanted` element of `dl`
+is the "second":
+
+```{r}
+longest
+```
+

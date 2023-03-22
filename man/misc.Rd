@@ -2,9 +2,11 @@
 \alias{misc}
 \alias{length}
 \alias{length.disord}
+\alias{length.disindex}
 \alias{length<-}
 \alias{length<-.disord}
 \alias{length,disord-method}
+\alias{length,disindex-method}
 \alias{length<-,disord-method}
 \alias{rev}
 \alias{rev,disord-method}
@@ -44,6 +46,7 @@
 \alias{as.character,disord-method}
 \alias{as.complex,disord-method}
 \alias{which,disord-method}
+\alias{which,disindex-method}
 \title{Miscellaneous functions}
 \description{
 

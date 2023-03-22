@@ -41,6 +41,20 @@
 \alias{Arith,disord,ANY-method}
 \alias{Arith,disord,disord-method}
 \alias{Arith,disord,missing-method}
+\alias{[,disord,disindex,missing,ANY-method}
+\alias{[,disord,disindex,ANY,ANY-method}
+\alias{[,ANY,disindex,ANY,ANY-method}
+\alias{[,disord,disindex,missing,ANY-method}
+\alias{[<-,disord,disindex,ANY,ANY-method}
+\alias{[<-,disord,disindex,missing,ANY-method}
+\alias{[[,disord,disindex-method}
+\alias{[[,ANY,disindex-method}
+\alias{[[<-,disord,disindex,missing,ANY-method}
+\alias{[[<-,ANY,disindex,ANY,ANY-method}
+\alias{[[<-,ANY,disindex,ANY-method}
+\alias{[[<-,disord,disindex,missing-method}
+\alias{[[<-,disord,disindex,ANY-method}
+\alias{[[<-,disord,index,ANY-method}
 \title{Extraction and replacement methods for class \code{"disord"}}
 \description{
   The \code{disord} class provides basic arithmetic and extract/replace
@@ -70,6 +84,16 @@ and is a \code{setClassUnion()} of classes \code{numeric},
     \item{Arith}{\code{signature(e1 = "disord", e2 = "ANY")}: ... }
     \item{Arith}{\code{signature(e1 = "disord", e2 = "disord")}: ... }
     \item{Arith}{\code{signature(e1 = "disord", e2 = "missing")}: ... }
+    \item{[}{\code{signature(x="disord",i="disindex",j="missing",drop="ANY")}: ... }
+    \item{[}{\code{signature(x="disord",i="disindex",j="ANY",drop="ANY")}: ... }
+    \item{[}{\code{signature(x="ANY",i="disindex",j="ANY",drop="ANY")}: ... }
+    \item{[}{\code{signature(x="disord",i="disindex",j="missing",value="ANY")}: ... }
+    \item{[}{\code{signature(x="disord",i="disindex",j="ANY",value="ANY")}: ...}
+    \item{[<-}{\code{signature(x="disord",i="disindex",j="missing",drop="ANY")}: ... }
+    \item{[[}{\code{signature("disord",i="disindex")}: ... }
+    \item{[[}{\code{signature("ANY",i="disindex")}: ... }
+    \item{[[<-}{\code{signature(x="disord",i="disindex",j="missing",value="ANY")} ... }
+    \item{[[<-}{\code{signature(x="ANY",i="disindex",j="ANY",value="ANY")} ... }
   }
 
   The extraction method takes a \code{drop} argument which if
@@ -87,8 +111,7 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   incompatible.
 
   Double square extraction, as in \code{x[[i]]} and \code{x[[i]] <-
-  value}, is disallowed (but note that \proglang{S4} methods for
-  \code{lapply()} are supplied).
+  value}, is via (experimental) \code{disindex} functionality.
   
 }
 \author{Robin K. S. Hankin}

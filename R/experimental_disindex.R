@@ -1,6 +1,19 @@
 setClass("disindex",slots = list(value = "numeric", hash="character"))
 setMethod("show", "disindex", function(object){disindex_show(object)})
 
+`.value` <- function(x){x@value}  # DO NOT EXPORT THIS
+
+setValidity("disindex", function(object) {
+  jj <- .value(object)
+  if(!is.numeric(jj)){
+    return("not numeric")
+  } else if(any(jj <= 0)){
+    return("must be >0")
+  } else {
+    return(TRUE)
+  }
+})
+
 `disindex_show` <- function(x){
     cat("A disind object with hash",hash(x), "and", length(.value(x)), "(implementation-specific) elements\n")
     return(invisible(x))
@@ -12,7 +25,9 @@ setGeneric("which")
 setMethod("which","disord",function(x, arr.ind = FALSE, useNames = TRUE){new("disindex",value=which(elements(x)),hash=hash(x))})
 setMethod("which","disindex",function(x, arr.ind = FALSE, useNames = TRUE){stop("which() not defined on disindex objects")})
 
-`.value` <- function(x){x@value}  # DO NOT EXPORT THIS
+
+setGeneric("length")
+setMethod("length","disindex",function(x){length(.value(x))})
 
 setMethod("[", signature(x="disord",i="disindex",j="missing",drop="ANY"),  # makes things like a[which(a>4)] work
           function(x,i,j,drop=TRUE){
@@ -50,31 +65,26 @@ setReplaceMethod("[",signature(x="disord",i="disindex",j="ANY",value="ANY"),
 setMethod("[[", signature("disord",i="disindex"),  # x[[ind]]
           function(x,i){
             stopifnot(identical(hash(x),hash(i)))
+            stopifnot(length(i) == 1)
             elements(x)[[.value(i)]]
           } )
 
 setMethod("[[", signature("ANY",i="disindex"),  # stops x[[ind]]
           function(x,i){stop("disindex only accesses disord lists")
-            stopifnot(identical(hash(x),hash(i)))
-            elements(x)[[.value(i)]]
           } )
 
-d <- disord(c(4,6,1,2,3,4,5,1))
-ind <- which(d>4)
 
-d[ind]  # should work
-d[ind] <- 99 # should work
+setReplaceMethod("[[",signature(x="disord",i="disindex",j="missing",value="ANY"),  # e.g. d[[ind]] <- 33
+                 function(x,i,j,value){
+                   stopifnot(identical(hash(x),hash(i)))
+                   if(is.disord(value)){stop("replace methods for disindex do not take disords")}
+                   if(length(i) !=  1){stop("double square bracket replacement methods x[[i]] <- value with i a disindex object require length(i)==1")}
+                   jj <- elements(x)
+                   jj[[.value(i)]] <- value
+                   return(disord(jj))  # NB hash changed!
+                 } )
 
-dl <- sapply(d,function(x){seq(from=5,to=x)})
-
-## dl[[ind]] # This would fail, trying to access two elements with double square brackets
-
-indl <- which(unlist(lapply(dl,function(x){length(x) == 3})))
-
-dl[[indl]]  # should work, double square brackets access a single element
-
-
-indm <- which(unlist(lapply(dl,function(x){length(x) >= 3})))
-dl[[indm]] # should fail, error from `[[()` accessing  >1 element
+setReplaceMethod("[[",signature(x="ANY",i="disindex",j="ANY",value="ANY"),  # e.g. d[ind] <- 33
+                 function(x,i,j,value){stop("replacement method not meaningful in this context")})
 
 
