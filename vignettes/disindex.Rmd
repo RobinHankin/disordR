@@ -19,13 +19,13 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Experimental class `disindex` is a means by which extraction methods
-operate with the output of `which()`.  Consider the following R
-session:
+Experimental `S4` class `disindex` allows extraction methods,
+including list extraction, to operate with the output of `which()`.
+Consider the following R session:
 
 ```{r}
 library("disordR")
-d <- disord(c(4,6,1,2,3,4,5,1))
+(d <- disord(c(4,6,1,2,3,4,5,1)))
 ind <- which(d>4)
 ```
 
@@ -66,10 +66,5 @@ longest <- which(howlong == max(howlong))
 dl[[longest]]
 ```
 
-Observe that there is no sense in which the `wanted` element of `dl`
-is the "second":
 
-```{r}
-longest
-```
 
