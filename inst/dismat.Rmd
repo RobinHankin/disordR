@@ -29,6 +29,7 @@ classes containing `dismat`:
 
 ```{r definenonvirtualclasses}
 
+`.value` <- function(x){x@value}  # not exported from package, reproduced here for debugging purposes
 setClass("dismat_rd_ci",
          slots    = c(x="matrix",hash="character"),
          contains = "dismat"
@@ -46,6 +47,21 @@ setClass("dismat_rd_cd",
 
 `dismat_rd_ci` <- function(M){new("dismat_rd_ci",x=M,hash=hashcal(M))}
 `dismat_ri_cd` <- function(M){new("dismat_ri_cd",x=M,hash=hashcal(M))}
+
+
+setMethod("show", "dismat_rd_ci", function(object){disord_rd_ci_show(object)})
+
+`disord_rd_ci_show` <- function(x){
+    cat("A dismat_rd_ci object with hash",hash(x), "and elements\n")
+    jj <- x@x
+    rownames(jj) <- rep("-",nrow(jj))
+    print(jj)
+    cat("\n(the rows are in some implementation-specific order)\n")
+    return(invisible(x))
+}
+
+
+
 ```
 
 The idea is that we can have a matrix-like object with row or column
@@ -59,16 +75,13 @@ define some extraction methods for `dismat_rd_ci` objects:
 ```{r label=extractmethodsfordismat_rd_ci}
 setMethod("[", signature(x="dismat_rd_ci",i="disindex",j="ANY",drop="ANY"),
           function(x,i,j,drop=TRUE){
-	      print("here at setmethod")
 	      stopifnot(identical(hash(x),hash(i)))
               if(missing(j)){
-	      print("SDfafs")
                   out <- elements(x)[.value(i),,drop=drop]
-		  print("jj")
               } else {
                   out <- elements(x)[.value(i), j, drop=drop]
               }
-              out <- dismat_ri_cd(out, hash(c(x,i)),drop=FALSE)
+              out <- dismat_rd_ci(out)
               if(drop){
                   return(drop(out))
               } else {
@@ -76,9 +89,22 @@ setMethod("[", signature(x="dismat_rd_ci",i="disindex",j="ANY",drop="ANY"),
               }
           } )
 
+
+setMethod("[", signature(x="dismat_rd_ci",i="disord",j="ANY",drop="ANY"),
+          function(x,i,j,drop=TRUE){
+	  stopifnot(is.logical(i)) # NB:  m <- matrix(1:35,5,7); compare m[c(1,0,0,1,0),] with m[c(T,F,F,T,F),]
+	  if(missing(j)){
+	    out <- x[which(i), ,drop=drop]  # which(i) is a disindex object
+	  } else {
+  	    out <- x[which(i),j,drop=drop]
+	  }
+	  return(out)
+	  } )
+
+
 setMethod("[", signature(x="dismat_rd_ci",i="ANY",j="ANY",drop="ANY"),
           function(x,i,j,drop=TRUE){
-              stop("for objects of class dismat_rd_ci, row accessor must be of class disindex and column accessor must be of class index")
+              stop("for objects of class 'dismat_rd_ci', the [non-missing, non-empty] row accessor must be of either class 'disindex' or Boolean of class 'disord'; and column accessor must be of class index")
           } )
 ```
 
@@ -88,7 +114,7 @@ OK Now I will define an object of class `dismat_rd_ci`:
 M <- matrix(1:35,5,7)
 a <- dismat_rd_ci(M)
 a
-rowSums(M)
+rowSums(M) # This is INCORRECT! rowSums() should return a disord object!
 colSums(M)
 ```
 
@@ -117,7 +143,6 @@ setMethod("apply",signature(X="dismat_rd_ci"),
                           }
                   }
           } )
-
 ```
 
 As an example, we will extract just the rows of `a` that are even:
@@ -128,12 +153,20 @@ As an example, we will extract just the rows of `a` that are even:
 (e <- which(wanted))
 ```
 
-So `wanted` is a boolean that can  be used to extract rows of `a`:
+So `wanted` is a boolean `disord` vector that can be used to extract
+rows of `a`:
 
-```{r wantedrowsofa,error=TRUE}
-a[e,]
-traceback()
+```{r wantedrowsofa}
+a[wanted,]
 ```
+
+But we can also extract using `e`:
+
+```{r wantedrowsofausinge,error=TRUE}
+a[e,]
+```
+
+
 
 
 
