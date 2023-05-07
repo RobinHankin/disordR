@@ -1,10 +1,10 @@
 setClass("disindex",slots = list(value = "numeric", hash="character"))
 setMethod("show", "disindex", function(object){disindex_show(object)})
 
-`.value` <- function(x){x@value}  # DO NOT EXPORT THIS
+`values` <- function(x){  disord(x@value,h=hash(x)) }  # exported in versions >= 0.9-3
 
 setValidity("disindex", function(object) {
-  jj <- .value(object)
+  jj <- values(object)
   if(!is.numeric(jj)){
     return("not numeric")
   } else if(any(jj <= 0)){
@@ -15,7 +15,7 @@ setValidity("disindex", function(object) {
 })
 
 `disindex_show` <- function(x){
-    cat("A disind object with hash",hash(x), "and", length(.value(x)), "(implementation-specific) elements\n")
+    cat("A disind object with hash",hash(x), "and", length(values(x)), "(implementation-specific) elements\n")
     return(invisible(x))
 }
 
@@ -27,12 +27,12 @@ setMethod("which","disindex",function(x, arr.ind = FALSE, useNames = TRUE){stop(
 
 
 setGeneric("length")
-setMethod("length","disindex",function(x){length(.value(x))})
+setMethod("length","disindex",function(x){length(values(x))})
 
 setMethod("[", signature(x="disord",i="disindex",j="missing",drop="ANY"),  # makes things like a[which(a>4)] work
           function(x,i,j,drop=TRUE){
             stopifnot(identical(hash(x),hash(i)))
-            out <- (elements(x))[.value(i)]
+            out <- (elements(x))[values(i)]
             out <- disord(out, hashcal(c(hash(x),hash(i))),drop=FALSE)  # NB newly generated hash, stops things like a[a>4]+ a[a<3] but allows a[x<3] <- x[x<3]
             if(drop){
               return(drop(out))
@@ -54,7 +54,7 @@ setReplaceMethod("[",signature(x="disord",i="disindex",j="missing",value="ANY"),
                    stopifnot(identical(hash(x),hash(i)))
                    if(is.disord(value)){stop("replace methods for disindex do not take disords")}
                    jj <- elements(x)
-                   jj[.value(i)] <- value
+                   jj[values(i)] <- value
                    return(disord(jj))
                  } )
 
@@ -66,7 +66,7 @@ setMethod("[[", signature("disord",i="disindex"),  # x[[ind]]
           function(x,i){
             stopifnot(identical(hash(x),hash(i)))
             stopifnot(length(i) == 1)
-            elements(x)[[.value(i)]]
+            elements(x)[[values(i)]]
           } )
 
 setMethod("[[", signature("ANY",i="disindex"),  # stops x[[ind]]
@@ -80,7 +80,7 @@ setReplaceMethod("[[",signature(x="disord",i="disindex",j="missing",value="ANY")
                    if(is.disord(value)){stop("replace methods for disindex do not take disords")}
                    if(length(i) !=  1){stop("double square bracket replacement methods x[[i]] <- value with i a disindex object require length(i)==1")}
                    jj <- elements(x)
-                   jj[[.value(i)]] <- value
+                   jj[[values(i)]] <- value
                    return(disord(jj))  # NB hash changed!
                  } )
 

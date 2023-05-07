@@ -2,6 +2,7 @@
 \docType{class}
 \alias{disindex-class}
 \alias{disindex}
+\alias{values}
 \title{Experimental class \code{"disindex"}}
 \description{
 
@@ -13,6 +14,8 @@
   used as an index for other \code{disord} objects.  One application
   would be the \code{dismat} class of matrices, currently under
   development.
+
+  Function \code{values()} coerces its argument to an integer vector.
 
 }
 \section{Objects from the Class}{
@@ -35,8 +38,8 @@ although \code{which()} is more natural.
 (x <- disord(c(1,2,1,2,2,7)))
 
 x==2
-which(x==2)
-
+w <- which(x==2)
+w
 
 x[w] <- 100
 x

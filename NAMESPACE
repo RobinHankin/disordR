@@ -5,7 +5,6 @@ export("match")
 export("lapply")
 
 import("methods")
-importFrom("stats" , "runif")  # used in rdis()
 importFrom("digest" , "sha1")
 
 
