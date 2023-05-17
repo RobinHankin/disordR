@@ -22,7 +22,7 @@ To cite the `disordR` package in publications please use
 represented by associative maps such as the `STL` map class as used by
 the `mvp` package.  Values and keys of a map are stored in an
 implementation-specific way so certain extraction and replacement
-operations should be forbidden.  For example, consider a set `S` of
+operations should be forbidden.  For example, consider a finite set `S` of
 real numbers; the "first" value of `S` is implementation specific
 (because a set does not specify the order of its elements)...but the
 maximum value of `S` has a well-defined result.  The `disordR` package
