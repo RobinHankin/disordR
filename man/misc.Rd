@@ -124,4 +124,11 @@ sqrt(a)
 l <- disord(list(3,6:9,1:10))  
 sapply(l,length)
 
+
+## Quick illustration of rev():
+
+revstring <- function(s){paste(rev(unlist(strsplit(s, NULL))),collapse="")}
+x <- rdis()
+revstring(hash(x)) == hash(rev(x))
+
 }
