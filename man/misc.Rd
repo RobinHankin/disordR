@@ -45,6 +45,7 @@
 \alias{as.list,disord-method}
 \alias{as.character,disord-method}
 \alias{as.complex,disord-method}
+\alias{unlist,disord-method}
 \alias{which,disord-method}
 \alias{which,disindex-method}
 \title{Miscellaneous functions}
@@ -79,7 +80,19 @@ involved:
   \code{extract.Rd}).
   \item\code{which()} returns an error when given a \code{disord}
   object.
+  \item\code{unlist()} takes a \code{disord} list, flattens it and
+  returns a \code{disord} vector.  It requires the \code{recursive} flag
+  of \code{base::unlist()} to be \code{TRUE}, which it is by default,
+  interpreting this to mean \dQuote{kill all the structure in any
+  sublists}.  If the list comprises only length-one vectors, the
+  returned value retains the same hash as the argument; if not, a new
+  hash is generated.
 }
+}
+\arguments{\item{x}{Object of class \code{disord}}}
+\value{Returns a disord}
+\author{Robin K. S. Hankin}
+\note{
 
 Some functionality is not yet implemented.  Factors, lists, and named
 vectors do not behave entirely consistently in the package;
@@ -104,11 +117,7 @@ A disord object with hash 555f6bea49e58a2c2541060a21c2d4f9078c3086 and elements
 Above, we see that \code{for()} uses the ordering of the \code{.Data}
 slot of \proglang{S4} object \code{a}, even though \code{elements()} has
 not been explicitly called.
-
 }
-\arguments{\item{x}{Object of class \code{disord}}}
-\value{Returns a disord}
-\author{Robin K. S. Hankin}
 \seealso{\code{\link{extract}}}
 \examples{
 a <- disord(c(a=1,b=2,c=7))
@@ -124,6 +133,7 @@ sqrt(a)
 l <- disord(list(3,6:9,1:10))  
 sapply(l,length)
 
+unlist(l)
 
 ## Quick illustration of rev():
 

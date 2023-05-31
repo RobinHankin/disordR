@@ -121,6 +121,14 @@ test_that("disordR", {
   expect_true(all(jj == rev(rev(jj))))
   expect_error(jj == rev(jj))
 
+  expect_silent(unlist(lapply(disord(sapply(1:9,seq_len)),function(x){max(x)%%2==1})))
+  expect_false(any(unlist(lapply(disord(sapply(1:9,seq_len)),function(x){x[x != 3]})) == 3))
+  expect_error(unlist(disord(list(1,1:4)),recursive=FALSE))
+  jj <- disord(list(1,5,4,5,4,4))
+  expect_true(consistent(jj,unlist(jj)))
+
+  jj <- disord(list(1,5,4,5,4,4:5))
+  expect_false(consistent(jj,unlist(jj)))
 
   a <- rdis(100)
   b <- a^2 + 0.15
@@ -131,9 +139,6 @@ test_that("disordR", {
   expect_true(all(b <= pmax(a,b)))
   expect_true(all(a >= pmin(a,b)))
   expect_true(all(b >= pmin(a,b)))
-
-  expect_silent(unlist(lapply(disord(sapply(1:9,seq_len)),function(x){max(x)%%2==1})))
-  expect_error(unlist(lapply(disord(sapply(1:9,seq_len)),function(x){x[x<5]})))
 
   expect_error(c(rdis(),rdis()))
   expect_true(is.disord(sapply(disord(1:10),seq_len)))
