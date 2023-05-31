@@ -330,7 +330,7 @@ setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), 
                    ignore <- check_matching_hash(x,value,match.call())
                    out <- elements(x)
                    out[] <- value   # the meat
-                   out <- disord(out)
+                   out <- disord(out,hash(x))
                    if(drop)(out <- drop(out))
                    return(out)
                  } )
