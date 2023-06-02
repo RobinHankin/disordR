@@ -78,8 +78,8 @@ involved:
   \code{disord(lapply(elements(x),f,...),h=hash(x))}.  Note that double
   square bracket extraction, as in \code{x[[i]]}, is disallowed (see
   \code{extract.Rd}).
-  \item\code{which()} returns an error when given a \code{disord}
-  object.
+  \item\code{which()} returns a \code{disind} object when given a
+  Boolean  \code{disord}
   \item\code{unlist()} takes a \code{disord} list, flattens it and
   returns a \code{disord} vector.  It requires the \code{recursive} flag
   of \code{base::unlist()} to be \code{TRUE}, which it is by default,
