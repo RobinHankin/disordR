@@ -326,12 +326,11 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
                  } )
 
 setReplaceMethod("[",signature(x="disord",i="missing",j="missing",value="ANY"), # x[] <- numeric
-                 function(x,i,j,value,drop=TRUE){
+                 function(x,i,j,value){
                    ignore <- check_matching_hash(x,value,match.call())
                    out <- elements(x)
                    out[] <- value   # the meat
                    out <- disord(out,hash(x))
-                   if(drop)(out <- drop(out))
                    return(out)
                  } )
  
@@ -344,7 +343,7 @@ setMethod("[[", signature("disord",i="index"),  # x[[index]]
             stop("double square extraction x[[index]] not implemented")
           } )
 
-setReplaceMethod("[[",signature(x="disord",i="index",value="ANY"), function(x,i,j,drop){stop("list replacement not currently implemented")})
+setReplaceMethod("[[",signature(x="disord",i="index",value="ANY"), function(x,i,j){stop("list replacement not currently implemented")})
 
 setGeneric("sort")
 setMethod("sort", signature(x = "disord"),

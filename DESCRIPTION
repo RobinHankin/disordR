@@ -1,7 +1,7 @@
 Package: disordR
 Type: Package
 Title: Non-Ordered Vectors
-Version: 0.9-5
+Version: 0.9-6
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
 Depends: methods,Matrix (>= 1.3-3)
 Imports: digest

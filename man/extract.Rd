@@ -104,11 +104,13 @@ and is a \code{setClassUnion()} of classes \code{numeric},
   (because the order might have changed) but unchanged if none are
   (because there is only one way to extract no elements).
 
-  Idiom such as \code{x[]} returns an object identical to \code{x}
-  except for the hash code, which is changed.  I can't quite see a
-  sensible use-case for this, but the method allows one to define an
-  object \code{y <- x[]} for which \code{x} and \code{y} are
-  incompatible.
+  Missing arguments for extraction and replacement are slightly
+  idiosyncratic.  Extraction idiom such as \code{x[]} returns an object
+  identical to \code{x} except for the hash code, which is changed.  I
+  can't quite see a sensible use-case for this, but the method allows
+  one to define an object \code{y <- x[]} for which \code{x} and
+  \code{y} are incompatible.  Replacement idiom \code{x[] <- v} always
+  coerces to a vector.
 
   Double square extraction, as in \code{x[[i]]} and \code{x[[i]] <-
   value}, is via (experimental) \code{disindex} functionality.
