@@ -48,6 +48,7 @@
 \alias{unlist,disord-method}
 \alias{which,disord-method}
 \alias{which,disindex-method}
+\alias{unlist}
 \title{Miscellaneous functions}
 \description{
 
