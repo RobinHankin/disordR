@@ -7,6 +7,7 @@ export("unlist")
 
 import("methods")
 importFrom("digest" , "sha1")
+importFrom("stats" , "runif")
 
 
 S3method("summary",disord)

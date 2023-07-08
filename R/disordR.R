@@ -1,5 +1,12 @@
 `hash` <- function(x){x@hash}  # extractor method
-`hashcal` <- function(x){digest::sha1(x)}
+`hashcal` <- function(x,ultra_strict=FALSE){
+    if(ultra_strict){
+        return(digest::sha1(list(x,date(),runif(1))))
+    } else {
+        return(digest::sha1(x))
+    }
+}
+
 `elements` <- function(x){if(is.disord(x)){return(x@.Data)}else{return(x)}}  # no occurrences of '@' below this line
 
 setClass("disord", contains = "vector", slots=c(.Data="vector",hash="character"),
@@ -29,7 +36,7 @@ setValidity("disord", function(object){
 
 `disord` <- function(v,h,drop=TRUE){ # v is a vector but it needs a hash attribute
     if(is.disord(v)){v <- elements(v)}
-    if(missing(h)){h <- hashcal(v)}
+    if(missing(h)){h <- hashcal(v,ultra_strict=TRUE)}
     out <- new("disord",.Data=v,hash=h)  # this is the only occurence of new() in the package
     if(drop){out <- drop(out)}
     return(out)

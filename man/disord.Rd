@@ -20,7 +20,7 @@
 \usage{
 is.disord(x)
 hash(x)
-hashcal(x)
+hashcal(x,ultra_strict=FALSE)
 disord(v,h,drop=TRUE)
 elements(x)
 }
@@ -31,6 +31,10 @@ elements(x)
   \item{drop}{Boolean, with default \code{FALSE} meaning to return a
     disord object and \code{TRUE} meaning to call \code{drop()} before
     returning}
+  \item{ultra_strict}{Boolean, with default \code{FALSE} meaning to use
+    just \code{x} to generate the hash, and \code{TRUE} meaning to use
+    the date and a random number as well [this ensures that the hash is
+    generated only once]}
 }
 \details{
 
