@@ -1,0 +1,69 @@
+---
+title: "The parable of the storekeeper"
+format: html
+editor: visual
+---
+
+Once upon a time, our hero wanted to store some numbers. He could not
+remember the numbers himself, and wanted someone to store them for
+him. He went to the STLMAP Storage House.  Now, the chap who worked
+there was a wise old storage expert.  He knew a lot about storing and
+retrieving items.  He was Good.  He was Cheap.  He was Fast.  Our hero
+had used this expert for many years, and he trusted him.
+
+One day, our hero presented the wise old storage expert with some numbers:
+
+```{r}
+money <- c(3,1,994,1,887)
+names <- c("barry","billy","bobbie","buddy","betty")
+```
+
+"Oh storage expert, please remember this information.  You do not need
+to copy the information verbatim; but there is a wide class of queries
+that you must be able to answer.  I do not care about the internal
+structure of your storage systems.  After all, you are a Storage
+Expert, and I trust you.  I may come to you later, and ask you
+questions about the data you curate, and may ask you to change or
+modify that data.  If I ask you to do things that are without the
+Terms of Service, please advise me.
+
+The Storage Expert took the information and wondered what to do with
+it.  His facility had many boxes in which he could store information;
+some boxes were for numbers and some for chracter strings.  He
+considered `money` first.  "Hmm" he said.  "My client has given me the
+numbers `3 1 994 1 887`.  It is my job to remember these numbers.  But
+looking at them, I can see we have three small numbers and two large
+numbers.  Maybe I should store the small numbers in consecutive
+locations, for that would allow me to be more efficient, and probably
+faster than if I separated them.  Also, this kind of client only
+rarely accesses large numbers.  Perhaps I should store the large
+numbers in a high-capacity, low-speed facility.  This might be a good
+idea, as long as I can retrieve them if I need to.
+
+The Storage Expert then considered `names`.  "Well", he said. "By the
+Terms of Contract, I must be able to tell my client how much money
+each of these people have".  I do not have absolute freedom to store
+these names in any old order, for I must be able to link each person
+with their wealth.  When I am choosing the order in which to store
+`numbers`, I must remember to consider `names` in my deliberations,
+for the two are inextricably linked.
+
+In the twinkle of an eye, the Storage Expert devised a devlishly
+efficient storage plan.  He felt it was a good compromise between
+speed, efficiency, and the other myriad desiderata his profession
+forced him to consider.  The Storage Expert, pleased with his work,
+rested.
+
+
+On the Seventh Day, our hero returned with a request.
+
+"Oh Storage Expert, I have a data query.  Do you have the information I entrusted to you?"
+
+"I do indeed.  What can I do for you".
+
+"I want to know how much money `bobby` has".
+
+The Storage expert nodded.  The Terms of Service were clear: he was
+obliged to answer.  He asked our hero to have a seat in the foyer, 
+and retreated to his facility.  "Hmm.  
+
