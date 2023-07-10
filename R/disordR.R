@@ -326,7 +326,7 @@ setReplaceMethod("[",signature(x="disord",i="disord",j="missing",value="ANY"), #
                  function(x,i,j,value){
                      ignore <- check_matching_hash(x,i,match.call())
                      ignore <- check_matching_hash(x[i],value,match.call())
-                     if((length(value)>1) & (!allsame(value)) & (is.disord(x[i,drop=FALSE]))){stop("problem! [github issue #39]")}
+                     if((length(value)>1) & (!allsame(value)) & (is.disord(x[i,drop=FALSE]))){stop("disord discipline problem")}
                      jj <- elements(x)
                      jj[elements(i)] <- value   # the meat; OK because x %~% i
                      disord(jj,hash(x))
