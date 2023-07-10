@@ -443,3 +443,4 @@ setMethod("match",signature(x="disord",table="ANY"),
 }
 
 setMethod("length<-","disord",function(x,value){stop("cannot change the length of a disord object")})
+setMethod("diff","disord",function(x){stop("cannot take the diff() of a disord object")})

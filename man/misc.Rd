@@ -49,6 +49,7 @@
 \alias{which,disord-method}
 \alias{which,disindex-method}
 \alias{unlist}
+\alias{diff}
 \title{Miscellaneous functions}
 \description{
 
@@ -88,6 +89,7 @@ involved:
   sublists}.  If the list comprises only length-one vectors, the
   returned value retains the same hash as the argument; if not, a new
   hash is generated.
+  \item\code{diff()} is undefined for \code{disord} objects.
 }
 }
 \arguments{\item{x}{Object of class \code{disord}}}
