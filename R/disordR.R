@@ -71,9 +71,9 @@ setMethod("match",signature(x="disord",table="disord"),
           } )
 
 setGeneric("%in%")
-setMethod("%in%",signature("disord","ANY"),function(x,table){disord(match(elements(x),table,nomatch=0L)>0L,hash(x))})
+setMethod("%in%",signature("disord","ANY"),function(x,table){disord(match(elements(x),table,nomatch=0L)>0L,hash(x),drop=FALSE)})
 setMethod("%in%",signature("ANY","disord"),function(x,table){match(x,elements(table),nomatch=0L)>0L})
-setMethod("%in%",signature("disord","disord"),function(x,table){disord(match(elements(x),elements(table),nomatch=0L)>0L,hash(x))})
+setMethod("%in%",signature("disord","disord"),function(x,table){disord(match(elements(x),elements(table),nomatch=0L)>0L,hash(x),drop=FALSE)})
 
 setGeneric("drop")
 setMethod("drop","disord",function(x){if(allsame(x)){return(elements(x))}else{return(x)}})
@@ -200,12 +200,12 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
     ignore <- check_matching_hash(e1,e2,match.call())
     a1 <- elements(e1)
     switch(.Generic,
-           "==" = disord(a1==e2,hash(e1)),
-           "!=" = disord(a1!=e2,hash(e1)),
-           ">"  = disord(a1> e2,hash(e1)),
-           "<"  = disord(a1< e2,hash(e1)),
-           ">=" = disord(a1>=e2,hash(e1)),
-           "<=" = disord(a1<=e2,hash(e1)),
+           "==" = disord(a1==e2,hash(e1),drop=FALSE),
+           "!=" = disord(a1!=e2,hash(e1),drop=FALSE),
+           ">"  = disord(a1> e2,hash(e1),drop=FALSE),
+           "<"  = disord(a1< e2,hash(e1),drop=FALSE),
+           ">=" = disord(a1>=e2,hash(e1),drop=FALSE),
+           "<=" = disord(a1<=e2,hash(e1),drop=FALSE),
            stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
@@ -214,12 +214,12 @@ setMethod("Arith",signature(e1 = "numeric", e2="disord" ), numeric_arith_disord)
     ignore <- check_matching_hash(e1,e2,match.call())
     a2 <- elements(e2)
     switch(.Generic,
-           "==" = disord(e1==a2,hash(e2)),
-           "!=" = disord(e1!=a2,hash(e2)),
-           ">"  = disord(e1> a2,hash(e2)),
-           "<"  = disord(e1< a2,hash(e2)),
-           ">=" = disord(e1>=a2,hash(e2)),
-           "<=" = disord(e1<=a2,hash(e2)),
+           "==" = disord(e1==a2,hash(e2),drop=FALSE),
+           "!=" = disord(e1!=a2,hash(e2),drop=FALSE),
+           ">"  = disord(e1> a2,hash(e2),drop=FALSE),
+           "<"  = disord(e1< a2,hash(e2),drop=FALSE),
+           ">=" = disord(e1>=a2,hash(e2),drop=FALSE),
+           "<=" = disord(e1<=a2,hash(e2),drop=FALSE),
            stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
@@ -233,8 +233,8 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
     a1 <- elements(e1)
     a2 <- elements(e2)
     switch(.Generic,
-           "&" = disord(a1 & a2,hash(e1)),
-           "|" = disord(a1 | a2,hash(e1)),
+           "&" = disord(a1 & a2,hash(e1),drop=FALSE),
+           "|" = disord(a1 | a2,hash(e1),drop=FALSE),
            stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
@@ -243,8 +243,8 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
     ignore <- check_matching_hash(e1,e2,match.call())
     a1 <- elements(e1)
     switch(.Generic,
-           "&" = disord(a1 & e2,hash(e1)),
-           "|" = disord(a1 | e2,hash(e1)),
+           "&" = disord(a1 & e2,hash(e1),drop=FALSE),
+           "|" = disord(a1 | e2,hash(e1),drop=FALSE),
            stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
@@ -253,8 +253,8 @@ setMethod("Compare", signature(e1="ANY"   , e2="disord"), any_compare_disord   )
     ignore <- check_matching_hash(e1,e2,match.call())
     a2 <- elements(e2)
     switch(.Generic,
-           "&" = disord(e1 & a2,hash(e2)),
-           "|" = disord(e1 | a2,hash(e2)),
+           "&" = disord(e1 & a2,hash(e2),drop=FALSE),
+           "|" = disord(e1 | a2,hash(e2),drop=FALSE),
            stop(gettextf("%s not supported for disord objects", dQuote(.Generic)))
            )
 }
