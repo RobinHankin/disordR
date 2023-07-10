@@ -15,12 +15,9 @@
 \alias{numeric_power_disord}
 \alias{disord_prod_disord}
 \alias{disord_prod_numeric}
-\alias{any_compare_disord}
 \alias{disord_arith_disord}
 \alias{disord_arith_numeric}
 \alias{disord_arith_unary}
-\alias{disord_compare_any}
-\alias{disord_compare_disord}
 \alias{disord_logic}
 \alias{disord_logic_disord}
 \alias{disord_logic_any}
