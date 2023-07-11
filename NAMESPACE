@@ -4,6 +4,7 @@ export("%in%")
 export("match")
 export("lapply")
 export("unlist")
+export("which")
 
 import("methods")
 importFrom("digest" , "sha1")
