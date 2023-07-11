@@ -93,11 +93,6 @@ setMethod("is.na<-","disord",
               disord(jj,hash(x))
           } )
 
-setGeneric("which")
-setMethod("which","disord",
-          function(x){stop("which() does not make sense for disord object")
-          } )
-
 `rdis` <- function(n=9){disord(sample(n,replace=TRUE))}
 
 setMethod("show", "disord", function(object){disord_show(object)})
