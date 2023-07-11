@@ -4,6 +4,7 @@ export("%in%")
 export("match")
 export("lapply")
 export("unlist")
+export("which")
 
 import("methods")
 importFrom("digest" , "sha1")
@@ -14,3 +15,5 @@ S3method("summary",disord)
 S3method("print",summary.disord)
 
 importClassesFrom(Matrix,index)
+
+exportClasses(disord,disindex)
