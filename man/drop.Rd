@@ -25,7 +25,7 @@ allsame(x)
   objects created with \code{disord(...,drop=FALSE)}
   
   The \code{drop} functionality is conceptually similar to the
-  \code{drop} argument of base R's array extraction, as in
+  \code{drop} argument of base \R's array extraction, as in
 
   \preformatted{
      a <- matrix(1:30,5,6)
