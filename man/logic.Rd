@@ -17,8 +17,8 @@ disord_logic_any(e1,e2)
 any_logic_disord(e1,e2)
 }
 \arguments{
-  \item{x}{Logical \code{disord} vector}
-  \item{e1,e2}{Formal arguments for \proglang{S4} dispatch}
+  \item{e1,e2,x }{Formal arguments for \proglang{S4} dispatch: logical
+    \code{disord} object}
 }
 \section{Methods}{
   \describe{
