@@ -53,6 +53,18 @@ appropriate.  Consistency is required.  The hash is set to be that of
 the disord object if appropriate.
 
 }
+\section{Methods}{
+  \describe{
+    \item{Arith}{\code{signature(e1="disord", e2="disord")}:
+      Dispatched to \code{disord_arith_disord()}}
+    \item{Arith}{\code{signature(e1="disord", e2="numeric")}:
+      Dispatched to \code{disord_arith_numeric()}}
+    \item{Arith}{\code{signature(e1="numeric", e2="disord")}:
+      Dispatched to \code{numeric_arith_disord()}}
+    \item{Arith}{\code{signature(e1="disord", e2="missing")}:
+      Dispatched to \code{disord_arith_unary()}}
+  }
+}
 \value{Return a disord object or logical}
 \author{Robin K. S. Hankin}
 \examples{
