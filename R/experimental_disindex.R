@@ -19,6 +19,7 @@ setValidity("disindex", function(object) {
     return(invisible(x))
 }
 
+setGeneric("summary")
 setMethod("summary","disindex",function(object,...){stop("disindex objects are for extraction only")})
 
 setGeneric("which")
