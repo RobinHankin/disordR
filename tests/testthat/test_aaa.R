@@ -190,6 +190,19 @@ test_that("disordR", {
   b <- a
   a[] <- 1:3
   expect_silent(a+b)
+
+
+
+  ## Now test disindex objects
+
+  a <- disord(1:7)
+  i <- which(a>3)
+  expect_output(print(i))
+  expect_error(!i)
+  expect_error(summary(i))
+  expect_true(all(sort(a[i]) == 4:7))
+  a[i] <- 100
+  expect_true(all(sort(a) == c(1:3,rep(100,4))))
   
   
 })
