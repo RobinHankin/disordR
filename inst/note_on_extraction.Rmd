@@ -129,17 +129,7 @@ Now, we might ask for the _longest_ element of `a`.  In `R`:
 
 ```{r}
 l <- unlist(lapply(b,length))  # need to unlist
-a[which(l==max(l))]
+b[which(l==max(l))]
 ```
 
-
-
-
-
-Now this is perfectly well-defined on `disord` objects, but
-
-```{r error=TRUE}
-l <- unlist(lapply(b,length))
-l
-which(l==max(l))
-```
+Now this is perfectly well-defined on `disord` objects.

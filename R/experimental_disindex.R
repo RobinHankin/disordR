@@ -19,6 +19,7 @@ setValidity("disindex", function(object) {
     return(invisible(x))
 }
 
+setGeneric("summary")
 setMethod("summary","disindex",function(object,...){stop("disindex objects are for extraction only")})
 
 setGeneric("which")
@@ -45,7 +46,7 @@ setMethod("[", signature(x="disord",i="disindex",j="ANY",drop="ANY"),  # stops a
           function(x,i,j,drop=TRUE){stop("second index not implemented for disindex extraction")
           } )
 
-setMethod("[", signature(x="ANY",i="disindex",j="ANY",drop="ANY"),  # stops a[which(a>4),3]
+setMethod("[", signature(x="ANY",i="disindex",j="ANY",drop="ANY"),  # stops which(a>4)[which(a>4)]
           function(x,i,j,drop=TRUE){stop("disindex objects only extract from disords")
           } )
 

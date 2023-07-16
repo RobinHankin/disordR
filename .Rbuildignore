@@ -9,5 +9,5 @@ README.html
 ^inst/disord.bib$
 ^inst/read.me$
 ^inst/note_on_extraction.Rmd$
-^inst/dismat.R$
+^inst/parable.qmd$
 CITATION.cff

@@ -80,10 +80,6 @@ and is a \code{setClassUnion()} of classes \code{numeric},
     \item{[<-}{\code{signature(x = "disord", i = "missing", j = "missing")}: ... }
     \item{[[}{\code{signature(x = "disord", i = "index")}: ... }
     \item{[[<-}{\code{signature(x = "disord", i = "index",value="ANY")}: ... }
-    \item{Arith}{\code{signature(e1 = "ANY", e2 = "disord")}: ... }
-    \item{Arith}{\code{signature(e1 = "disord", e2 = "ANY")}: ... }
-    \item{Arith}{\code{signature(e1 = "disord", e2 = "disord")}: ... }
-    \item{Arith}{\code{signature(e1 = "disord", e2 = "missing")}: ... }
     \item{[}{\code{signature(x="disord",i="disindex",j="missing",drop="ANY")}: ... }
     \item{[}{\code{signature(x="disord",i="disindex",j="ANY",drop="ANY")}: ... }
     \item{[}{\code{signature(x="ANY",i="disindex",j="ANY",drop="ANY")}: ... }
