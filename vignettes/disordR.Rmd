@@ -4,15 +4,14 @@ author: "Robin K. S. Hankin"
 date: "`r Sys.Date()`"
 bibliography: disordR_arxiv.bib
 vignette: >
-  %\VignetteIndexEntry{disordR_mvp}
+  %\VignetteIndexEntry{The disordR package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/disordR.png", package = "disordR")`){width=10%}
-</p>
-
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/disordR.png", package = "disordR"))
+```
 
 ### Abstract
 
