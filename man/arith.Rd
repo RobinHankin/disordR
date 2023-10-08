@@ -17,7 +17,6 @@
 \alias{disord_arith_disord}
 \alias{disord_arith_numeric}
 \alias{disord_arith_unary}
-\alias{disord_show}
 \alias{disindex_show}
 \alias{disord_unary}
 \alias{numeric_arith_disord}
