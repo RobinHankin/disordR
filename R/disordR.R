@@ -81,7 +81,7 @@ setMethod("drop","disord",function(x){if(allsame(x)){return(elements(x))}else{re
 setGeneric("is.na")
 setMethod("is.na","disord",
           function(x){
-              disord(is.na(elements(x)),hash(x))
+              disord(is.na(elements(x)),hash(x),drop=FALSE)
           } )
 
 setGeneric("is.na<-")
