@@ -11,3 +11,5 @@ README.html
 ^inst/note_on_extraction.Rmd$
 ^inst/parable.qmd$
 CITATION.cff
+^.github$
+^.devcontainer$
