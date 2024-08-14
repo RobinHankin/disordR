@@ -89,3 +89,14 @@ setReplaceMethod("[[",signature(x="ANY",i="disindex",j="ANY",value="ANY"),  # e.
                  function(x,i,j,value){stop("replacement method not meaningful in this context")})
 
 
+`binder` <- function(x,y){
+    message("rbind() and cbind() not currently implemented for disord objects (even if the hash codes match)")
+    check_matching_hash(x,y)
+    stop()
+}
+
+setMethod("rbind2",signature(x="disord",y="ANY"),binder)
+setMethod("rbind2",signature(x="ANY",y="disord"),binder)
+setMethod("cbind2",signature(x="disord",y="ANY"),binder)
+setMethod("cbind2",signature(x="ANY",y="disord"),binder)
+

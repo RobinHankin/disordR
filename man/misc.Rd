@@ -50,16 +50,19 @@
 \alias{which,disindex-method}
 \alias{unlist}
 \alias{diff}
+\alias{binder}
+\alias{rbind}
+\alias{cbind}
 \title{Miscellaneous functions}
 \description{
 
 This page documents various functions that work for disords, and I will
 add to these from time to time as I add new functions that make sense
-for disord objects.  Functions like \code{sin()} and \code{abs()} work
-as expected: they take and return \code{disord} objects with the same
-hash as \code{x} (which means that idiom like \code{x + sin(x)} is
-accepted).  However, there are a few functions that are a little more
-involved:
+for disord objects (or identify functions that break disord discipline).
+Functions like \code{sin()} and \code{abs()} work as expected: they take
+and return \code{disord} objects with the same hash as \code{x} (which
+means that idiom like \code{x + sin(x)} is accepted).  However, there
+are a few functions that are a little more involved:
 
 \itemize{
   \item\code{rev()} reverses its argument and returns a \code{disord}
@@ -90,6 +93,10 @@ involved:
   returned value retains the same hash as the argument; if not, a new
   hash is generated.
   \item\code{diff()} is undefined for \code{disord} objects.
+  \item\code{rbind()} and \code{cbind()} are undefined for \code{disord}
+  objects as they break disord discipline.  Function \code{binder()}
+  returns a generic, and hopefully informative, error message [the
+  package defines methods for \code{rbind2()} and \code{cbind2()}]
 }
 }
 \arguments{\item{x}{Object of class \code{disord}}}
