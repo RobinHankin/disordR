@@ -12,3 +12,10 @@
 
 - bugfix so drop=FALSE works for disord extraction
 
+# disordR 0.9-8.2
+
+- stop rbind() and cbind() from breaking disordR discipline
+
+# disordR 0.9-8.3
+
+- code of conduct and contributors' guide
