@@ -16,6 +16,7 @@
 
 - stop rbind() and cbind() from breaking disordR discipline
 
-# disordR 0.9-8.3
+# disordR 0.9-8-4
 
 - code of conduct and contributors' guide
+- pkgdown

@@ -13,3 +13,7 @@ README.html
 CITATION.cff
 ^.github$
 ^.devcontainer$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
