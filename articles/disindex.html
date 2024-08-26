@@ -78,8 +78,8 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/RobinHankin/disordR" class="external-link">"disordR"</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required package: Matrix</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/disordR/man/disord.html" class="external-link">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 67078b5eacebaef1c67a885affb2a0549b441ffd and elements</span></span>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## A disord object with hash 180e07f48a0c457c3ef402d4df6baf56571730bc and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -88,18 +88,18 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <code>d</code> which exceed 4. Thus:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 67078b5eacebaef1c67a885affb2a0549b441ffd and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 180e07f48a0c457c3ef402d4df6baf56571730bc and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 133746385bdf00686f72c8ccd77059e52e9a82a5 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 600cdbc0166863107ad73437121113cd73e29f4c and elements</span></span>
 <span><span class="co">## [1] 6 5</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">99</span></span>
 <span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 87446ba04be2a4caba7b79e09dbf04eef72fd865 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash a9c71dbf6185fa54f934401718f7840db04853ed and elements</span></span>
 <span><span class="co">## [1]  4 99  1  2  3  4 99  1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>However, we cannot assert that <code>ind</code> is elements 2 and 7
@@ -108,15 +108,15 @@ implementation-specific order. If we examine <code>ind</code> directly,
 we see:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ind</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disind object with hash 67078b5eacebaef1c67a885affb2a0549b441ffd and 2 (implementation-specific) elements</span></span></code></pre>
+<pre><code><span><span class="co">## A disind object with hash 180e07f48a0c457c3ef402d4df6baf56571730bc and 2 (implementation-specific) elements</span></span></code></pre>
 <p>which correctly says that the elements of <code>ind</code> are
 implementation-specific. However, the main application of
 <code>disindex</code> objects is for list extraction.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/disordR/man/disord.html" class="external-link">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/misc.html">sapply</a></span><span class="op">(</span><span class="va">d</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">5</span>,to<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">dl</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash f965dfd964e2f0939b5e760a7df53cc330b930c5 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash af512ffc24f4ea225e72cf71ae91670255c4115d and elements</span></span>
 <span><span class="co">## [[1]]</span></span>
 <span><span class="co">## [1] 5 4</span></span>
 <span><span class="co">## </span></span>

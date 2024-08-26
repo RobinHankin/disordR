@@ -170,26 +170,26 @@ and is a <code>setClassUnion()</code> of classes <code>numeric</code>,
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">disord</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">a</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8fced5baba525ef5f2f9a12fd52be7726f59cbab and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8735f38e9d819e32a0ace46a5de0e5f46b79f6a9 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6 9 5 3 4 1 7 8 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span><span class="va">a</span> <span class="op">+</span> <span class="fl">6</span><span class="op">*</span><span class="va">a</span><span class="op">^</span><span class="fl">2</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8fced5baba525ef5f2f9a12fd52be7726f59cbab and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8735f38e9d819e32a0ace46a5de0e5f46b79f6a9 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 222 495 155  57 100   7 301 392  26</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span><span class="va">a</span><span class="op">[</span><span class="va">a</span><span class="op">&gt;</span><span class="fl">5</span><span class="op">]</span>  <span class="co"># "give me all elements of a that exceed 5"</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash f298586dfb88e2adbd1247a892b81cab1fce938c and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8c856ded745a874bd25ae931f16fa4acf775d0f0 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6 9 7 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">a</span><span class="op">[</span><span class="op">]</span> <span class="co"># a disord object, same elements as 'a', but with a different hash</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 16bc5b2f1c7a813c81d6d2fe6f43fbb2e90e87dd and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 7e350ef448da6ed1c14e24f7704ba774a12d4fb3 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6 9 5 3 4 1 7 8 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">a</span><span class="op">[</span><span class="va">a</span><span class="op">&lt;</span><span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">[</span><span class="va">a</span><span class="op">&lt;</span><span class="fl">5</span><span class="op">]</span> <span class="op">+</span> <span class="fl">100</span>  <span class="co"># "replace all elements of 'a' less than 5 with their value plus 100"</span></span></span>
 <span class="r-in"><span><span class="va">a</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8fced5baba525ef5f2f9a12fd52be7726f59cbab and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 8735f38e9d819e32a0ace46a5de0e5f46b79f6a9 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]   6   9   5 103 104 101   7   8 102</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span></span></span>
