@@ -53,6 +53,8 @@
 \alias{binder}
 \alias{rbind}
 \alias{cbind}
+\alias{jitter}
+\alias{jitter,disord-method}
 \title{Miscellaneous functions}
 \description{
 
@@ -97,6 +99,9 @@ are a few functions that are a little more involved:
   objects as they break disord discipline.  Function \code{binder()}
   returns a generic, and hopefully informative, error message [the
   package defines methods for \code{rbind2()} and \code{cbind2()}]
+  \item\code{jitter()} takes a \code{disord} object, jitters the
+  elements, and returns a \code{disord} object with the correct hash
+  code.
 }
 }
 \arguments{\item{x}{Object of class \code{disord}}}

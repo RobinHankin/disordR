@@ -2,6 +2,7 @@
 
 - code of conduct and contributors' guide
 - pkgdown
+- jitter()
 
 # disordR 0.0-9-3
 

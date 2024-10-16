@@ -439,3 +439,7 @@ setMethod("match",signature(x="disord",table="ANY"),
 
 setMethod("length<-","disord",function(x,value){stop("cannot change the length of a disord object")})
 setMethod("diff","disord",function(x){stop("cannot take the diff() of a disord object")})
+
+setMethod("jitter","disord",function(x,factor=1, amount=NULL){
+    disord(jitter(elements(x), factor=factor, amount=amount), h = hash(x))
+} )
