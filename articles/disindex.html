@@ -79,7 +79,7 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <pre><code><span><span class="co">## Loading required package: Matrix</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash ab5a29fdf3ece7cec6b9c04274558a456ee88216 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash afb4b0ff7d6cd3b2cf12537b16183d2a4f1f5961 and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -88,18 +88,18 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <code>d</code> which exceed 4. Thus:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash ab5a29fdf3ece7cec6b9c04274558a456ee88216 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash afb4b0ff7d6cd3b2cf12537b16183d2a4f1f5961 and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash e05386fa62e300f5c4f59ccf28c6e24801c021f0 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash fa92bff38a92261d297d3cf9db0ac20dad6ba8cf and elements</span></span>
 <span><span class="co">## [1] 6 5</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">99</span></span>
 <span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 8ad6dc02298435e21e79b11d808b62b28ca908e6 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 8b829083f7131f16e3b4d175a7878b323cf5294c and elements</span></span>
 <span><span class="co">## [1]  4 99  1  2  3  4 99  1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>However, we cannot assert that <code>ind</code> is elements 2 and 7
@@ -108,7 +108,7 @@ implementation-specific order. If we examine <code>ind</code> directly,
 we see:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ind</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disind object with hash ab5a29fdf3ece7cec6b9c04274558a456ee88216 and 2 (implementation-specific) elements</span></span></code></pre>
+<pre><code><span><span class="co">## A disind object with hash afb4b0ff7d6cd3b2cf12537b16183d2a4f1f5961 and 2 (implementation-specific) elements</span></span></code></pre>
 <p>which correctly says that the elements of <code>ind</code> are
 implementation-specific. However, the main application of
 <code>disindex</code> objects is for list extraction.</p>
@@ -116,7 +116,7 @@ implementation-specific. However, the main application of
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/misc.html">sapply</a></span><span class="op">(</span><span class="va">d</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">5</span>,to<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">dl</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash d8efc056cc35c4a3a79fd2eaad496f559276326b and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 414126291a0b9d170a247eeabd30163cfacf734f and elements</span></span>
 <span><span class="co">## [[1]]</span></span>
 <span><span class="co">## [1] 5 4</span></span>
 <span><span class="co">## </span></span>

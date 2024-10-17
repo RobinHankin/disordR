@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Robin K. S.
 Hankin</h4>
             
-            <h4 data-toc-skip class="date">2024-10-16</h4>
+            <h4 data-toc-skip class="date">2024-10-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RobinHankin/disordR/blob/master/vignettes/disordR.Rmd" class="external-link"><code>vignettes/disordR.Rmd</code></a></small>
       <div class="d-none name"><code>disordR.Rmd</code></div>
@@ -278,19 +278,19 @@ works.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rdis.html">rdis</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">a</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 9 4 7 1 2 7 2 3 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>Object <code>a</code> is a <code>disord</code> object but it behaves
 similarly to a regular numeric vector in many ways:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 81 16 49  1  4 49  4  9  1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span><span class="op">+</span><span class="fl">1</span><span class="op">/</span><span class="va">a</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 9.111111 4.250000 7.142857 2.000000 2.500000 7.142857 2.500000 3.333333</span></span>
 <span><span class="co">## [9] 2.000000</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
@@ -315,19 +315,19 @@ inadmissible operations give an error:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="va">a</span></span>
 <span><span class="va">x</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 9.111111 4.250000 7.142857 2.000000 2.500000 7.142857 2.500000 3.333333</span></span>
 <span><span class="co">## [9] 2.000000</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">*</span><span class="fl">2</span><span class="op">-</span><span class="fl">9</span></span>
 <span><span class="va">y</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1]  9 -1  5 -7 -5  5 -5 -3 -7</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span><span class="op">+</span><span class="va">y</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 18.1111111  3.2500000 12.1428571 -5.0000000 -2.5000000 12.1428571 -2.5000000</span></span>
 <span><span class="co">## [8]  0.3333333 -5.0000000</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
@@ -339,12 +339,12 @@ errors:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rdis.html">rdis</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">b</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 13e1ca01d7ffd8c88d86eddd9719646a6501ec3d and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash c0df8a0ef252a18b8b297ba1715d835cd516dbb8 and elements</span></span>
 <span><span class="co">## [1] 5 6 7 9 5 5 9 9 5</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 9 4 7 1 2 7 2 3 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
@@ -353,7 +353,7 @@ errors:</p>
 <span><span class="co">## disordR discipline error in:</span></span></code></pre>
 <pre><code><span><span class="co">## a + b</span></span></code></pre>
 <pre><code><span><span class="co">## Error in check_matching_hash(e1, e2, match.call()): </span></span>
-<span><span class="co">## hash codes df89f9719c6a2e5869972193649230ab78025e43 and 13e1ca01d7ffd8c88d86eddd9719646a6501ec3d do not match</span></span></code></pre>
+<span><span class="co">## hash codes 730805d7f2f91319548d2fa649ca05073e37b670 and c0df8a0ef252a18b8b297ba1715d835cd516dbb8 do not match</span></span></code></pre>
 <p>The error is given because objects <code>a</code> and <code>b</code>
 are stored in an implementation-specific order (we say that
 <code>a</code> and <code>b</code> are <em>incompatible</em>). In the
@@ -362,13 +362,13 @@ is admissible:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span><span class="op">[</span><span class="va">a</span><span class="op">&lt;</span><span class="fl">0.5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>  <span class="co"># round down</span></span>
 <span><span class="va">a</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash df89f9719c6a2e5869972193649230ab78025e43 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 730805d7f2f91319548d2fa649ca05073e37b670 and elements</span></span>
 <span><span class="co">## [1] 9 4 7 1 2 7 2 3 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b</span><span class="op">[</span><span class="va">b</span><span class="op">&gt;</span><span class="fl">0.6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">b</span><span class="op">[</span><span class="va">b</span><span class="op">&gt;</span><span class="fl">0.6</span><span class="op">]</span> <span class="op">+</span> <span class="fl">3</span>  <span class="co"># add 3 to every element greater than 0.6</span></span>
 <span><span class="va">b</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 13e1ca01d7ffd8c88d86eddd9719646a6501ec3d and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash c0df8a0ef252a18b8b297ba1715d835cd516dbb8 and elements</span></span>
 <span><span class="co">## [1]  8  9 10 12  8  8 12 12  8</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>Usual semantics follow, provided one is careful to maintain the hash
@@ -376,24 +376,24 @@ code:</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 6ff3b61e758e070a5137a5b8777a25533ca70a1c and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash db725f57b0adf621a725011342fc56d8a7425828 and elements</span></span>
 <span><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">+</span> <span class="fl">3</span><span class="op">*</span><span class="va">d</span> <span class="op">-</span> <span class="va">d</span><span class="op">^</span><span class="fl">2</span></span>
 <span><span class="va">e</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 6ff3b61e758e070a5137a5b8777a25533ca70a1c and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash db725f57b0adf621a725011342fc56d8a7425828 and elements</span></span>
 <span><span class="co">##  [1]  12  12  10   6   0  -8 -18 -30 -44 -60</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e</span><span class="op">&lt;</span><span class="fl">4</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 6ff3b61e758e070a5137a5b8777a25533ca70a1c and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash db725f57b0adf621a725011342fc56d8a7425828 and elements</span></span>
 <span><span class="co">##  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">e</span><span class="op">&lt;</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">e</span><span class="op">[</span><span class="va">e</span><span class="op">&lt;</span><span class="fl">4</span><span class="op">]</span></span>
 <span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 6ff3b61e758e070a5137a5b8777a25533ca70a1c and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash db725f57b0adf621a725011342fc56d8a7425828 and elements</span></span>
 <span><span class="co">##  [1]   1   2   3   4   0  -8 -18 -30 -44 -60</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>Above, the replacement command works because <code>d</code> and
