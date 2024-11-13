@@ -230,5 +230,9 @@ test_that("disordR", {
   i <- which(a>3)
   expect_error(a[[i,6]] <- 33)
 
+  a <- disord(1:7)
+  expect_true(all(abs(jitter(a,amount=1e-5) - a) < 0.1))
+  expect_error(a + jitter(disord(rnorm(length(a)))))
+  
 })
 
