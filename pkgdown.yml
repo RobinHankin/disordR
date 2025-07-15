@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   disindex: disindex.html
   disordR: disordR.html
-last_built: 2025-07-15T20:05Z
+last_built: 2025-07-15T20:26Z
 urls:
   reference: https://robinhankin.github.io/disordR/reference
   article: https://robinhankin.github.io/disordR/articles
