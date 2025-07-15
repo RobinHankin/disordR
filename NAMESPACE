@@ -6,10 +6,9 @@ export("lapply")
 export("unlist")
 export("which")
 
-import("methods")
 importFrom("digest" , "sha1")
 importFrom("stats" , "runif")
-
+importFrom("methods", "as", "callNextMethod", "new")
 
 S3method("summary",disord)
 S3method("print",summary.disord)
