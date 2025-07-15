@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   disindex: disindex.html
   disordR: disordR.html
-last_built: 2024-11-13T08:08Z
+last_built: 2025-07-15T20:05Z
 urls:
   reference: https://robinhankin.github.io/disordR/reference
   article: https://robinhankin.github.io/disordR/articles

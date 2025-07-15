@@ -8,8 +8,8 @@
 <title>Disordered indices with the `disordR` package: an introduction to class `disindex` • disordR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Disordered indices with the `disordR` package: an introduction to class `disindex`">
 </head>
 <body>
@@ -70,7 +70,7 @@ Hankin</h4>
     
     
 <p style="text-align: right;">
-<img src="..%2F..%2F..%2F_temp%2FLibrary%2FdisordR%2Fhelp%2Ffigures%2FdisordR.png" style="width:10.0%"></p>
+<img src="../../../_temp/Library/disordR/help/figures/disordR.png" style="width:10.0%"></p>
 <p>Experimental <code>S4</code> class <code>disindex</code> allows
 extraction methods, including list extraction, to operate with the
 output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link">which()</a></code>. Consider the following R session:</p>
@@ -79,7 +79,7 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <pre><code><span><span class="co">## Loading required package: Matrix</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash dee29b4cbbc033c651ebe310ca21a4b6ee3cdce0 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 718d983c9971434c8125635ed91435b958cf2019 and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -88,18 +88,18 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <code>d</code> which exceed 4. Thus:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash dee29b4cbbc033c651ebe310ca21a4b6ee3cdce0 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 718d983c9971434c8125635ed91435b958cf2019 and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash dfca774e2c80edc1fb35ba0d97f46f0371fb2f79 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 9d14d3240a33ed887abd07326c0dfc127fae67a8 and elements</span></span>
 <span><span class="co">## [1] 6 5</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">99</span></span>
 <span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash a7cb745be6e9742a21db46e5348be236885d0cdd and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 7d9fbea07254e282152764e93f487a37b8320019 and elements</span></span>
 <span><span class="co">## [1]  4 99  1  2  3  4 99  1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>However, we cannot assert that <code>ind</code> is elements 2 and 7
@@ -108,7 +108,7 @@ implementation-specific order. If we examine <code>ind</code> directly,
 we see:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ind</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disind object with hash dee29b4cbbc033c651ebe310ca21a4b6ee3cdce0 and 2 (implementation-specific) elements</span></span></code></pre>
+<pre><code><span><span class="co">## A disind object with hash 718d983c9971434c8125635ed91435b958cf2019 and 2 (implementation-specific) elements</span></span></code></pre>
 <p>which correctly says that the elements of <code>ind</code> are
 implementation-specific. However, the main application of
 <code>disindex</code> objects is for list extraction.</p>
@@ -116,7 +116,7 @@ implementation-specific. However, the main application of
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/misc.html">sapply</a></span><span class="op">(</span><span class="va">d</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">5</span>,to<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">dl</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 504a0f4439c459462c9d086b448626724d3e1cb1 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 42fbec246d80f7f9ebeaa6fdb0a5e87455ff4217 and elements</span></span>
 <span><span class="co">## [[1]]</span></span>
 <span><span class="co">## [1] 5 4</span></span>
 <span><span class="co">## </span></span>
@@ -149,7 +149,7 @@ element with the longest length. Noting that this would be a
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
