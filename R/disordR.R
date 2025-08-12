@@ -408,8 +408,7 @@ setMethod("match",signature(x="disord",table="ANY"),
       hash    = hash(object),
       summary = summary(elements(object))
   )
-  class(out) <- "summary.disord"
-  return(out)
+  return(structure(out, class = "summary.disord"))
 }
 
 "print.summary.disord" <- function(x, ...){
