@@ -50,6 +50,7 @@
 \alias{which,disindex-method}
 \alias{unlist}
 \alias{diff}
+\alias{diff,disord-method}
 \alias{binder}
 \alias{rbind}
 \alias{cbind}
