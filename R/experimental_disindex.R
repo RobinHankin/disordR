@@ -34,6 +34,7 @@ setGeneric("length")
 #' @export 
 setMethod("length","disindex",function(x){length(values(x))})
 
+#' @export 
 setMethod("[", signature(x="disord",i="disindex",j="missing",drop="ANY"),  # makes things like a[which(a>4)] work
           function(x,i,j,drop=TRUE){
             stopifnot(identical(hash(x),hash(i)))
@@ -46,14 +47,17 @@ setMethod("[", signature(x="disord",i="disindex",j="missing",drop="ANY"),  # mak
             }
           } )
 
+#' @export 
 setMethod("[", signature(x="disord",i="disindex",j="ANY",drop="ANY"),  # stops a[which(a>4),3]
           function(x,i,j,drop=TRUE){stop("second index not implemented for disindex extraction")
           } )
 
+#' @export 
 setMethod("[", signature(x="ANY",i="disindex",j="ANY",drop="ANY"),  # stops which(a>4)[which(a>4)]
           function(x,i,j,drop=TRUE){stop("disindex objects only extract from disords")
           } )
 
+#' @export 
 setReplaceMethod("[",signature(x="disord",i="disindex",j="missing",value="ANY"),  # e.g. d[ind] <- 33
                  function(x,i,j,value){
                    stopifnot(identical(hash(x),hash(i)))
@@ -63,10 +67,12 @@ setReplaceMethod("[",signature(x="disord",i="disindex",j="missing",value="ANY"),
                    return(disord(jj))
                  } )
 
+#' @export 
 setReplaceMethod("[",signature(x="disord",i="disindex",j="ANY",value="ANY"),
                  function(x,i,j,value){stop("second index not implemented for disindex replacement methods")
                  } )
 
+#' @export 
 setMethod("[[", signature("disord",i="disindex"),  # x[[ind]]
           function(x,i){
             stopifnot(identical(hash(x),hash(i)))
@@ -74,10 +80,12 @@ setMethod("[[", signature("disord",i="disindex"),  # x[[ind]]
             elements(x)[[values(i)]]
           } )
 
+#' @export 
 setMethod("[[", signature("ANY",i="disindex"),  # stops x[[ind]]
           function(x,i){stop("disindex only accesses disord lists")
           } )
 
+#' @export 
 setReplaceMethod("[[",signature(x="disord",i="disindex",j="missing",value="ANY"),  # e.g. d[[ind]] <- 33
                  function(x,i,j,value){
                    stopifnot(identical(hash(x),hash(i)))
@@ -88,6 +96,7 @@ setReplaceMethod("[[",signature(x="disord",i="disindex",j="missing",value="ANY")
                    return(disord(jj))  # NB hash changed!
                  } )
 
+#' @export 
 setReplaceMethod("[[",signature(x="ANY",i="disindex",j="ANY",value="ANY"),  # e.g. d[ind] <- 33
                  function(x,i,j,value){stop("replacement method not meaningful in this context")})
 

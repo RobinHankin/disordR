@@ -288,6 +288,7 @@ setMethod("Logic", signature(e1="disord", e2="ANY"), disord_logic_any)
 setMethod("Logic", signature(e1="ANY", e2="disord"), any_logic_disord)
 setMethod("Logic", signature(e1="disord", e2="disord"), disord_logic_disord)
 
+#' @export 
 setMethod("[", signature("disord", i="index", j="missing", drop="ANY"),
           function(x, i, j, drop){
             jj <- seq_along(x)
@@ -301,6 +302,7 @@ setMethod("[", signature("disord", i="index", j="missing", drop="ANY"),
             }
           } )
 
+#' @export 
 setMethod("[", signature("disord", i="disord", j="missing", drop="ANY"),  # makes things like a[a>4] work
           function(x, i, j, drop=TRUE){
               ignore <- check_matching_hash(x, i, match.call())
@@ -314,8 +316,10 @@ setMethod("[", signature("disord", i="disord", j="missing", drop="ANY"),  # make
               }
           })
 
+#' @export 
 setMethod("[", signature("disord", i="index", j="ANY", drop="ANY"), function(x, i, j, drop){stop("cannot have two index args")})
 
+#' @export 
 setMethod("[", signature("disord", i="missing", j="missing", drop="ANY"), # x[]
           function(x, i, j, drop){
             out <- disord(x, hashcal(c(hash(x), 0)))
@@ -323,6 +327,7 @@ setMethod("[", signature("disord", i="missing", j="missing", drop="ANY"), # x[]
             return(out)
           } )
 
+#' @export 
 setReplaceMethod("[", signature(x="disord", i="index", j="missing", value="ANY"),  
                  function(x, i, j, value){
                      if(allsame(i) & is.logical(i)){
@@ -334,6 +339,7 @@ setReplaceMethod("[", signature(x="disord", i="index", j="missing", value="ANY")
                      }
                  } )
 
+#' @export 
 setReplaceMethod("[", signature(x="disord", i="disord", j="missing", value="disord"),  # x[x<3] <- x[x<3] + 100
                  function(x, i, j, value){
                      ignore <- check_matching_hash(x, i, match.call())
@@ -343,6 +349,7 @@ setReplaceMethod("[", signature(x="disord", i="disord", j="missing", value="diso
                      disord(jj, hash(x))   # needs same hash as x
                  } )
 
+#' @export 
 setReplaceMethod("[", signature(x="disord", i="disord", j="missing", value="ANY"), # x[x<3] <- 333
                  function(x, i, j, value){
                      ignore <- check_matching_hash(x, i, match.call())
@@ -353,6 +360,7 @@ setReplaceMethod("[", signature(x="disord", i="disord", j="missing", value="ANY"
                      disord(jj, hash(x))
                  } )
 
+#' @export 
 setReplaceMethod("[", signature(x="disord", i="missing", j="missing", value="ANY"), # x[] <- numeric
                  function(x, i, j, value){
                    ignore <- check_matching_hash(x, value, match.call())
@@ -361,16 +369,18 @@ setReplaceMethod("[", signature(x="disord", i="missing", j="missing", value="ANY
                    out <- disord(out, hash(x))
                    return(out)
                  } )
- 
+
+#' @export 
 setReplaceMethod("[", signature(x="disord", i="missing", j="missing", value="disord"), # x[] <- disord
                  function(x, i, j, value){stop("x[] <- disord not defined")
                  } )
-
+#' @export 
 setMethod("[[", signature("disord", i="index"),  # x[[index]]
           function(x, i){
             stop("double square extraction x[[index]] not implemented")
           } )
 
+#' @export 
 setReplaceMethod("[[", signature(x="disord", i="index", value="ANY"), function(x, i, j){stop("list replacement not currently implemented")})
 
 #' @export 
@@ -386,6 +396,7 @@ setMethod("rev", signature=c(x="disord"),
             disord(rev(elements(x)), h=paste(rev(strsplit(hash(x), "")[[1]]), collapse = ""))
           } )
 
+#' @export 
 setMethod("sapply", signature(X="disord"),
           function(X, FUN, ..., simplify=TRUE, USE.NAMES=TRUE){
             disord(sapply(elements(X), FUN, ..., simplify=simplify, USE.NAMES=USE.NAMES), h=hash(X))
@@ -411,6 +422,8 @@ setMethod("unlist","disord",
             }
           } )
 
+
+#' @export 
 setMethod("c", "disord", function(x, ..., recursive){stop("c() does not make sense for disord")})
 
 setAs("disord", "logical"  ,function(from){disord(as.logical  (elements(from)), hash(from))})
