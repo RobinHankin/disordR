@@ -1,4 +1,17 @@
+#' @importFrom digest sha1
+#' @importFrom stats runif
+#' @importFrom methods as callNextMethod new
+
+#' @importClassesFrom Matrix index
+
+#' @exportClass disord
+#' @exportClass disindex
+
+
+#' @export 
 `hash` <- function(x){x@hash}  # extractor method
+
+#' @export 
 `hashcal` <- function(x, ultra_strict=FALSE){
     if(ultra_strict){
         return(digest::sha1(list(x, date(), runif(1))))
@@ -7,6 +20,7 @@
     }
 }
 
+#' @export 
 `elements` <- function(x){if(is.disord(x)){return(x@.Data)}else{return(x)}}  # no occurrences of '@' below this line
 
 setClass("disord", contains = "vector", slots=c(.Data="vector", hash="character"),
@@ -23,17 +37,19 @@ setValidity("disord", function(object){
              if(length(hash(object))==0){return("must have a non-null hash")}else{return(TRUE)}}
          )
 
- setMethod("initialize", "disord", 
-         function(.Object, ...) {
-           .Object <- callNextMethod()
-           if(length(hash(.Object)) == 0){
-               stop("initialize() problem, hash is null")
-           }
-           return(.Object)
-         })
+setMethod("initialize", "disord", 
+          function(.Object, ...) {
+              .Object <- callNextMethod()
+              if(length(hash(.Object)) == 0){
+                  stop("initialize() problem, hash is null")
+              }
+              return(.Object)
+          })
 
+#' @export 
 `is.disord` <- function(x){inherits(x, "disord")}
 
+#' @export 
 `disord` <- function(v, h, drop=TRUE){ # v is a vector but it needs a hash attribute
     if(is.disord(v)){v <- elements(v)}
     if(missing(h)){h <- hashcal(v, ultra_strict=TRUE)}
@@ -42,8 +58,10 @@ setValidity("disord", function(object){
     return(out)
 }
 
+#' @export 
 `allsame` <- function(x){length(unique(elements(x))) <= 1}
 
+#' @export 
 `consistent` <- function(x, y){
   if(allsame(x) || allsame(y)){return(TRUE)}
   if(is.disord(x) && is.disord(y)){
@@ -53,6 +71,7 @@ setValidity("disord", function(object){
   }
 }
 
+#' @export 
 `%~%` <- function(x, y){consistent(x, y)}
 
 setGeneric("match")
@@ -70,15 +89,19 @@ setMethod("match", signature(x="disord", table="disord"),
             stop("match() not defined if second argument a disord")
           } )
 
+#' @export 
 setGeneric("%in%")
 setMethod("%in%", signature("disord", "ANY"), function(x, table){disord(match(elements(x), table, nomatch=0L) > 0L, hash(x), drop=FALSE)})
 setMethod("%in%", signature("ANY", "disord"), function(x, table){match(x, elements(table), nomatch=0L) > 0L})
 setMethod("%in%", signature("disord", "disord"),function(x, table){disord(match(elements(x), elements(table), nomatch=0L) > 0L, hash(x), drop=FALSE)})
 
+#' @export 
 setGeneric("drop")
 setMethod("drop", "disord", function(x){if(allsame(x)){return(elements(x))}else{return(x)}})
 
 setGeneric("is.na")
+
+#' @export 
 setMethod("is.na","disord",
           function(x){
               disord(is.na(elements(x)), hash(x), drop=FALSE)
@@ -93,10 +116,12 @@ setMethod("is.na<-", "disord",
               disord(jj, hash(x))
           } )
 
+#' @export 
 `rdis` <- function(n=9){disord(sample(n, replace=TRUE))}
 
 setMethod("show", "disord", function(object){disord_show(object)})
 
+#' @export 
 `disord_show` <- function(x){
     cat("A disord object with hash", hash(x), "and elements\n")
     print(elements(x))
@@ -348,11 +373,13 @@ setMethod("[[", signature("disord", i="index"),  # x[[index]]
 
 setReplaceMethod("[[", signature(x="disord", i="index", value="ANY"), function(x, i, j){stop("list replacement not currently implemented")})
 
+#' @export 
 setGeneric("sort")
 setMethod("sort", signature(x = "disord"),
           function (x, decreasing = FALSE, ...){sort(elements(x), decreasing=decreasing, ...)
           } )
 
+#' @export 
 setGeneric("rev")
 setMethod("rev", signature=c(x="disord"),
           function(x){
@@ -364,12 +391,14 @@ setMethod("sapply", signature(X="disord"),
             disord(sapply(elements(X), FUN, ..., simplify=simplify, USE.NAMES=USE.NAMES), h=hash(X))
           } )
 
+#' @export 
 setGeneric("lapply")
 setMethod("lapply", signature(X="disord"),
           function(X, FUN, ...){
             disord(lapply(elements(X), FUN, ...), h=hash(X))
           } )
 
+#' @export 
 setGeneric("unlist")
 setMethod("unlist","disord",
           function(x, recursive=TRUE){
@@ -398,12 +427,14 @@ setMethod("as.list"     , "disord", function(x){as(x, "list"     )})
 setMethod("as.character", "disord", function(x){as(x, "character")})
 setMethod("as.complex"  , "disord", function(x){as(x, "complex"  )})
 
+#' @export 
 setGeneric("paste")
 setMethod("match", signature(x="disord", table="ANY"),
           function(x, table, nomatch, incomparables){
             disord(match(elements(x), elements(table), nomatch, incomparables), hash(x))
           } )
 
+#' @export 
 `summary.disord` <- function(object, ...){
   out <- list(
       hash    = hash(object),
@@ -412,12 +443,14 @@ setMethod("match", signature(x="disord", table="ANY"),
   return(structure(out, class = "summary.disord"))
 }
 
+#' @export 
 "print.summary.disord" <- function(x, ...){
   cat("a disord object with hash ")  
   cat(x[[1]],"\n\n")
   print(x[[2]])
 }
   
+#' @export 
 `check_matching_hash` <- function(e1, e2, use=NULL){
   if(consistent(e1, e2)){
     return(TRUE)
