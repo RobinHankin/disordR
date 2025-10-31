@@ -6,7 +6,7 @@
 
 #' @exportClass disord
 #' @exportClass disindex
-
+#' @exportS3Method summary disord
 
 #' @export 
 `hash` <- function(x){x@hash}  # extractor method
