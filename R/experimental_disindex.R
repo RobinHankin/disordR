@@ -30,8 +30,8 @@ setGeneric("which")
 setMethod("which","disord",function(x, arr.ind = FALSE, useNames = TRUE){new("disindex",value=which(elements(x)),hash=hash(x))})
 setMethod("which","disindex",function(x, arr.ind = FALSE, useNames = TRUE){stop("which() not defined on disindex objects")})
 
-#' @export 
 setGeneric("length")
+#' @export 
 setMethod("length","disindex",function(x){length(values(x))})
 
 setMethod("[", signature(x="disord",i="disindex",j="missing",drop="ANY"),  # makes things like a[which(a>4)] work

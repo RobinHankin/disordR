@@ -398,8 +398,8 @@ setMethod("lapply", signature(X="disord"),
             disord(lapply(elements(X), FUN, ...), h=hash(X))
           } )
 
-#' @export 
 setGeneric("unlist")
+#' @export 
 setMethod("unlist","disord",
           function(x, recursive=TRUE){
             stopifnot(recursive)
