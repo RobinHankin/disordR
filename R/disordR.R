@@ -411,9 +411,7 @@ setMethod("lapply", signature(X="disord"),
 
 #' @export 
 setGeneric("unlist")
-
-#' @export 
-setMethod("unlist","disord",
+setMethod("unlist", signature(x="disord"),
           function(x, recursive=TRUE){
             stopifnot(recursive)
             out <- unlist(elements(x), recursive=recursive)
@@ -488,6 +486,8 @@ setMethod("match", signature(x="disord", table="ANY"),
 setMethod("length<-", "disord", function(x, value){stop("cannot change the length of a disord object")})
 setMethod("diff", "disord", function(x){stop("cannot take the diff() of a disord object")})
 
+#' @export 
+setGeneric("jitter")
 setMethod("jitter", "disord", function(x, factor=1, amount=NULL){
     disord(jitter(elements(x), factor=factor, amount=amount), h = hash(x))
 } )
