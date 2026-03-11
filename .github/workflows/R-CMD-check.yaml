@@ -32,18 +32,22 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@v2
 
-      - run: tlmgr install scheme-full
-      - run: tlmgr install wrapfig
-      - run: tlmgr install doublestroke
-      - run: tlmgr install bbm
-      - run: tlmgr install bbm-macros
-      - run: tlmgr install wasysym
-      - run: tlmgr install yfonts
-      - run: tlmgr install grfext
-      - run: tlmgr install cm-super
 
-      - run: |
-          sudo apt-get update
+- name: Install LaTeX dependencies
+        run: |
+          # We skip scheme-full and install only what disordR actually needs
+          tlmgr install \
+            collection-fontsrecommended \
+            wrapfig \
+            doublestroke \
+            bbm \
+            bbm-macros \
+            wasysym \
+            yfonts \
+            grfext \
+            cm-super \
+            ec
+
 
       - uses: r-lib/actions/check-r-package@v2
         with:
