@@ -55,7 +55,7 @@ Robin K. S. Hankin
 disord(c(3,3,3,3,3))             # default is drop=TRUE
 #> [1] 3 3 3 3 3
 disord(c(3,3,3,3,3),drop=FALSE)  # retains disord class
-#> A disord object with hash 0e319836ed16bfdd62aa43b71a40e545437a03bd and elements
+#> A disord object with hash c46260792594eba23934ca899506ec156d6cdb51 and elements
 #> [1] 3 3 3 3 3
 #> (in some order)
 
@@ -65,7 +65,7 @@ drop(disord(c(3,3,3,3),drop=FALSE))
 ## In extraction, argument drop discards disorderliness when possible:
 a <- rdis()
 a
-#> A disord object with hash b0743b195c8677f268a560700214336d692e0eb3 and elements
+#> A disord object with hash a23bc856adb12454cd9de57cc2984dc3c470b623 and elements
 #> [1] 2 8 1 1 7 6 9 2 6
 #> (in some order)
 a[] <- 6 # a becomes a vector

@@ -99,7 +99,7 @@ has not been explicitly called.
 ``` r
 a <- disord(c(a=1,b=2,c=7))
 a
-#> A disord object with hash 2776e110f2f67ffef4dbd122d2eab8a6b78d7402 and elements
+#> A disord object with hash 200e179b0d87e371c41f200766ef63fb944fa35a and elements
 #> [1] 1 2 7
 #> (in some order)
 names(a)
@@ -107,7 +107,7 @@ names(a)
 length(a)
 #> [1] 3
 sqrt(a)
-#> A disord object with hash 2776e110f2f67ffef4dbd122d2eab8a6b78d7402 and elements
+#> A disord object with hash 200e179b0d87e371c41f200766ef63fb944fa35a and elements
 #> [1] 1.000000 1.414214 2.645751
 #> (in some order)
 
@@ -117,12 +117,12 @@ sqrt(a)
 
 l <- disord(list(3,6:9,1:10))  
 sapply(l,length)
-#> A disord object with hash 512c133be3ee0b61a20c090e6a806f3d17aa11c9 and elements
+#> A disord object with hash a56a795922aff5eb253da1f544d642a1c8ebbdd5 and elements
 #> [1]  1  4 10
 #> (in some order)
 
 unlist(l)
-#> A disord object with hash d341649d25b2c01e40fe28f35afd8b769206904f and elements
+#> A disord object with hash 9107800b5b5fff631c3fd5f16c68dce2825c85bd and elements
 #>  [1]  3  6  7  8  9  1  2  3  4  5  6  7  8  9 10
 #> (in some order)
 
