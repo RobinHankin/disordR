@@ -1,54 +1,16 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# for debugging help, https://github.com/r-lib/actions#where-to-find-help
+
+name: R-CMD-check-disordR
+
 on:
   push:
     branches: [ master]
   pull_request:
     branches: [ master]
+  workflow_dispatch:
 
-name: R-CMD-check-disordR
-
-permissions: read-all
 
 jobs:
-  R-CMD-check:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      R_KEEP_PKG_SOURCE: yes
-      # FIX: This opts into the Node 24 runtime and silences the deprecation warning
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::rcmdcheck
-          needs: check
-
-      - uses: r-lib/actions/setup-tinytex@v2
-
-
-- name: Install LaTeX dependencies
-        run: |
-          # We skip scheme-full and install only what disordR actually needs
-          tlmgr install \
-            collection-fontsrecommended \
-            wrapfig \
-            doublestroke \
-            bbm \
-            bbm-macros \
-            wasysym \
-            yfonts \
-            grfext \
-            cm-super \
-            ec
-
-
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
-          build_args: 'c("--compact-vignettes=both")'
+  check:
+    uses: robinhankin/workflow/.github/workflows/R-CMD-check.yaml@master
