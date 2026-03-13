@@ -31,7 +31,7 @@ Robin K. S. Hankin
 
 ``` r
 print(rdis())
-#> A disord object with hash 75b39653f6e276f2ffb0b9e74ae6dd62bbb97de1 and elements
+#> A disord object with hash 222f57f525c791a0b02c5e60d98a43a66409b7d4 and elements
 #> [1] 4 1 9 2 7 3 8 3 1
 #> (in some order)
 ```
