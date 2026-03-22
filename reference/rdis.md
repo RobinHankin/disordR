@@ -31,18 +31,18 @@ Robin K. S. Hankin
 
 ``` r
 rdis()
-#> A disord object with hash b2a15f207f43731e11f3445975f710a6d2eb4ada and elements
+#> A disord object with hash ee6efc83685ffa6b40a32d58a7a813577d12ef64 and elements
 #> [1] 4 2 9 2 3 3 1 7 5
 #> (in some order)
 rdis(99)
-#> A disord object with hash a3446e7fdd52416a14ae410f74f083dde0ef0fa5 and elements
+#> A disord object with hash de53c53d3fcff117dec1d2e9e13597c51cb7fb91 and elements
 #>  [1] 65  3  7 49 70 91 12 39 11 42 40 15 82 44 54 85 58 29 74 67 14 66 69 82 37
 #> [26]  4 83 56 52 57 17 87 31 93 52 74 24 55 73 89 10 73 83 89 51 29 49 79 63 23
 #> [51] 57 31 59 75 54 40 60  7 51 92 12  3 16 72 12 66 71 82 26 64 33 90  2 73 57
 #> [76] 43 33 16 87 15 32 84 91 65 60 25 10 43 95 60 63 58 63 62 34 42 50 37 19
 #> (in some order)
 rdis(letters)
-#> A disord object with hash d88284b63a9825bd0b5352bce4d6f5d10a27933d and elements
+#> A disord object with hash 1fc74ecbab2b6666185747e44f695dfd991a2f4c and elements
 #>  [1] "n" "b" "u" "e" "f" "s" "q" "x" "h" "v" "h" "n" "c" "r" "o" "o" "k" "x" "g"
 #> [20] "z" "u" "h" "z" "o" "e" "p"
 #> (in some order)

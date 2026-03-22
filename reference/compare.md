@@ -32,11 +32,11 @@ preserved in the returned value.
 
 ``` r
 rdis() > 4
-#> A disord object with hash 52cf64e163f74aa5c10599e70d800c8f2ba1abdd and elements
+#> A disord object with hash 3f54fd7e924285847a087566e5245ffd2df33a93 and elements
 #> [1] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
 #> (in some order)
 rdis() > 1000
-#> A disord object with hash 79e629488e323603efbcd578ed6277700a255377 and elements
+#> A disord object with hash 7f01178dc41e562c4638e00e256f728e26930fe5 and elements
 #> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #> (in some order)
 ```
