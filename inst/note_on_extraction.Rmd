@@ -118,7 +118,7 @@ Now we are unable to extract the second element from `b`:
 b[[2]]
 ```
 
-However, there is an `S4` method for  `lapply()`:
+However, there is an `S4` method for `lapply()`:
 
 ```{r}
 lapply(b,length)
