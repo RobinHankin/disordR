@@ -76,20 +76,20 @@ Robin K. S. Hankin
 ``` r
 a <- rdis()
 a
-#> A disord object with hash bc5006e50e1ec1f65927bd904da97d1e9af2ab7f and elements
+#> A disord object with hash 1778e055114e084c74cf234c8eb98213adf7dcae and elements
 #> [1] 7 5 6 4 6 9 5 5 8
 #> (in some order)
 a + 2*a
-#> A disord object with hash bc5006e50e1ec1f65927bd904da97d1e9af2ab7f and elements
+#> A disord object with hash 1778e055114e084c74cf234c8eb98213adf7dcae and elements
 #> [1] 21 15 18 12 18 27 15 15 24
 #> (in some order)
 a > 5
-#> A disord object with hash bc5006e50e1ec1f65927bd904da97d1e9af2ab7f and elements
+#> A disord object with hash 1778e055114e084c74cf234c8eb98213adf7dcae and elements
 #> [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
 #> (in some order)
 a[a > 5] <- a[a > 5] + 100
 a
-#> A disord object with hash bc5006e50e1ec1f65927bd904da97d1e9af2ab7f and elements
+#> A disord object with hash 1778e055114e084c74cf234c8eb98213adf7dcae and elements
 #> [1] 107   5 106   4 106 109   5   5 108
 #> (in some order)
 ```

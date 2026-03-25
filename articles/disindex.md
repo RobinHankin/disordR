@@ -12,7 +12,7 @@ library("disordR")
 (d <- disord(c(4,6,1,2,3,4,5,1)))
 ```
 
-    ## A disord object with hash 0149a86d892f6cce3ebf215d415c590e6a80f809 and elements
+    ## A disord object with hash 4ffa2b67fc80da3b1b20d3a1117ae678f4648c3f and elements
     ## [1] 4 6 1 2 3 4 5 1
     ## (in some order)
 
@@ -27,7 +27,7 @@ Thus:
 d
 ```
 
-    ## A disord object with hash 0149a86d892f6cce3ebf215d415c590e6a80f809 and elements
+    ## A disord object with hash 4ffa2b67fc80da3b1b20d3a1117ae678f4648c3f and elements
     ## [1] 4 6 1 2 3 4 5 1
     ## (in some order)
 
@@ -35,7 +35,7 @@ d
 d[ind]
 ```
 
-    ## A disord object with hash a8001f07325d675fcd125a7680f3f0526e4ca408 and elements
+    ## A disord object with hash b75d83e30d918d94628eb7c564ffa0b095fecd94 and elements
     ## [1] 6 5
     ## (in some order)
 
@@ -44,7 +44,7 @@ d[ind] <- 99
 d
 ```
 
-    ## A disord object with hash 5785545721dd403383321e49cf972e6fb7dad388 and elements
+    ## A disord object with hash 5821c1cd4dd41f22e61f73778a5c5151b6d8c9c3 and elements
     ## [1]  4 99  1  2  3  4 99  1
     ## (in some order)
 
@@ -56,7 +56,7 @@ examine `ind` directly, we see:
 ind
 ```
 
-    ## A disind object with hash 0149a86d892f6cce3ebf215d415c590e6a80f809 and 2 (implementation-specific) elements
+    ## A disind object with hash 4ffa2b67fc80da3b1b20d3a1117ae678f4648c3f and 2 (implementation-specific) elements
 
 which correctly says that the elements of `ind` are
 implementation-specific. However, the main application of `disindex`
@@ -68,7 +68,7 @@ dl <- sapply(d,function(x){seq(from=5,to=x)})
 dl
 ```
 
-    ## A disord object with hash 4a2a3342fb7817af30fe12f1dffece02a3cc849e and elements
+    ## A disord object with hash e19c0af7e187ad501522ecc431ec1f072894561c and elements
     ## [[1]]
     ## [1] 5 4
     ## 

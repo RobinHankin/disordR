@@ -143,26 +143,26 @@ but this is now disallowed. The issue is discussed in
 ``` r
 a <- disord(sample(9))
 a
-#> A disord object with hash f3418529613bd8b7df1028723df0d37fa1f7aa10 and elements
+#> A disord object with hash 0ac1ded4b0d156adb5995b4425ca2a8bd85251c8 and elements
 #> [1] 6 9 5 3 4 1 7 8 2
 #> (in some order)
 a + 6*a^2
-#> A disord object with hash f3418529613bd8b7df1028723df0d37fa1f7aa10 and elements
+#> A disord object with hash 0ac1ded4b0d156adb5995b4425ca2a8bd85251c8 and elements
 #> [1] 222 495 155  57 100   7 301 392  26
 #> (in some order)
 a[a>5]  # "give me all elements of a that exceed 5"
-#> A disord object with hash 68842f4aac3151da71786f71fb52cf8d7086e157 and elements
+#> A disord object with hash 03139187709caf62556aa659dfc164c024d747d0 and elements
 #> [1] 6 9 7 8
 #> (in some order)
 
 a[] # a disord object, same elements as 'a', but with a different hash
-#> A disord object with hash 387ae3ca16acdfbf044295664c146370c2eacd68 and elements
+#> A disord object with hash d1a0b2ec1d9bf6c82c3eec987b3fab5bc2e17bb6 and elements
 #> [1] 6 9 5 3 4 1 7 8 2
 #> (in some order)
 
 a[a<5] <- a[a<5] + 100  # "replace all elements of 'a' less than 5 with their value plus 100"
 a
-#> A disord object with hash f3418529613bd8b7df1028723df0d37fa1f7aa10 and elements
+#> A disord object with hash 0ac1ded4b0d156adb5995b4425ca2a8bd85251c8 and elements
 #> [1]   6   9   5 103 104 101   7   8 102
 #> (in some order)
 

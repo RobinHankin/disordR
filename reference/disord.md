@@ -87,16 +87,16 @@ Robin K. S. Hankin
 
 ``` r
 (a <- rdis())
-#> A disord object with hash 48784968894f43c1477f47be575c4b376b4cf0cb and elements
+#> A disord object with hash 0673b5ddc1834adf5ba1585f7124ca6ff03c66a7 and elements
 #> [1] 1 6 2 3 1 9 2 5 8
 #> (in some order)
 (b <- rdis())
-#> A disord object with hash 69019490c58c0b6d659f1b950477d1c470c1cdaf and elements
+#> A disord object with hash 9d4d319682443816b3a6d547aa14bbb31e78157a and elements
 #> [1] 3 3 2 7 3 6 4 1 7
 #> (in some order)
 
 a + 2*a + 2^a  # fine
-#> A disord object with hash 48784968894f43c1477f47be575c4b376b4cf0cb and elements
+#> A disord object with hash 0673b5ddc1834adf5ba1585f7124ca6ff03c66a7 and elements
 #> [1]   5  82  10  17   5 539  10  47 280
 #> (in some order)
 # a + b # this would give an error if executed
