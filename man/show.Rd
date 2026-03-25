@@ -25,4 +25,8 @@ disord_show(x)
 \author{Robin K. S. Hankin}
 \examples{
 print(rdis())
+
+a <- rdis()
+print(a)
+print(a+100)  # same hash code
 }
