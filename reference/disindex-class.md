@@ -34,21 +34,21 @@ Robin K. S. Hankin
 ``` r
 
 (x <- disord(c(1,2,1,2,2,7)))
-#> A disord object with hash ff96460c89f48079cb7458c3d3fef2c17323cd12 and elements
+#> A disord object with hash 16e177e956572816ed30b11eaee2701b24875df4 and elements
 #> [1] 1 2 1 2 2 7
 #> (in some order)
 
 x==2
-#> A disord object with hash ff96460c89f48079cb7458c3d3fef2c17323cd12 and elements
+#> A disord object with hash 16e177e956572816ed30b11eaee2701b24875df4 and elements
 #> [1] FALSE  TRUE FALSE  TRUE  TRUE FALSE
 #> (in some order)
 w <- which(x==2)
 w
-#> A disind object with hash ff96460c89f48079cb7458c3d3fef2c17323cd12 and 3 (implementation-specific) elements
+#> A disind object with hash 16e177e956572816ed30b11eaee2701b24875df4 and 3 (implementation-specific) elements
 
 x[w] <- 100
 x
-#> A disord object with hash 3168a405e4a7bf292de252559bf2f05c3720da40 and elements
+#> A disord object with hash 61291e6011b87eb113801488339358d27f52ad65 and elements
 #> [1]   1 100   1 100 100   7
 #> (in some order)
 

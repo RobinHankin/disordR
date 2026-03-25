@@ -37,7 +37,7 @@ Robin K. S. Hankin
 
 ``` r
 summary(rdis(1000))
-#> a disord object with hash 34e5f4310f459b4aa764f2d0abb2f11c09492229 
+#> a disord object with hash ad170276bad05e21b2c48b42a993b9e99a3e507c 
 #> 
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #>     4.0   234.0   486.0   489.5   744.2   998.0 
