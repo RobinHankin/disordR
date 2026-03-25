@@ -146,8 +146,8 @@ sqrt(a)
 # powers() and vars() in the mvp package return lists; see the vignette
 # for more discussion.
 
-l <- disord(list(3,6:9,1:10))  
-sapply(l,length)
+l <- disord(list(3, 6:9, 1:10))  
+sapply(l, length)
 
 unlist(l)
 
