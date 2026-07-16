@@ -45,12 +45,12 @@ and
     xy^3 -> 4, xy -> 3, x -> 1, y -> 3
 
 are the same map and correspond to the same multinomial (symbolically,
-$x + 3y + 3xy + 4xy^{3} = 4xy^{3} + 3xy + x + 3y$). Thus the
-coefficients of the multinomial might be `c(1,3,3,4)` or `c(4,3,1,3)`,
-or indeed any ordering. Internally, the elements are stored in some
-order but the order used is implementation-specific. Quite often, I am
-interested in the coefficients *per se*, without consideration of their
-meaning in the context of a multivariate polynomial. I might ask:
+$`x+3y+3xy+4xy^3=4xy^3+3xy+x+3y`$). Thus the coefficients of the
+multinomial might be `c(1,3,3,4)` or `c(4,3,1,3)`, or indeed any
+ordering. Internally, the elements are stored in some order but the
+order used is implementation-specific. Quite often, I am interested in
+the coefficients *per se*, without consideration of their meaning in the
+context of a multivariate polynomial. I might ask:
 
 - “How many coefficients are there?”
 - “What is the largest coefficient?”
@@ -69,8 +69,8 @@ use a multiset. However, this approach does not allow one to link the
 coefficients with the terms. Suppose I coerce the coefficients to a
 multiset object (as per the `sets` package, for example): then it is
 impossible to extract the terms with coefficient greater than 2 (which
-would be the polynomial $3y + 3xy + 4xy^{3}$) because the link between
-the coefficients and the terms is not included in the multiset object.
+would be the polynomial $`3y+3xy+4xy^3`$) because the link between the
+coefficients and the terms is not included in the multiset object.
 Sensible questions involving this aspect of `mvp` objects might be:
 
 - Give me all terms with coefficients greater than 2
@@ -138,7 +138,7 @@ is the same on both sides. The idiomatic English equivalent would be:
 “the coefficient of each term of `a` becomes its square”; note that this
 operation is insensitive to the order of coefficients. The whole shebang
 is intended to make idiom such as `coeffs(a) <- coeffs(a)%%2` possible,
-so we can manipulate polynomials over finite rings, here $Z/2Z$.
+so we can manipulate polynomials over finite rings, here $`Z/2Z`$.
 
 The replacement methods are defined so that an expression like
 `coeffs(a)[coeffs(a) < 5] <- 0` works as expected; the English idiom
@@ -147,6 +147,7 @@ would be “replace any coefficient less than 5 with 0”.
 To fix ideas, consider a fixed small mvp object:
 
 ``` r
+
 library("mvp")
 ```
 
@@ -158,6 +159,7 @@ library("mvp")
     ##     trunc
 
 ``` r
+
 a <- as.mvp("5 a c^3 + a^2 d^2 f^2 + 4 a^3 b e^3 + 3 b c f + 2 b^2 e^3")
 a
 ```
@@ -205,13 +207,14 @@ equivalent to `4bc^6*a^3`.
 We will use the `disordR` package to show how the idiom works.
 
 ``` r
+
 library("disordR")
 set.seed(0)
 a <- rdis()
 a
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 9 4 7 1 2 7 2 3 1
     ## (in some order)
 
@@ -219,18 +222,20 @@ Object `a` is a `disord` object but it behaves similarly to a regular
 numeric vector in many ways:
 
 ``` r
+
 a^2
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 81 16 49  1  4 49  4  9  1
     ## (in some order)
 
 ``` r
+
 a+1/a
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 9.111111 4.250000 7.142857 2.000000 2.500000 7.142857 2.500000 3.333333
     ## [9] 2.000000
     ## (in some order)
@@ -241,12 +246,14 @@ operations that make sense are
 [`sort()`](https://robinhankin.github.io/disordR/reference/misc.md):
 
 ``` r
+
 max(a)
 ```
 
     ## [1] 9
 
 ``` r
+
 sort(a)
 ```
 
@@ -256,6 +263,7 @@ Above, see how the result is a standard numeric vector. However,
 inadmissible operations give an error:
 
 ``` r
+
 a[1]  # asking for the first element is inadmissible
 ```
 
@@ -263,6 +271,7 @@ a[1]  # asking for the first element is inadmissible
     ## ! if using a regular index to extract, must extract each element once and once only (or none of them)
 
 ``` r
+
 a[1] <- 1000 # also cannot replace the first element
 ```
 
@@ -272,29 +281,32 @@ a[1] <- 1000 # also cannot replace the first element
 Standard R semantics generally work as expected:
 
 ``` r
+
 x <- a + 1/a
 x
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 9.111111 4.250000 7.142857 2.000000 2.500000 7.142857 2.500000 3.333333
     ## [9] 2.000000
     ## (in some order)
 
 ``` r
+
 y <- a*2-9
 y
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1]  9 -1  5 -7 -5  5 -5 -3 -7
     ## (in some order)
 
 ``` r
+
 x+y
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 18.1111111  3.2500000 12.1428571 -5.0000000 -2.5000000 12.1428571 -2.5000000
     ## [8]  0.3333333 -5.0000000
     ## (in some order)
@@ -304,23 +316,26 @@ they are “compatible”, in `disordR` idiom. However, if we try to combine
 object `a` with another object with different hash, we get errors:
 
 ``` r
+
 b <- rdis()
 b
 ```
 
-    ## A disord object with hash b79e2d719a1a7493b73062181bc89085ea93fe61 and elements
+    ## A disord object with hash 40e3b2fbd9be97f350eac706bfa9e905de948ab2 and elements
     ## [1] 5 6 7 9 5 5 9 9 5
     ## (in some order)
 
 ``` r
+
 a
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 9 4 7 1 2 7 2 3 1
     ## (in some order)
 
 ``` r
+
 a+b
 ```
 
@@ -331,7 +346,7 @@ a+b
 
     ## Error in `check_matching_hash()`:
     ## ! 
-    ## hash codes 09c90cf3d22905fe99addb74c944a147efaf5959 and b79e2d719a1a7493b73062181bc89085ea93fe61 do not match
+    ## hash codes a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and 40e3b2fbd9be97f350eac706bfa9e905de948ab2 do not match
 
 The error is given because objects `a` and `b` are stored in an
 implementation-specific order (we say that `a` and `b` are
@@ -339,20 +354,22 @@ implementation-specific order (we say that `a` and `b` are
 implemented whenever this is admissible:
 
 ``` r
+
 a[a<0.5] <- 0  # round down
 a
 ```
 
-    ## A disord object with hash 09c90cf3d22905fe99addb74c944a147efaf5959 and elements
+    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
     ## [1] 9 4 7 1 2 7 2 3 1
     ## (in some order)
 
 ``` r
+
 b[b>0.6] <- b[b>0.6] + 3  # add 3 to every element greater than 0.6
 b
 ```
 
-    ## A disord object with hash b79e2d719a1a7493b73062181bc89085ea93fe61 and elements
+    ## A disord object with hash 40e3b2fbd9be97f350eac706bfa9e905de948ab2 and elements
     ## [1]  8  9 10 12  8  8 12 12  8
     ## (in some order)
 
@@ -360,37 +377,41 @@ Usual semantics follow, provided one is careful to maintain the hash
 code:
 
 ``` r
+
 d <- disord(1:10)
 d
 ```
 
-    ## A disord object with hash 8e360be8aac08b7cebc4039e029bb46939c4798f and elements
+    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
     ##  [1]  1  2  3  4  5  6  7  8  9 10
     ## (in some order)
 
 ``` r
+
 e <- 10 + 3*d - d^2
 e
 ```
 
-    ## A disord object with hash 8e360be8aac08b7cebc4039e029bb46939c4798f and elements
+    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
     ##  [1]  12  12  10   6   0  -8 -18 -30 -44 -60
     ## (in some order)
 
 ``` r
+
 e<4
 ```
 
-    ## A disord object with hash 8e360be8aac08b7cebc4039e029bb46939c4798f and elements
+    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
     ##  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
     ## (in some order)
 
 ``` r
+
 d[e<4] <- e[e<4]
 d
 ```
 
-    ## A disord object with hash 8e360be8aac08b7cebc4039e029bb46939c4798f and elements
+    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
     ##  [1]   1   2   3   4   0  -8 -18 -30 -44 -60
     ## (in some order)
 
@@ -405,6 +426,7 @@ map class. Following commands only work as intended here with
 meaningful operation while suppressing inadmissible ones:
 
 ``` r
+
 library("mvp")
 set.seed(0)
 a <- rmvp()
@@ -416,6 +438,7 @@ a
     ## 3 + 6 a + 3 a b e f^2 + 4 a d^2 e f^2 + 5 a^3 b^2 c + 4 b c^2 d e^2 + 6 b^3 d e
 
 ``` r
+
 b
 ```
 
@@ -425,6 +448,7 @@ b
 Observe that standard multivariate polynomial algebra works:
 
 ``` r
+
 a + 2*b
 ```
 
@@ -433,6 +457,7 @@ a + 2*b
     ## a^3 e f + 4 b c^2 d e^2 + 6 b e^2 f + 6 b f + 6 b^3 d e + 6 c f^4
 
 ``` r
+
 (a+b)*(a-b) == a^2-b^2   # should be TRUE (expression is quite long)
 ```
 
@@ -443,6 +468,7 @@ We can extract the coefficients of these polynomials using the
 function:
 
 ``` r
+
 coeffs(a)
 ```
 
@@ -451,6 +477,7 @@ coeffs(a)
     ## (in some order)
 
 ``` r
+
 coeffs(b)
 ```
 
@@ -463,6 +490,7 @@ manipulate the coefficients of a polynomial in many ways. We may do the
 following things:
 
 ``` r
+
 coeffs(a)[coeffs(a) < 4] <- 0   # set any coefficient of a that is <4 to zero
 a
 ```
@@ -471,6 +499,7 @@ a
     ## 6 a + 4 a d^2 e f^2 + 5 a^3 b^2 c + 4 b c^2 d e^2 + 6 b^3 d e
 
 ``` r
+
 coeffs(b) <- coeffs(b)%%2       # consider coefficients of b modulo 2
 b
 ```
@@ -482,6 +511,7 @@ However, many operations which have reasonable idiom are in fact
 meaningless and are implicitly prohibited. For example:
 
 ``` r
+
 x <- rmvp()     # set up new mvp objects x and y
 y <- rmvp()
 ```
@@ -489,6 +519,7 @@ y <- rmvp()
 Then the following should all produce errors:
 
 ``` r
+
 coeffs(x) + coeffs(y)  # order implementation specific
 ```
 
@@ -502,6 +533,7 @@ coeffs(x) + coeffs(y)  # order implementation specific
     ## hash codes b50be1f42b64dd2676fd8ac1a0a1cb2947cfe0c1 and 1a282859aaadfaa35657bce17433b7eff4e5753d do not match
 
 ``` r
+
 coeffs(x) <- coeffs(y) # ditto
 ```
 
@@ -509,6 +541,7 @@ coeffs(x) <- coeffs(y) # ditto
     ## ! consistent(vars(x), value) is not TRUE
 
 ``` r
+
 coeffs(x) <- 1:2       # replacement value not length 1
 ```
 
@@ -522,6 +555,7 @@ coeffs(x) <- 1:2       # replacement value not length 1
     ## cannot combine disord object with hash code b50be1f42b64dd2676fd8ac1a0a1cb2947cfe0c1 with a vector
 
 ``` r
+
 coeffs(x)[coeffs(x) < 3] <- coeffs(x)[coeffs(y) < 3]
 ```
 
@@ -542,6 +576,7 @@ function takes a list argument, and this is useful for working with
 `mvp` objects:
 
 ``` r
+
 (a <- as.mvp("x^2 + 4 - 3*x*y*z"))
 ```
 
@@ -549,6 +584,7 @@ function takes a list argument, and this is useful for working with
     ## 4 - 3 x y z + x^2
 
 ``` r
+
 vars(a)
 ```
 
@@ -565,6 +601,7 @@ vars(a)
     ## (in some order)
 
 ``` r
+
 powers(a)
 ```
 
@@ -581,6 +618,7 @@ powers(a)
     ## (in some order)
 
 ``` r
+
 coeffs(a)
 ```
 
@@ -594,6 +632,7 @@ list that is an `mvp` object). This allows us to do some rather
 interesting things:
 
 ``` r
+
 double <- function(x){2*x}
 (a <- rmvp())
 ```
@@ -602,6 +641,7 @@ double <- function(x){2*x}
     ## 4 + 2 a b d f + 5 a b e + 7 a f + 4 a^2 f^2 + d e^2 f^3 + e
 
 ``` r
+
 pa <- powers(a)
 va <- vars(a)
 ca <- coeffs(a)
@@ -616,6 +656,7 @@ Above, `a` was a multivariate polynomial and we doubled the powers of
 all variables in terms with coefficients less than 4. Or even:
 
 ``` r
+
 a <- as.mvp("3 + 5*a*b - 7*a*b*x^2 + 2*a*b^2*c*d*x*y -6*x*y + 8*a*b*c*d*x")
 a
 ```
@@ -624,6 +665,7 @@ a
     ## 3 + 5 a b + 8 a b c d x - 7 a b x^2 + 2 a b^2 c d x y - 6 x y
 
 ``` r
+
 pa <- powers(a)
 va <- vars(a)
 ca <- coeffs(a)
@@ -640,11 +682,11 @@ equivalents.
 
 ## References
 
-Hankin, Robin K. S. 2022. “Disordered Vectors in R: Introducing the
-disordR Package.” arXiv. <https://doi.org/10.48550/ARXIV.2210.03856>.
+Hankin, Robin K. S. 2022. *Disordered Vectors in R: Introducing the
+disordR Package*. arXiv. <https://doi.org/10.48550/ARXIV.2210.03856>.
 
-ISO Central Secretary. 1998. “Programming Languages—C++. ISO/IEC
-144882.” First. American National Standard Institute.
+ISO Central Secretary. 1998. *Programming Languages—C++. ISO/IEC
+144882*. First. American National Standard Institute.
 
 Josuttis, N. M. 1999. *The c++ Standard Library: A Tutorial and
 Reference*. Addison-Wesley.

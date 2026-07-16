@@ -75,6 +75,7 @@ Also, `for()` loops are incompatible with disord discipline, as they
 impose an ordering (`for()` accesses the `.Data` slot of its argument,
 which is a regular R vector). Thus:
 
+
     > (a <- disord(1:3))
     A disord object with hash 555f6bea49e58a2c2541060a21c2d4f9078c3086 and elements
     [1] 1 2 3
@@ -99,7 +100,7 @@ has not been explicitly called.
 ``` r
 a <- disord(c(a=1,b=2,c=7))
 a
-#> A disord object with hash bea84a203157e32c82e649b721753e4e4641db7a and elements
+#> A disord object with hash 8a9c275c594650b7c4bd2deb3ac3c1fda0a384f5 and elements
 #> [1] 1 2 7
 #> (in some order)
 names(a)
@@ -107,7 +108,7 @@ names(a)
 length(a)
 #> [1] 3
 sqrt(a)
-#> A disord object with hash bea84a203157e32c82e649b721753e4e4641db7a and elements
+#> A disord object with hash 8a9c275c594650b7c4bd2deb3ac3c1fda0a384f5 and elements
 #> [1] 1.000000 1.414214 2.645751
 #> (in some order)
 
@@ -117,12 +118,12 @@ sqrt(a)
 
 l <- disord(list(3, 6:9, 1:10))  
 sapply(l, length)
-#> A disord object with hash 77b863dd711fbf6d6e5acdd28745d2588d2d6db5 and elements
+#> A disord object with hash 7b21aef5d0d328967b5b3af33b862cc359c06a42 and elements
 #> [1]  1  4 10
 #> (in some order)
 
 unlist(l)
-#> A disord object with hash 71c77784685dcfb38c13e31e58244bba51ce93cb and elements
+#> A disord object with hash 0792eb2eb436735b16ff151fd26a5e1421cdbce4 and elements
 #>  [1]  3  6  7  8  9  1  2  3  4  5  6  7  8  9 10
 #> (in some order)
 

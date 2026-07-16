@@ -32,6 +32,7 @@ extraction methods take a `drop` argument, which does the same thing if
 The `drop` functionality is conceptually similar to the `drop` argument
 of base R's array extraction, as in
 
+
          a <- matrix(1:30,5,6)
          a[1,,drop=TRUE]
          a[1,,drop=FALSE]
@@ -55,7 +56,7 @@ Robin K. S. Hankin
 disord(c(3,3,3,3,3))             # default is drop=TRUE
 #> [1] 3 3 3 3 3
 disord(c(3,3,3,3,3),drop=FALSE)  # retains disord class
-#> A disord object with hash 7e5db7ba76417cb5fb439c9743579456f9d9b362 and elements
+#> A disord object with hash 7330ee6a1092d07d98e5bbf52b508a662c434db7 and elements
 #> [1] 3 3 3 3 3
 #> (in some order)
 
@@ -65,7 +66,7 @@ drop(disord(c(3,3,3,3),drop=FALSE))
 ## In extraction, argument drop discards disorderliness when possible:
 a <- rdis()
 a
-#> A disord object with hash e8bae3921b4aac6aaad5796a523eca179d2a6941 and elements
+#> A disord object with hash 1e60834e85b5fb54d63c2d6b1a14efe9b468b0a1 and elements
 #> [1] 2 8 1 1 7 6 9 2 6
 #> (in some order)
 a[] <- 6 # a becomes a vector

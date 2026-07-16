@@ -52,5 +52,6 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 # rdis() + rdis() # this would make check_matching_hash() report an error, if executed
 ```

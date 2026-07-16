@@ -25,6 +25,7 @@ I will illustrate the package by a few examples of legal and illegal
 code. First create a simple `disord` object:
 
 ``` r
+
 set.seed(0)
 a <- rdis()    # a random disord object
 a
@@ -36,6 +37,7 @@ a
 We may perform various operations on this object:
 
 ``` r
+
 a+4
 #> A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
 #> [1] 13  8 11  5  6 10  7 12  9
@@ -54,6 +56,7 @@ with no difficulty. But if we try to find elements of `a` with a
 particular offset or offsets, the system returns an error:
 
 ``` r
+
 a[1]
 #> Error in .local(x, i, j = j, ..., drop): if using a regular index to extract, must extract each element once and once only (or none of them)
 a[c(2,3)]
@@ -66,6 +69,7 @@ element. We may manipulate elements of `a` by reference to their values
 but not by their position in the vector:
 
 ``` r
+
 a[a<3] <- 0  # round small elements down
 a
 #> A disord object with hash 5b7279f3c05d00cf1e8f999a755151e0451c56ec and elements
@@ -76,6 +80,7 @@ a
 Replacement methods can access subsets where this makes sense:
 
 ``` r
+
 x <- disord(1:10)
 x
 #> A disord object with hash 65e11d78de79b7f584068ad856749e3748cb837c and elements
@@ -93,6 +98,7 @@ x
 If we create another `disord` object, `b`:
 
 ``` r
+
 b <- rdis()
 b
 #> A disord object with hash 488e1c6f4e2c062379d47b5511730a9785661318 and elements
@@ -105,6 +111,7 @@ forbidden because the order of their elements is
 implementation-specific:
 
 ``` r
+
 a+b
 #> disordR discipline error in:
 #> a + b
@@ -117,6 +124,7 @@ Also, replacement methods that access cross-referenced locations are
 forbidden:
 
 ``` r
+
 a[b < 4] <- 5
 #> disordR discipline error in:
 #> .local(x = x, i = i, j = j, value = value)
@@ -132,6 +140,7 @@ may cross-reference them provided that the hash codes of the two objects
 agree:
 
 ``` r
+
 a <- rdis()
 b <- disord(sample(9),hash(a))
 a
@@ -150,6 +159,7 @@ unknown) order, whatever order it is is the same in both objects and
 they are relatable:
 
 ``` r
+
 a+b
 #> A disord object with hash 909ab9cb9afebb8a5109f17b277b37d7e6b1aaa1 and elements
 #> [1] 12  3 17 11  7 12  7 11 10

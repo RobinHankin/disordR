@@ -52,6 +52,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 a <- disord(1:7)
 l <- a>3
 sum(l)

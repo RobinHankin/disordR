@@ -8,15 +8,17 @@ list extraction, to operate with the output of
 session:
 
 ``` r
+
 library("disordR")
 (d <- disord(c(4,6,1,2,3,4,5,1)))
 ```
 
-    ## A disord object with hash 3d10779327f5ef5f11b0d4cc9e76c30cf91cc196 and elements
+    ## A disord object with hash add9750766cabeff2f6f38f1a5cfacb1b2ab162d and elements
     ## [1] 4 6 1 2 3 4 5 1
     ## (in some order)
 
 ``` r
+
 ind <- which(d>4)
 ```
 
@@ -24,27 +26,30 @@ Above, object `ind` points to those elements of `d` which exceed 4.
 Thus:
 
 ``` r
+
 d
 ```
 
-    ## A disord object with hash 3d10779327f5ef5f11b0d4cc9e76c30cf91cc196 and elements
+    ## A disord object with hash add9750766cabeff2f6f38f1a5cfacb1b2ab162d and elements
     ## [1] 4 6 1 2 3 4 5 1
     ## (in some order)
 
 ``` r
+
 d[ind]
 ```
 
-    ## A disord object with hash 102f6da5003db5f2e89944498e8408e937e46c52 and elements
+    ## A disord object with hash e9d1a41267931b1fed19f519aa9c5bea8e487314 and elements
     ## [1] 6 5
     ## (in some order)
 
 ``` r
+
 d[ind] <- 99
 d
 ```
 
-    ## A disord object with hash 78b922ff272354180f03d1ec753ba3dba30eb2e4 and elements
+    ## A disord object with hash c1b110f77a0e952a149e1cac86ff02acd0633eb1 and elements
     ## [1]  4 99  1  2  3  4 99  1
     ## (in some order)
 
@@ -53,22 +58,24 @@ elements of `d` are stored in an implementation-specific order. If we
 examine `ind` directly, we see:
 
 ``` r
+
 ind
 ```
 
-    ## A disind object with hash 3d10779327f5ef5f11b0d4cc9e76c30cf91cc196 and 2 (implementation-specific) elements
+    ## A disind object with hash add9750766cabeff2f6f38f1a5cfacb1b2ab162d and 2 (implementation-specific) elements
 
 which correctly says that the elements of `ind` are
 implementation-specific. However, the main application of `disindex`
 objects is for list extraction.
 
 ``` r
+
 d <- disord(c(4,1,6,2))
 dl <- sapply(d,function(x){seq(from=5,to=x)})
 dl
 ```
 
-    ## A disord object with hash 201d3666e891d6004edb6dc2025cfaf116399a7f and elements
+    ## A disord object with hash 5b13272b70b93e1d46866c494544fc1321409d1d and elements
     ## [[1]]
     ## [1] 5 4
     ## 
@@ -88,6 +95,7 @@ longest length. Noting that this would be a `disord`-compliant question,
 we would use:
 
 ``` r
+
 howlong <- unlist(lapply(dl,length))
 longest <- which(howlong == max(howlong))
 dl[[longest]]

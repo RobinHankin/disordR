@@ -12,7 +12,7 @@ Source:
 
 Robin K. S. Hankin (2022). “Disordered vectors in R: introducing the
 disordR package.”
-[doi:10.48550/ARXIV.2210.03856](https://doi.org/10.48550/ARXIV.2210.03856),
+[doi:10.48550/ARXIV.2210.03856](https://doi.org/10.48550/ARXIV.2210.03856).
 <https://arxiv.org/abs/2210.03856>.
 
     @Misc{,

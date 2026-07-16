@@ -31,17 +31,17 @@ Robin K. S. Hankin
 
 ``` r
 print(rdis())
-#> A disord object with hash bedb68cf569155411dbaf752bd933ecc3aaa2998 and elements
+#> A disord object with hash 3c0e6469f221961aa6cd77f242c27b3df3dc6656 and elements
 #> [1] 4 1 9 2 7 3 8 3 1
 #> (in some order)
 
 a <- rdis()
 print(a)
-#> A disord object with hash a0fa2efc8780c8516c97948d6cdc850fcf65a388 and elements
+#> A disord object with hash da99567672fcc26e1ffe10306c932aca75049cba and elements
 #> [1] 1 9 5 2 8 2 4 5 7
 #> (in some order)
 print(a+100)  # same hash code
-#> A disord object with hash a0fa2efc8780c8516c97948d6cdc850fcf65a388 and elements
+#> A disord object with hash da99567672fcc26e1ffe10306c932aca75049cba and elements
 #> [1] 101 109 105 102 108 102 104 105 107
 #> (in some order)
 ```

@@ -127,6 +127,7 @@ Robin K. S. Hankin
 
 Package versions prior to `disordR_0.0-9-6` allowed idiom such as
 
+
         a <- disord(1:9)
         a[a<3] + a[a>7]
       
@@ -143,26 +144,26 @@ but this is now disallowed. The issue is discussed in
 ``` r
 a <- disord(sample(9))
 a
-#> A disord object with hash 4da89302fd36de712b9fa58772f1164d0a33a420 and elements
+#> A disord object with hash c14ffdeee774249830a7592f0530113c2ac2453c and elements
 #> [1] 6 9 5 3 4 1 7 8 2
 #> (in some order)
 a + 6*a^2
-#> A disord object with hash 4da89302fd36de712b9fa58772f1164d0a33a420 and elements
+#> A disord object with hash c14ffdeee774249830a7592f0530113c2ac2453c and elements
 #> [1] 222 495 155  57 100   7 301 392  26
 #> (in some order)
 a[a>5]  # "give me all elements of a that exceed 5"
-#> A disord object with hash cb03d56a584cce33d1ab6d4b6e0b1e986f9529bf and elements
+#> A disord object with hash 197390737a46d4a7f88ef94f830fc397cfbc5205 and elements
 #> [1] 6 9 7 8
 #> (in some order)
 
 a[] # a disord object, same elements as 'a', but with a different hash
-#> A disord object with hash 69535ba34302c8be6f0f89754be5364bb20a6656 and elements
+#> A disord object with hash 6842b85ca4135c90b0fbdbdc863f8376e3006661 and elements
 #> [1] 6 9 5 3 4 1 7 8 2
 #> (in some order)
 
 a[a<5] <- a[a<5] + 100  # "replace all elements of 'a' less than 5 with their value plus 100"
 a
-#> A disord object with hash 4da89302fd36de712b9fa58772f1164d0a33a420 and elements
+#> A disord object with hash c14ffdeee774249830a7592f0530113c2ac2453c and elements
 #> [1]   6   9   5 103 104 101   7   8 102
 #> (in some order)
 
