@@ -442,6 +442,8 @@ setMethod("as.complex"  , "disord", function(x){as(x, "complex"  )})
 
 #' @export 
 setGeneric("paste")
+
+#' @export 
 setMethod("match", signature(x="disord", table="ANY"),
           function(x, table, nomatch, incomparables){
             disord(match(elements(x), elements(table), nomatch, incomparables), hash(x))

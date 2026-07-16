@@ -17,5 +17,5 @@ Description: Functionality for manipulating values of associative
 License: GPL (>= 2)
 URL: https://github.com/RobinHankin/disordR, https://robinhankin.github.io/disordR/
 BugReports: https://github.com/RobinHankin/disordR/issues
-RoxygenNote: 7.3.3
 Encoding: UTF-8
+Config/roxygen2/version: 8.0.0
