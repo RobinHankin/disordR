@@ -27,7 +27,7 @@ Function values() coerces its argument to an integer vector."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">disordR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9-8-6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9-8-7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,21 +99,21 @@ although <code><a href="https://rdrr.io/r/base/which.html" class="external-link"
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">disord</span><span class="op">(</span><span class="fu"><a href="c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">7</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 05e228b259fa1dd5ed8447b5a99d055c668d8a1c and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash b9f873ebfa0aab7f6fa6f27dc3a085478b0ecd01 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 1 2 2 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span><span class="op">==</span><span class="fl">2</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 05e228b259fa1dd5ed8447b5a99d055c668d8a1c and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash b9f873ebfa0aab7f6fa6f27dc3a085478b0ecd01 and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE  TRUE FALSE  TRUE  TRUE FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">x</span><span class="op">==</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">w</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disind object with hash 05e228b259fa1dd5ed8447b5a99d055c668d8a1c and 3 (implementation-specific) elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disind object with hash b9f873ebfa0aab7f6fa6f27dc3a085478b0ecd01 and 3 (implementation-specific) elements</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span><span class="op">[</span><span class="va">w</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span><span class="va">x</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 1cbc307408e49241a9e10dea0b46589bf6aed6c4 and elements</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A disord object with hash 1b5ceed1c30a63ea4d39806ba542cbd0efc8855a and elements</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]   1 100   1 100 100   7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (in some order)</span>
 <span class="r-in"><span></span></span>

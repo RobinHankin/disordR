@@ -50,12 +50,6 @@ functions that are a little more involved:
 - `jitter()` takes a `disord` object, jitters the elements, and returns
   a `disord` object with the correct hash code.
 
-## Arguments
-
-- x:
-
-  Object of class `disord`
-
 ## Value
 
 Returns a disord
@@ -100,7 +94,7 @@ has not been explicitly called.
 ``` r
 a <- disord(c(a=1,b=2,c=7))
 a
-#> A disord object with hash 8a9c275c594650b7c4bd2deb3ac3c1fda0a384f5 and elements
+#> A disord object with hash 07f757cda89a24c44bba8de915b5a4d1579ddd9b and elements
 #> [1] 1 2 7
 #> (in some order)
 names(a)
@@ -108,7 +102,7 @@ names(a)
 length(a)
 #> [1] 3
 sqrt(a)
-#> A disord object with hash 8a9c275c594650b7c4bd2deb3ac3c1fda0a384f5 and elements
+#> A disord object with hash 07f757cda89a24c44bba8de915b5a4d1579ddd9b and elements
 #> [1] 1.000000 1.414214 2.645751
 #> (in some order)
 
@@ -118,12 +112,12 @@ sqrt(a)
 
 l <- disord(list(3, 6:9, 1:10))  
 sapply(l, length)
-#> A disord object with hash 7b21aef5d0d328967b5b3af33b862cc359c06a42 and elements
+#> A disord object with hash ce4e8418f31007ff2edbfe32eb02fc27b8354df0 and elements
 #> [1]  1  4 10
 #> (in some order)
 
 unlist(l)
-#> A disord object with hash 0792eb2eb436735b16ff151fd26a5e1421cdbce4 and elements
+#> A disord object with hash a350111abc7decf4bf6a99dfeb124936171e38a7 and elements
 #>  [1]  3  6  7  8  9  1  2  3  4  5  6  7  8  9 10
 #> (in some order)
 

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">disordR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9-8-6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9-8-7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/RobinHankin/disordR" class="external-link">"disordR"</a></span><span class="op">)</span></span>
 <span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash add9750766cabeff2f6f38f1a5cfacb1b2ab162d and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash a44b8ffa2dd7bfb8f29e69e02c01678f8685cb7f and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -86,18 +86,18 @@ output of <code><a href="https://rdrr.io/r/base/which.html" class="external-link
 <code>d</code> which exceed 4. Thus:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash add9750766cabeff2f6f38f1a5cfacb1b2ab162d and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash a44b8ffa2dd7bfb8f29e69e02c01678f8685cb7f and elements</span></span>
 <span><span class="co">## [1] 4 6 1 2 3 4 5 1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash e9d1a41267931b1fed19f519aa9c5bea8e487314 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash e0988fb010accb0a08a94a83d4ed8a9ab3f7d48b and elements</span></span>
 <span><span class="co">## [1] 6 5</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">99</span></span>
 <span><span class="va">d</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash c1b110f77a0e952a149e1cac86ff02acd0633eb1 and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 30d27a2bdab7c6f0ab905ba46d028d21f465235b and elements</span></span>
 <span><span class="co">## [1]  4 99  1  2  3  4 99  1</span></span>
 <span><span class="co">## (in some order)</span></span></code></pre>
 <p>However, we cannot assert that <code>ind</code> is elements 2 and 7
@@ -106,7 +106,7 @@ implementation-specific order. If we examine <code>ind</code> directly,
 we see:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ind</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disind object with hash add9750766cabeff2f6f38f1a5cfacb1b2ab162d and 2 (implementation-specific) elements</span></span></code></pre>
+<pre><code><span><span class="co">## A disind object with hash a44b8ffa2dd7bfb8f29e69e02c01678f8685cb7f and 2 (implementation-specific) elements</span></span></code></pre>
 <p>which correctly says that the elements of <code>ind</code> are
 implementation-specific. However, the main application of
 <code>disindex</code> objects is for list extraction.</p>
@@ -114,7 +114,7 @@ implementation-specific. However, the main application of
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robinhankin.github.io/disordR/reference/disord.html">disord</a></span><span class="op">(</span><span class="fu"><a href="../reference/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/misc.html">sapply</a></span><span class="op">(</span><span class="va">d</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">5</span>,to<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">dl</span></span></code></pre></div>
-<pre><code><span><span class="co">## A disord object with hash 5b13272b70b93e1d46866c494544fc1321409d1d and elements</span></span>
+<pre><code><span><span class="co">## A disord object with hash 5f1fc3292802a8a925a33452e0919dd949c6f7a5 and elements</span></span>
 <span><span class="co">## [[1]]</span></span>
 <span><span class="co">## [1] 5 4</span></span>
 <span><span class="co">## </span></span>

@@ -214,7 +214,7 @@ a <- rdis()
 a
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 9 4 7 1 2 7 2 3 1
     ## (in some order)
 
@@ -226,7 +226,7 @@ numeric vector in many ways:
 a^2
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 81 16 49  1  4 49  4  9  1
     ## (in some order)
 
@@ -235,7 +235,7 @@ a^2
 a+1/a
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 9.111111 4.250000 7.142857 2.000000 2.500000 7.142857 2.500000 3.333333
     ## [9] 2.000000
     ## (in some order)
@@ -286,7 +286,7 @@ x <- a + 1/a
 x
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 9.111111 4.250000 7.142857 2.000000 2.500000 7.142857 2.500000 3.333333
     ## [9] 2.000000
     ## (in some order)
@@ -297,7 +297,7 @@ y <- a*2-9
 y
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1]  9 -1  5 -7 -5  5 -5 -3 -7
     ## (in some order)
 
@@ -306,7 +306,7 @@ y
 x+y
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 18.1111111  3.2500000 12.1428571 -5.0000000 -2.5000000 12.1428571 -2.5000000
     ## [8]  0.3333333 -5.0000000
     ## (in some order)
@@ -321,7 +321,7 @@ b <- rdis()
 b
 ```
 
-    ## A disord object with hash 40e3b2fbd9be97f350eac706bfa9e905de948ab2 and elements
+    ## A disord object with hash 5ed0f28a66d50b0d155244a65e67acf19fd20c44 and elements
     ## [1] 5 6 7 9 5 5 9 9 5
     ## (in some order)
 
@@ -330,7 +330,7 @@ b
 a
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 9 4 7 1 2 7 2 3 1
     ## (in some order)
 
@@ -346,7 +346,7 @@ a+b
 
     ## Error in `check_matching_hash()`:
     ## ! 
-    ## hash codes a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and 40e3b2fbd9be97f350eac706bfa9e905de948ab2 do not match
+    ## hash codes 2e5da500142ca38974f542c2fc9285d972ee4ace and 5ed0f28a66d50b0d155244a65e67acf19fd20c44 do not match
 
 The error is given because objects `a` and `b` are stored in an
 implementation-specific order (we say that `a` and `b` are
@@ -359,7 +359,7 @@ a[a<0.5] <- 0  # round down
 a
 ```
 
-    ## A disord object with hash a2a9eb97fbb3feefd08fae00af44d8ab5e6cfb4c and elements
+    ## A disord object with hash 2e5da500142ca38974f542c2fc9285d972ee4ace and elements
     ## [1] 9 4 7 1 2 7 2 3 1
     ## (in some order)
 
@@ -369,7 +369,7 @@ b[b>0.6] <- b[b>0.6] + 3  # add 3 to every element greater than 0.6
 b
 ```
 
-    ## A disord object with hash 40e3b2fbd9be97f350eac706bfa9e905de948ab2 and elements
+    ## A disord object with hash 5ed0f28a66d50b0d155244a65e67acf19fd20c44 and elements
     ## [1]  8  9 10 12  8  8 12 12  8
     ## (in some order)
 
@@ -382,7 +382,7 @@ d <- disord(1:10)
 d
 ```
 
-    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
+    ## A disord object with hash f0e4dfb8042d85e81f4a9a25d125cd02aa43f5ab and elements
     ##  [1]  1  2  3  4  5  6  7  8  9 10
     ## (in some order)
 
@@ -392,7 +392,7 @@ e <- 10 + 3*d - d^2
 e
 ```
 
-    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
+    ## A disord object with hash f0e4dfb8042d85e81f4a9a25d125cd02aa43f5ab and elements
     ##  [1]  12  12  10   6   0  -8 -18 -30 -44 -60
     ## (in some order)
 
@@ -401,7 +401,7 @@ e
 e<4
 ```
 
-    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
+    ## A disord object with hash f0e4dfb8042d85e81f4a9a25d125cd02aa43f5ab and elements
     ##  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
     ## (in some order)
 
@@ -411,7 +411,7 @@ d[e<4] <- e[e<4]
 d
 ```
 
-    ## A disord object with hash fe2312d9ceefb47f78a194fc9d5df750da9bd196 and elements
+    ## A disord object with hash f0e4dfb8042d85e81f4a9a25d125cd02aa43f5ab and elements
     ##  [1]   1   2   3   4   0  -8 -18 -30 -44 -60
     ## (in some order)
 
