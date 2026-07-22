@@ -105,7 +105,6 @@ are a few functions that are a little more involved:
   code.
 }
 }
-\arguments{\item{x}{Object of class \code{disord}}}
 \value{Returns a disord}
 \author{Robin K. S. Hankin}
 \note{
